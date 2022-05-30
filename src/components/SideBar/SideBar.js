@@ -1,4 +1,5 @@
 import "../SideBar/SideBar.css";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
   return (
@@ -8,34 +9,34 @@ const SideBar = () => {
           <div className="menu-options">
             <ul className="notes-sidebar-list">
               <li className="notes-side-links">
-                <a href="/">
+                <Link to="/">
                   <span className="material-icons">home</span>
-                </a>
+                </Link>
                 <div>Home</div>
               </li>
               <li className="notes-side-links">
-                <a href="/allplaylists">
+                <Link to="/">
                   <span className="material-icons">label</span>
-                </a>
+                </Link>
                 <div>Labels</div>
               </li>
               <li className="notes-side-links">
-                <a href="/videolist">
+                <Link to="/">
                   <span className="material-icons">archive</span>
-                </a>
+                </Link>
                 <div>Archive</div>
               </li>
               <li className="notes-side-links">
-                <a href="/watchlater">
+                <Link to="/">
                   <span className="material-icons">delete</span>
-                </a>
+                </Link>
                 <div>Trash</div>
               </li>
 
               <li className="notes-side-links">
-                <a href="/history">
+                <Link to="/">
                   <span className="material-icons">account_circle</span>
-                </a>
+                </Link>
                 <div>Profile</div>
               </li>
               <li className="notes-side-links">
@@ -47,17 +48,17 @@ const SideBar = () => {
           <div className="profile-details">
             <ul className="notes-sidebar-list">
               <li className="notes-side-links">
-                <a href="/history">
+                <Link to="/">
                   <img
                     src="https://picsum.photos/200"
                     alt="avatar"
                     className="avatar avatar-sm"
                   />
-                </a>
+                </Link>
                 <div>Mansi Padgelwar</div>
-                <a href="/history">
+                <Link to="/">
                   <span className="material-icons">logout</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
