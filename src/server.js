@@ -6,8 +6,7 @@ import {
 } from "./backend/controllers/ArchiveController";
 import {
   loginHandler,
-  signupHandler,
-  // userProfilehandler,
+  signupHandler
 } from "./backend/controllers/AuthController";
 import {
   archiveNoteHandler,
