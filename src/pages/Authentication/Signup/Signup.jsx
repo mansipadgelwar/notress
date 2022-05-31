@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import "../../Athentication/authentication.css";
+import "../../Authentication/authentication.css";
 
 const Signup = () => {
   return (
-    <div className="authentication-page">
+    <div className="signup-page-container">
       <article className="form-container">
         <div className="authentication-form-container">
           <form className="form" action="">

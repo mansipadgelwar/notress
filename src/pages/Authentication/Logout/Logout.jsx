@@ -1,4 +1,4 @@
-import "../../Athentication/authentication.css";
+import "../../Authentication/authentication.css";
 import { Link } from "react-router-dom";
 
 const Logout = () => {

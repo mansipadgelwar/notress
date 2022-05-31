@@ -3,6 +3,12 @@
   position: relative;
 }
 
+.signup-page-container {
+  top: 10vh;
+  height: 100% - 10vh;
+  position: relative;
+}
+
 .form-container {
   display: flex;
   align-items: center;
@@ -106,7 +112,7 @@
 }
 
 .authentication-page .btn-cta {
-  color: white;
+  color: var(--white);
 }
 
 .btn-cta:hover {

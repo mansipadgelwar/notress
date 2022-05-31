@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../../Athentication/authentication.css";
+import "../../Authentication/authentication.css";
 
 const Login = () => {
   return (
