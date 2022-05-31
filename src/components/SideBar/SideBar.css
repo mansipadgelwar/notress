@@ -1,9 +1,9 @@
 .notes-side-bar {
   overflow-y: auto;
-  position: sticky;
-  top: 0;
-  left: 0;
-  height: 90vh;
+  position: fixed;
+  top: 64px;
+  /* height: 90vh; */
+  height: calc(100% - 64px);
   flex: 0.3;
   max-width: 17rem;
   width: 100%;

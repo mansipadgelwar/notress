@@ -1,8 +1,13 @@
 .simple-header > .header {
+  position: fixed;
   height: 10vh;
   width: 100%;
+  min-width: 0;
   border: none;
   box-shadow: var(--btn-box-shadow);
+  z-index: 999;
+  top: 0;
+  overflow: auto;
 }
 
 .header-items {
