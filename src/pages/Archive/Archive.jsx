@@ -1,5 +1,6 @@
-import { NotesMenuBar, SideBar } from "../../components";
+import { NotesMenuBar, SearchBar, SideBar } from "../../components";
 import WysiwygEditor from "../../components/editor/WysiwygEditor";
+import "../../pages/pages.css";
 
 const Archive = () => {
   return (
@@ -11,16 +12,7 @@ const Archive = () => {
       <div className="main-content-page">
         <div className="hero-img">
           <div className="hero-img-overlay">
-            <div className="input-icon icons-left icons-right">
-              <span className="material-icons">search</span>
-              <input
-                className="input"
-                type="text"
-                id="search-bar"
-                name="search-bar"
-              />
-              <span class="material-icons">tune</span>
-            </div>
+            <SearchBar />
             <div className="notes-container">
               <div className="notes-title-container">
                 <div className="h4 text-bold">Title of the note</div>
