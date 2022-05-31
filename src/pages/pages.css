@@ -52,6 +52,7 @@
   flex-direction: column;
   gap: 2rem;
   flex: 0.7;
+  position: relative;
 }
 
 .menu {
@@ -264,6 +265,13 @@
 }
 
 .input-icon .input {
-  position: relative;
   margin: 1rem;
+}
+
+.search-bar-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

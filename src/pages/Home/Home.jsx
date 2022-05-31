@@ -11,8 +11,10 @@ const Home = () => {
       <div className="main-content-page">
         <div className="hero-img">
           <div className="hero-img-overlay">
-            <SearchBar />
-            <div className="notes-container">
+            <div className="search-bar-container">
+              <SearchBar />
+            </div>
+            {/* <div className="notes-container">
               <div className="notes-title-container">
                 <div className="h4 text-bold">Title of the note</div>
                 <div>
@@ -27,7 +29,7 @@ const Home = () => {
                 <div className="notes-creation-date">Created on 26/10/2021</div>
                 <NotesMenuBar />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
