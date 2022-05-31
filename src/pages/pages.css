@@ -58,6 +58,7 @@
   border: 1px solid var(--raisin-black);
   gap: 20px;
   padding: 1rem;
+  margin-bottom: 20px;
 }
 
 .notes-title-container {
