@@ -9,7 +9,8 @@
 
 .hero-img {
   max-width: 62.5rem;
-  height: auto;
+  position: absolute;
+  top: 10vh;
   width: 100%;
   display: flex;
   justify-content: center;
