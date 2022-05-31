@@ -17,7 +17,7 @@ const Trash = () => {
           <div className="section-breaker h4 text-bold">
             <div>TRASH</div>
             <button className="btn-icon">
-              <span class="material-icons">delete</span>
+              <span className="material-icons">delete</span>
             </button>
           </div>
 

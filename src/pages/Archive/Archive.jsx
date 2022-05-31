@@ -16,6 +16,9 @@ const Archive = () => {
 
           <div className="section-breaker h4 text-bold">
             <div>ARCHIVED</div>
+            <button className="btn-icon">
+              <span className="material-icons">delete</span>
+            </button>
           </div>
 
           <div className="notes-container">
