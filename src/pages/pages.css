@@ -66,6 +66,12 @@
   justify-content: space-between;
 }
 
+.btn-icon {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 .material-icons {
   color: var(--primary-color);
 }
