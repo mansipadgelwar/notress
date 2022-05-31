@@ -19,7 +19,7 @@ const Home = () => {
                 id="search-bar"
                 name="search-bar"
               />
-              <span class="material-icons">tune</span>
+              <span className="material-icons">tune</span>
             </div>
             <div className="notes-container">
               <div className="notes-title-container">
