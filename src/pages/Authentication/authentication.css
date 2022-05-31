@@ -1,0 +1,114 @@
+.authentication-page {
+  height: 100vh;
+  position: relative;
+}
+
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container .h3 {
+  padding-bottom: 1rem;
+}
+
+.authentication-form-container {
+  margin-top: 1.88rem;
+  z-index: 1;
+}
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon > input {
+  max-width: 23rem;
+}
+
+.input-icon > input {
+  max-width: 21.88rem;
+}
+
+.icons-right {
+  position: absolute;
+  right: 1.56rem;
+  bottom: 1.43rem;
+  z-index: 1;
+  cursor: pointer;
+  border: none;
+  background-color: var(--white);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+  min-width: 25rem;
+  padding: 1rem;
+  box-shadow: var(--btn-box-shadow);
+  color: var(--light-raisin-black);
+  font-weight: bolder;
+}
+
+.h3,
+.checkbox,
+.btn-link {
+  text-align: center;
+}
+
+.input-label {
+  color: var(--raisin-black);
+  text-align: left;
+}
+
+.form .btn-link {
+  margin: 0;
+}
+
+.checkbox-detail {
+  margin-left: 0.5rem;
+  color: var(--raisin-black);
+}
+
+.form-container .input-icon .input {
+  padding-left: 2.4rem;
+}
+
+.checkbox-container {
+  width: 100%;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.login-form .checkbox-container {
+  justify-content: space-between;
+}
+
+.checkbox {
+  margin-top: 0.15rem;
+}
+
+.login-form {
+  margin-top: 6.25rem;
+}
+
+.logout-content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.authentication-page .btn-cta {
+  color: white;
+}
+
+.btn-cta:hover {
+  background-color: var(--primary-light-shade);
+}
