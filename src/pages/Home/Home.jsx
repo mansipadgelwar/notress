@@ -30,6 +30,10 @@ const Home = () => {
             </div>
           </div>
 
+          <div className="section-breaker h4 text-bold">
+            <div>PINNED</div>
+          </div>
+
           <div className="notes-container">
             <div className="notes-title-container">
               <div className="h4 text-bold">Title of the note</div>
