@@ -25,28 +25,8 @@
   flex: 0.3;
 }
 
-.hero-img > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hero-img-overlay {
-  position: absolute;
-  z-index: 1;
-  background-color: transparent;
-  text-align: center;
-}
-
-.img {
-  display: block;
-  object-fit: cover;
-  width: 100%;
-  height: 10.62rem;
-}
-
 .main-content-page {
-  max-width: 62.5rem;
+  min-width: 62.5rem;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -100,107 +80,6 @@
 
 .main-content-page .home-page-subheading {
   text-align: left;
-}
-
-/* header */
-
-.simple-header > .header {
-  height: 10vh;
-  width: 100%;
-  border: none;
-  box-shadow: var(--btn-box-shadow);
-}
-
-.header-items {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  padding-left: 4rem;
-}
-
-.notes .nav-brand {
-  font-family: "Lato", sans-serif;
-  font-weight: bolder;
-  letter-spacing: 0.1rem;
-  font-size: 2.8rem;
-  color: var(--light-raisin-black);
-}
-
-/* sidebar */
-
-.video-side-bar {
-  overflow-y: auto;
-  position: sticky;
-  top: 0rem;
-  left: 0;
-  height: 90vh;
-  flex: 0.3;
-  max-width: 17rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding-top: 4rem;
-  box-shadow: var(--btn-box-shadow);
-}
-
-.video-sidebar-menu {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.video-sidebar-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  font-weight: bold;
-  align-items: flex-start;
-  padding-left: 2rem;
-  font-size: 0.9rem;
-}
-
-.video-side-links > a {
-  list-style: none;
-  color: var(--grey);
-  text-decoration: none;
-}
-
-.video-side-links {
-  list-style-type: none;
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-}
-
-.profile-details .video-side-links {
-  gap: 10px;
-  font-size: 1rem;
-}
-
-.video-side-links:hover {
-  font-size: 1rem;
-}
-
-.video-side-links > a:hover {
-  color: var(--raisin-black);
-  transition: 200ms color ease-in;
-}
-
-.library-home-page {
-  display: flex;
-}
-
-.video-sidebar-menu .profile-details {
-  display: flex;
-  position: absolute;
-  bottom: 0;
-  padding-bottom: 3vh;
-}
-
-.profile-details .avatar {
-  margin: 0;
 }
 
 /*notes*/
@@ -264,14 +143,7 @@
   padding: 0.5rem;
 }
 
-.input-icon .input {
-  margin: 1rem;
-}
-
 .search-bar-container {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
 }

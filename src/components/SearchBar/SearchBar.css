@@ -1,13 +1,13 @@
 .search-bar-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   cursor: pointer;
 }
 
 .search-bar-input {
   margin: 1rem;
-  min-width: 300px;
+  max-width: 300px;
   width: 100%;
   height: 5vh;
   padding: 0.5rem;
