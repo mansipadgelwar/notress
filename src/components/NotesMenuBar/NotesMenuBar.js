@@ -5,6 +5,9 @@ const NotesMenuBar = () => {
     <div className="notes-sub-menu">
       <ul className="notes-list">
         <li>
+          <span class="material-icons">edit_note</span>
+        </li>
+        <li>
           <span className="material-icons">palette</span>
         </li>
         <li>
