@@ -29,19 +29,19 @@ const SideBar = () => {
                 <div>Home</div>
               </li>
               <li className="notes-side-links">
-                <Link to="/">
+                <Link to="/label">
                   <span className="material-icons">label</span>
                 </Link>
                 <div>Labels</div>
               </li>
               <li className="notes-side-links">
-                <Link to="/">
+                <Link to="/archive">
                   <span className="material-icons">archive</span>
                 </Link>
                 <div>Archive</div>
               </li>
               <li className="notes-side-links">
-                <Link to="/">
+                <Link to="/trash">
                   <span className="material-icons">delete</span>
                 </Link>
                 <div>Trash</div>
