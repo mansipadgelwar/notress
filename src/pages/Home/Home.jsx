@@ -1,11 +1,12 @@
 import { NotesMenuBar, SearchBar, SideBar } from "../../components";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useState } from "react";
-import ReactHtmlParser from "react-html-parser";
+import { useRef, useState } from "react";
 
 const Home = () => {
-  const [noteBody, setNoteBody] = useState([]);
+  const [noteBody, setNoteBody] = useState("Hello World");
+
+  const reference = useRef(null);
 
   return (
     <div className="library-home-page">
@@ -21,14 +22,14 @@ const Home = () => {
           <div className="notes-container">
             <div className="notes-editor-conatiner">
               <div className="notes-title-container">
-                {ReactHtmlParser(noteBody)}
-
                 <div>
                   <span className="material-icons">push_pin</span>
                 </div>
               </div>
               <div className="notes-body">
                 <ReactQuill
+                  ref={reference}
+                  placeholder="Add note "
                   value={noteBody}
                   onChange={(noteBody) => setNoteBody(noteBody)}
                 />
