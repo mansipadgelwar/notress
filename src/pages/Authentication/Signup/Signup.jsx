@@ -1,22 +1,59 @@
-import { Link } from "react-router-dom";
-import "../../Authentication/authentication.css";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/authContext/authenticationContext";
 
 const Signup = () => {
+  const initialFormDetails = {
+    email: "",
+    firstName: "",
+    lastName: "",
+    password: "",
+    confirmPassword: "",
+  };
+
+  const currentLocation = useNavigate();
+  const { signUpUser, isAuthorized } = useAuth();
+  const [formDetails, setFormDetails] = useState(initialFormDetails);
+  const [showConfirmPasswordIcon, setConfirmPasswordIcon] = useState(false);
+  const [showPasswordIcon, setPasswordIcon] = useState(false);
+
+  const formDetailsHandler = () => {
+    signUpUser(
+      formDetails.email,
+      formDetails.firstName,
+      formDetails.lastName,
+      formDetails.password,
+      formDetails.confirmPassword
+    );
+  };
+
+  if (isAuthorized) {
+    currentLocation("/");
+  }
+
   return (
-    <div className="signup-page-container">
+    <div className="authentication-page">
       <article className="form-container">
         <div className="authentication-form-container">
-          <form className="form" action="">
+          <form className="form" onSubmit={(e) => e.preventDefault()}>
             <h3 className="h3">SIGN UP</h3>
             <label htmlFor="email" className="input-label">
               Email:
             </label>
             <input
               className="input"
+              autoComplete="off"
               type="email"
               id="email"
               name="email"
               placeholder="Enter your email ID"
+              value={formDetails?.email}
+              onChange={(e) =>
+                setFormDetails((details) => ({
+                  ...details,
+                  email: e.target.value,
+                }))
+              }
               required
             />
             <label htmlFor="fname" className="input-label">
@@ -24,10 +61,18 @@ const Signup = () => {
             </label>
             <input
               className="input"
+              autoComplete="off"
               type="text"
               id="fname"
               name="fname"
               placeholder="Enter your first name"
+              value={formDetails?.firstName}
+              onChange={(e) =>
+                setFormDetails((details) => ({
+                  ...details,
+                  firstName: e.target.value,
+                }))
+              }
               required
             />
 
@@ -36,10 +81,18 @@ const Signup = () => {
             </label>
             <input
               className="input"
+              autoComplete="off"
               type="text"
               id="lname"
               name="lname"
               placeholder="Enter your last name"
+              value={formDetails?.lastName}
+              onChange={(e) =>
+                setFormDetails((details) => ({
+                  ...details,
+                  lastName: e.target.value,
+                }))
+              }
               required
             />
 
@@ -49,14 +102,26 @@ const Signup = () => {
               </label>
               <input
                 className="input"
-                type="password"
+                type={showPasswordIcon ? "text" : "password"}
                 id="password"
                 name="password"
                 placeholder="Enter password"
+                value={formDetails?.password}
+                onChange={(e) =>
+                  setFormDetails((details) => ({
+                    ...details,
+                    password: e.target.value,
+                  }))
+                }
                 required
               />
-              <button className="btn-link material-icons icons-right">
-                visibility
+              <button
+                className="btn-link material-icons icons-right"
+                onClick={() =>
+                  setPasswordIcon((showPasswordIcon) => !showPasswordIcon)
+                }
+              >
+                {showPasswordIcon ? "visibility" : "visibility_off"}
               </button>
             </div>
 
@@ -66,14 +131,28 @@ const Signup = () => {
               </label>
               <input
                 className="input"
-                type="password"
+                type={showConfirmPasswordIcon ? "text" : "password"}
                 id="confirm-password"
                 name="confirm-password"
                 placeholder="Confirm your password"
+                value={formDetails?.confirmPassword}
+                onChange={(e) =>
+                  setFormDetails((details) => ({
+                    ...details,
+                    confirmPassword: e.target.value,
+                  }))
+                }
                 required
               />
-              <button className="btn-link material-icons icons-right">
-                visibility
+              <button
+                className="btn-link material-icons icons-right"
+                onClick={() =>
+                  setConfirmPasswordIcon(
+                    (showConfirmPasswordIcon) => !showConfirmPasswordIcon
+                  )
+                }
+              >
+                {showConfirmPasswordIcon ? "visibility" : "visibility_off"}
               </button>
             </div>
 
@@ -84,8 +163,10 @@ const Signup = () => {
               </div>
             </div>
 
-            <button className="btn btn-cta">Create New Account</button>
-            <Link className="btn-link" to="./login">
+            <button className="btn btn-cta" onClick={formDetailsHandler}>
+              Create New Account
+            </button>
+            <Link className="btn-link" to="/login">
               Already have an account &gt;
             </Link>
           </form>
