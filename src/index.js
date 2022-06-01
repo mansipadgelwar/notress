@@ -13,6 +13,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
+        <ToastContainer />
         <App />
       </AuthProvider>
     </Router>
