@@ -1,0 +1,110 @@
+.hero-img {
+  max-width: 62.5rem;
+  position: absolute;
+  top: 10vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.library-home-page {
+  display: flex;
+}
+
+.library-home-sidebar {
+  flex: 0.3;
+}
+
+.main-content-page {
+  min-width: 62.5rem;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  flex: 0.7;
+}
+
+.menu {
+  display: flex;
+}
+
+.main-content-page .home-page-subheading {
+  text-align: left;
+}
+
+/*notes*/
+
+.notes-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: var(--grey);
+}
+
+.notes-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+  list-style: none;
+}
+
+.notes-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 31.875rem;
+  width: 100%;
+  border: 1px solid var(--raisin-black);
+  gap: 1.25rem;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.notes-title-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-icon {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.material-icons {
+  color: var(--primary-color);
+}
+
+.notes-body {
+  max-width: 30rem;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.notes-body .rdw-editor-main {
+  max-width: 31.25rem;
+  width: 100%;
+}
+
+.notes-container .notes-label-type {
+  padding: 0.2rem;
+  border-radius: 0.3rem;
+  background-color: var(--hover-grey);
+  display: inline-block;
+  max-width: 17.5rem;
+  width: fit-content;
+  padding: 0.5rem;
+}
+
+.section-breaker {
+  margin: 0.5rem;
+  max-width: 31.875rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
