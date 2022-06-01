@@ -1,7 +1,21 @@
 import "../SideBar/SideBar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/authContext/authenticationContext";
+import { useToast } from "../../custom-hooks/useToast";
 
 const SideBar = () => {
+  const { authDispatch } = useAuth();
+  const navigate = useNavigate();
+  const { showToast } = useToast();
+
+  const logoutUser = () => {
+    showToast("Logout Successful", "success");
+    authDispatch({ type: "RESET_AUTH" });
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    navigate("/logout");
+  };
+
   return (
     <div className="library-home-sidebar">
       <aside className="notes-side-bar">
@@ -56,9 +70,11 @@ const SideBar = () => {
                   />
                 </Link>
                 <div>Mansi Padgelwar</div>
-                <Link to="/">
-                  <span className="material-icons">logout</span>
-                </Link>
+                <button className="btn">
+                  <span className="material-icons" onClick={logoutUser}>
+                    logout
+                  </span>
+                </button>
               </li>
             </ul>
           </div>
