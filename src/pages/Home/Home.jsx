@@ -1,12 +1,14 @@
 import { NotesMenuBar, SearchBar, SideBar } from "../../components";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import JoditEditor from "jodit-react";
 import { useRef, useState } from "react";
 
 const Home = () => {
-  const [noteBody, setNoteBody] = useState("Hello World");
-
+  const [noteBody, setNoteBody] = useState("");
   const reference = useRef(null);
+
+  const config = {
+    readonly: false,
+  };
 
   return (
     <div className="library-home-page">
@@ -22,16 +24,19 @@ const Home = () => {
           <div className="notes-container">
             <div className="notes-editor-conatiner">
               <div className="notes-title-container">
+                <div className="h4 text-bold">Title of the note</div>
                 <div>
                   <span className="material-icons">push_pin</span>
                 </div>
               </div>
               <div className="notes-body">
-                <ReactQuill
+                <JoditEditor
                   ref={reference}
-                  placeholder="Add note "
                   value={noteBody}
-                  onChange={(noteBody) => setNoteBody(noteBody)}
+                  config={config}
+                  tabIndex={1}
+                  onBlur={(newContent) => setNoteBody(newContent)}
+                  onChange={(newContent) => {}}
                 />
               </div>
               <div className="notes-label-type text-bold h5">LABEL 1</div>
