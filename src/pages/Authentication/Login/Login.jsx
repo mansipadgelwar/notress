@@ -1,12 +1,37 @@
-import { Link } from "react-router-dom";
-import "../../Authentication/authentication.css";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/authContext/authenticationContext";
 
 const Login = () => {
+  const initialFormDetails = {
+    email: "",
+    password: "",
+  };
+
+  const currentLocation = useNavigate();
+  const { loginUser, isAuthorized } = useAuth();
+  const [formDetails, setFormDetails] = useState(initialFormDetails);
+
+  const formDetailsHandler = () => {
+    loginUser(formDetails.email, formDetails.password);
+  };
+
+  function loginWithTestCredentials() {
+    setFormDetails({
+      email: "adarshbalika@gmail.com",
+      password: "adarshBalika123",
+    });
+  }
+
+  if (isAuthorized) {
+    currentLocation("/");
+  }
+
   return (
     <div className="authentication-page">
       <article className="form-container login-form">
         <div className="authentication-form-container">
-          <form className="form" action="">
+          <form className="form" onSubmit={(e) => e.preventDefault()}>
             <h3 className="h3">LOGIN</h3>
             <label htmlFor="email" className="input-label">
               Email Address:{" "}
@@ -15,10 +40,19 @@ const Login = () => {
               <span className="material-icons">email</span>
               <input
                 className="input"
+                autoComplete="off"
                 type="email"
                 id="email"
                 name="email"
                 placeholder="Enter Email ID"
+                value={formDetails?.email}
+                onChange={(e) =>
+                  setFormDetails((details) => ({
+                    ...details,
+                    email: e.target.value,
+                  }))
+                }
+                required
               />
             </div>
 
@@ -33,6 +67,14 @@ const Login = () => {
                 id="password"
                 name="password"
                 placeholder="Enter Password"
+                value={formDetails?.password}
+                onChange={(e) =>
+                  setFormDetails((details) => ({
+                    ...details,
+                    password: e.target.value,
+                  }))
+                }
+                required
               />
             </div>
 
@@ -53,7 +95,15 @@ const Login = () => {
               </Link>
             </div>
 
-            <button className="btn btn-cta">Login</button>
+            <button className="btn btn-cta" onClick={formDetailsHandler}>
+              Login
+            </button>
+            <button
+              className="btn btn-primary-outline"
+              onClick={loginWithTestCredentials}
+            >
+              Login with test credentials
+            </button>
             <Link to="/signup" className="btn-link">
               Create New Account &gt;
             </Link>
