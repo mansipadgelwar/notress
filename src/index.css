@@ -1,5 +1,8 @@
+@import url("react-toastify/dist/ReactToastify.css");
+
 :root {
   --primary-color: #8e94f2;
+  --dark-primary-color: #7078ef;
 }
 
 body {

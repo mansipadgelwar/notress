@@ -68,3 +68,8 @@
 .profile-details .avatar {
   margin: 0;
 }
+
+.btn .btn-cta:hover {
+  background-color: var(--dark-primary-color);
+  color: var(--primary-color);
+}
