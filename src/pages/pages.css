@@ -76,28 +76,19 @@
   color: var(--primary-color);
 }
 
-.notes-body {
-  max-width: 30rem;
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-wrap: wrap;
-  text-align: left;
-}
-
-.notes-body .rdw-editor-main {
-  max-width: 31.25rem;
-  width: 100%;
-}
-
 .notes-container .notes-label-type {
-  padding: 0.2rem;
   border-radius: 0.3rem;
   background-color: var(--hover-grey);
   display: inline-block;
   max-width: 17.5rem;
   width: fit-content;
   padding: 0.5rem;
+}
+
+.notes-editor-conatiner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .section-breaker {
@@ -107,4 +98,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.quill {
+  width: 100%;
 }
