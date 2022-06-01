@@ -1,8 +1,12 @@
 import { NotesMenuBar, SearchBar, SideBar } from "../../components";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useState } from "react";
+import ReactHtmlParser from "react-html-parser";
 
 const Home = () => {
+  const [noteBody, setNoteBody] = useState([]);
+
   return (
     <div className="library-home-page">
       <div className="library-home-sidebar">
@@ -17,13 +21,17 @@ const Home = () => {
           <div className="notes-container">
             <div className="notes-editor-conatiner">
               <div className="notes-title-container">
-                <div className="h4 text-bold">Title of the note</div>
+                {ReactHtmlParser(noteBody)}
+
                 <div>
                   <span className="material-icons">push_pin</span>
                 </div>
               </div>
               <div className="notes-body">
-                <ReactQuill />
+                <ReactQuill
+                  value={noteBody}
+                  onChange={(noteBody) => setNoteBody(noteBody)}
+                />
               </div>
               <div className="notes-label-type text-bold h5">LABEL 1</div>
             </div>
