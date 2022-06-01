@@ -18,8 +18,8 @@ const Login = () => {
 
   function loginWithTestCredentials() {
     setFormDetails({
-      email: "adarshbalika@gmail.com",
-      password: "adarshBalika123",
+      email: "mansipadgelwar@gmail.com",
+      password: "Mansi12345",
     });
   }
 
