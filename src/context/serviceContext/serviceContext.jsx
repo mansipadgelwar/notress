@@ -104,7 +104,7 @@ const ServiceProvider = ({ children }) => {
     if (isAuthorized) {
       getNewNotes();
     }
-  }, [isAuthorized]);
+  }, []);
 
   return (
     <ServiceContext.Provider
