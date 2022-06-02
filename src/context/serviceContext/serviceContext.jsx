@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import { useAuth } from "../authContext/authenticationContext";
 import { useToast } from "../../custom-hooks/useToast";
 import { dataReducer } from "../../reducers";
@@ -100,12 +94,6 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    if (isAuthorized) {
-      getNewNotes();
-    }
-  }, [isAuthorized]);
-
   return (
     <ServiceContext.Provider
       value={{
@@ -117,6 +105,7 @@ const ServiceProvider = ({ children }) => {
         deleteNote,
         updateNote,
         setId,
+        getNewNotes,
       }}
     >
       {children}
