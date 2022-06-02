@@ -1,10 +1,13 @@
+import { useServices } from "../../context/serviceContext/serviceContext";
 import "../NotesMenuBar/NotesMenuBar.css";
 
 const NotesMenuBar = () => {
+  const { postNewNotes, note } = useServices();
+
   return (
     <div className="notes-sub-menu">
       <ul className="notes-list">
-        <li>
+        <li onClick={() => postNewNotes(note)}>
           <span class="material-icons">edit_note</span>
         </li>
         <li>

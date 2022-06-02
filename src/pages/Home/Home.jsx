@@ -1,9 +1,11 @@
 import { NotesMenuBar, SearchBar, SideBar } from "../../components";
 import JoditEditor from "jodit-react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import { useServices } from "../../context/serviceContext/serviceContext";
 
 const Home = () => {
-  const [noteBody, setNoteBody] = useState("");
+  const { note, setNote } = useServices();
+
   const reference = useRef(null);
 
   const config = {
@@ -24,7 +26,19 @@ const Home = () => {
           <div className="notes-container">
             <div className="notes-editor-conatiner">
               <div className="notes-title-container">
-                <div className="h4 text-bold">Title of the note</div>
+                <div className="h4 text-bold">
+                  <input
+                    className="search-bar-input"
+                    id="note-title"
+                    type="text"
+                    placeholder="Title of the note"
+                    autoComplete="off"
+                    value={note.title}
+                    onChange={(e) =>
+                      setNote((prev) => ({ ...prev, title: e.target.value }))
+                    }
+                  />
+                </div>
                 <div>
                   <span className="material-icons">push_pin</span>
                 </div>
@@ -32,11 +46,12 @@ const Home = () => {
               <div className="notes-body">
                 <JoditEditor
                   ref={reference}
-                  value={noteBody}
+                  value={note.body}
                   config={config}
                   tabIndex={1}
-                  onBlur={(newContent) => setNoteBody(newContent)}
-                  onChange={(newContent) => {}}
+                  onBlur={(value) =>
+                    setNote((prev) => ({ ...prev, body: value }))
+                  }
                 />
               </div>
               <div className="notes-label-type text-bold h5">LABEL 1</div>

@@ -1,4 +1,10 @@
-import { createContext, useContext, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { useAuth } from "../authContext/authenticationContext";
 import { useToast } from "../../custom-hooks/useToast";
 import axios from "axios";
@@ -14,32 +20,65 @@ const ServiceProvider = ({ children }) => {
   const { isAuthorized, authToken } = useAuth();
   const { showToast } = useToast();
   const [state, dispatch] = useReducer(dataReducer, initialDataState);
+  const [note, setNote] = useState(
+    initialDataState.notes ?? {
+      title: "",
+      body: "",
+    }
+  );
 
-  const postNewNotes = async (notes) => {
+  const postNewNotes = async (note) => {
     if (!isAuthorized) {
       showToast("Please login to add notes.", "success");
     } else {
       try {
         const {
-          data: { note },
+          data: { notes },
         } = await axios.post(
           "/api/notes",
-          { notes },
+          { note },
           {
             headers: { authorization: authToken },
           }
         );
-        dispatch({ type: "SET_NOTES", payload: note });
+        console.log(notes);
+        dispatch({ type: "SET_NOTES", payload: notes });
         showToast("Notes added successfully", "success");
       } catch (error) {
-        console.log("Error in adding notes.", "error");
+        console.log("Error in adding notes.", error);
       }
     }
   };
 
+  const getNewNotes = async () => {
+    try {
+      const {
+        data: { notes },
+      } = await axios.get("/api/notes", {
+        headers: { authorization: authToken },
+      });
+      dispatch({ type: "SET_NOTES", payload: [...notes] });
+    } catch (error) {
+      console.log("Error in getting notes.", error);
+    }
+  };
+
+  useEffect(() => {
+    if (isAuthorized) {
+      getNewNotes();
+    }
+  });
+
   return (
     <ServiceContext.Provider
-      value={{ state, dispatch, initialDataState, postNewNotes }}
+      value={{
+        ...state,
+        dispatch,
+        initialDataState,
+        postNewNotes,
+        note,
+        setNote,
+      }}
     >
       {children}
     </ServiceContext.Provider>
