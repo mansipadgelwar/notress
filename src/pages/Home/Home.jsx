@@ -9,7 +9,7 @@ const Home = () => {
   const reference = useRef(null);
 
   const config = {
-    readonly: false,
+    readonly: false
   };
 
   return (
