@@ -10,7 +10,7 @@ const SearchBar = () => {
         id="search-bar"
         name="search-bar"
       />
-      <span class="material-icons icon-right">tune</span>
+      <span className="material-icons icon-right">tune</span>
     </div>
   );
 };
