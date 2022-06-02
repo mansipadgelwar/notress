@@ -26,6 +26,7 @@ const ServiceProvider = ({ children }) => {
       body: "",
     }
   );
+  const [id, setId] = useState();
 
   const postNewNotes = async (note) => {
     if (!isAuthorized) {
@@ -41,8 +42,8 @@ const ServiceProvider = ({ children }) => {
             headers: { authorization: authToken },
           }
         );
-        console.log(notes);
         dispatch({ type: "SET_NOTES", payload: notes });
+        setNote({ title: "", body: "" });
         showToast("Notes added successfully", "success");
       } catch (error) {
         console.log("Error in adding notes.", error);
@@ -63,21 +64,66 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
+  const deleteNote = async (noteId) => {
+    if (!isAuthorized) {
+      showToast("Please login to delete notes.", "success");
+    } else {
+      try {
+        const {
+          data: { notes },
+        } = await axios.delete(`/api/notes/${noteId}`, {
+          headers: { authorization: authToken },
+        });
+        dispatch({ type: "SET_NOTES", payload: notes });
+        showToast("Note deleted successfully", "success");
+      } catch (error) {
+        console.log("Error in deleting notes.", error);
+      }
+    }
+  };
+
+  const updateNote = async (editNote) => {
+    const currentNote = editNote.find((element) => element._id === id);
+
+    if (!isAuthorized) {
+      showToast("Please login to edit notes.", "success");
+    } else {
+      try {
+        const {
+          data: { notes },
+        } = await axios.post(
+          `/api/notes/${currentNote._id}`,
+          { note },
+          {
+            headers: { authorization: authToken },
+          }
+        );
+        dispatch({ type: "SET_NOTES", payload: notes });
+        setNote({ title: "", body: "" });
+        showToast("Notes updated successfully", "success");
+      } catch (error) {
+        console.log("Error in updating notes.", error);
+      }
+    }
+  };
+
   useEffect(() => {
     if (isAuthorized) {
       getNewNotes();
     }
-  });
+  }, [isAuthorized]);
 
   return (
     <ServiceContext.Provider
       value={{
-        ...state,
+        state,
         dispatch,
-        initialDataState,
         postNewNotes,
         note,
         setNote,
+        deleteNote,
+        updateNote,
+        setId,
       }}
     >
       {children}
