@@ -7,8 +7,13 @@ import {
 } from "react";
 import { useAuth } from "../authContext/authenticationContext";
 import { useToast } from "../../custom-hooks/useToast";
-import axios from "axios";
 import { dataReducer } from "../../reducers";
+import {
+  deleteNoteService,
+  getNewNoteService,
+  postNewNoteService,
+  updateNewNoteService,
+} from "../../services";
 
 const initialDataState = {
   notes: [],
@@ -35,18 +40,13 @@ const ServiceProvider = ({ children }) => {
       try {
         const {
           data: { notes },
-        } = await axios.post(
-          "/api/notes",
-          { note },
-          {
-            headers: { authorization: authToken },
-          }
-        );
+        } = await postNewNoteService(authToken, note);
         dispatch({ type: "SET_NOTES", payload: notes });
         setNote({ title: "", body: "" });
         showToast("Notes added successfully", "success");
       } catch (error) {
-        console.log("Error in adding notes.", error);
+        showToast("Error in adding notes", "error");
+        console.error("Error in adding notes.", error);
       }
     }
   };
@@ -55,12 +55,11 @@ const ServiceProvider = ({ children }) => {
     try {
       const {
         data: { notes },
-      } = await axios.get("/api/notes", {
-        headers: { authorization: authToken },
-      });
+      } = await getNewNoteService(authToken);
       dispatch({ type: "SET_NOTES", payload: [...notes] });
     } catch (error) {
-      console.log("Error in getting notes.", error);
+      showToast("Error in getting notes", "error");
+      console.error("Error in getting notes.", error);
     }
   };
 
@@ -71,13 +70,12 @@ const ServiceProvider = ({ children }) => {
       try {
         const {
           data: { notes },
-        } = await axios.delete(`/api/notes/${noteId}`, {
-          headers: { authorization: authToken },
-        });
+        } = await deleteNoteService(authToken, noteId);
         dispatch({ type: "SET_NOTES", payload: notes });
         showToast("Note deleted successfully", "success");
       } catch (error) {
-        console.log("Error in deleting notes.", error);
+        showToast("Error in deleting notes", "error");
+        console.error("Error in deleting notes.", error);
       }
     }
   };
@@ -91,18 +89,13 @@ const ServiceProvider = ({ children }) => {
       try {
         const {
           data: { notes },
-        } = await axios.post(
-          `/api/notes/${currentNote._id}`,
-          { note },
-          {
-            headers: { authorization: authToken },
-          }
-        );
+        } = await updateNewNoteService(authToken, note, currentNote._id);
         dispatch({ type: "SET_NOTES", payload: notes });
         setNote({ title: "", body: "" });
         showToast("Notes updated successfully", "success");
       } catch (error) {
-        console.log("Error in updating notes.", error);
+        showToast("Error while updating notes", "error");
+        console.error("Error in updating notes.", error);
       }
     }
   };
