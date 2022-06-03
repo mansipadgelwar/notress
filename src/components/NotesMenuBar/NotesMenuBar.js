@@ -1,14 +1,15 @@
 import { useServices } from "../../context/serviceContext/serviceContext";
 import "../NotesMenuBar/NotesMenuBar.css";
 
-const NotesMenuBar = ({ notes, menutype }) => {
+const NotesMenuBar = ({ notes, menutype, location }) => {
   const {
     postNewNotes,
     note,
     setNote,
     deleteNote,
     updateNote,
-    setId
+    setId,
+    addNotesToArchive,
   } = useServices();
 
   const handleUpdate = (notes) => {
@@ -40,9 +41,16 @@ const NotesMenuBar = ({ notes, menutype }) => {
           <li>
             <span className="material-icons">label</span>
           </li>
-          <li>
-            <span className="material-icons">archive</span>
-          </li>
+          {location === "archive" ? (
+            <li>
+              <span className="material-icons">unarchive</span>
+            </li>
+          ) : (
+            <li onClick={() => addNotesToArchive(notes._id)}>
+              <span className="material-icons">archive</span>
+            </li>
+          )}
+
           <li onClick={() => deleteNote(notes._id)}>
             <span className="material-icons">delete</span>
           </li>

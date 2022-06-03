@@ -5,12 +5,14 @@ import { dataReducer } from "../../reducers";
 import {
   deleteNoteService,
   getNewNoteService,
+  postArchivedNoteService,
   postNewNoteService,
   updateNewNoteService,
 } from "../../services";
 
 const initialDataState = {
   notes: [],
+  archives: [],
 };
 
 const ServiceContext = createContext(initialDataState);
@@ -76,7 +78,6 @@ const ServiceProvider = ({ children }) => {
 
   const updateNote = async (editNote) => {
     const currentNote = editNote.find((element) => element._id === id);
-
     if (!isAuthorized) {
       showToast("Please login to edit notes.", "success");
     } else {
@@ -94,6 +95,25 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
+  const addNotesToArchive = async (noteId) => {
+    if (!isAuthorized) {
+      showToast("Please login to add notes to archive.", "success");
+    } else {
+      try {
+        const {
+          data: { notes, archives },
+        } = await postArchivedNoteService(authToken, note, noteId);
+        dispatch({
+          type: "ARCHIVE_NOTES",
+          payload: { notes: notes, archives: archives },
+        });
+        showToast("Notes added to archive successfully", "success");
+      } catch (error) {
+        console.log("Error in adding notes to archive.", error);
+      }
+    }
+  };
+
   return (
     <ServiceContext.Provider
       value={{
@@ -106,6 +126,7 @@ const ServiceProvider = ({ children }) => {
         updateNote,
         setId,
         getNewNotes,
+        addNotesToArchive,
       }}
     >
       {children}

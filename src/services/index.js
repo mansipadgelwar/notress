@@ -6,3 +6,9 @@ export {
   deleteNoteService,
   updateNewNoteService,
 } from "../services/noteServices//noteServices.js";
+export {
+  postArchivedNoteService,
+  restoreArchivedNoteService,
+  deleteArchivedNoteService,
+  getArchivedNoteService,
+} from "../services/archiveServices/archiveService";
