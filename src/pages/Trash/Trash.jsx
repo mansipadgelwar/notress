@@ -40,7 +40,7 @@ const Trash = () => {
                   <NotesMenuBar
                     notes={item}
                     menutype={false}
-                    location={"trashed"}
+                    location={"trash"}
                   />
                 </div>
               </div>
