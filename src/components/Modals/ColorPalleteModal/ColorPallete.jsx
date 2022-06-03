@@ -1,5 +1,5 @@
 import "../ColorPalleteModal//ColorPallete.css";
-import { useState } from "react";
+import { useTheme } from "../../../context/noteThemeContext/noteThemeContext";
 
 const palleteDatabase = [
   {
@@ -25,15 +25,14 @@ const palleteDatabase = [
 ];
 
 const ColorPallete = ({ show, onClose }) => {
-  const [backColor, setBackgroundColor] = useState("black");
-
+  const { backColor, setBackgroundColor } = useTheme();
   if (!show) {
     return null;
   }
 
   return (
     <div className="pallete-modal-wrapper">
-      <div className="pallete-modal" style={{ backgroundColor: backColor }}>
+      <div className="pallete-modal">
         <div className="pallete-modal-contents">
           <ul className="pallete-modal-content-list">
             {palleteDatabase.map((pallete) => {
@@ -42,7 +41,13 @@ const ColorPallete = ({ show, onClose }) => {
                   <button
                     className="avatar avatar-xs"
                     style={{ backgroundColor: pallete.bgColor }}
-                    onClick={() => setBackgroundColor(pallete.bgColor)}
+                    onClick={() =>
+                      setBackgroundColor(
+                        pallete.bgColor === backColor
+                          ? "white"
+                          : pallete.bgColor
+                      )
+                    }
                   />
                 </li>
               );
