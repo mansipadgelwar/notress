@@ -1,16 +1,27 @@
-import { createContext, useContext, useReducer, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useReducer,
+  useState,
+  useEffect,
+} from "react";
 import { useAuth } from "../authContext/authenticationContext";
 import { useToast } from "../../custom-hooks/useToast";
 import { dataReducer } from "../../reducers";
 import {
   deleteNoteService,
   getNewNoteService,
+  postArchivedNoteService,
   postNewNoteService,
   updateNewNoteService,
+  getArchivedNoteService,
+  restoreArchivedNoteService,
+  deleteArchivedNoteService,
 } from "../../services";
 
 const initialDataState = {
   notes: [],
+  archives: [],
 };
 
 const ServiceContext = createContext(initialDataState);
@@ -76,7 +87,6 @@ const ServiceProvider = ({ children }) => {
 
   const updateNote = async (editNote) => {
     const currentNote = editNote.find((element) => element._id === id);
-
     if (!isAuthorized) {
       showToast("Please login to edit notes.", "success");
     } else {
@@ -94,6 +104,87 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
+  const addNotesToArchive = async (noteId) => {
+    if (!isAuthorized) {
+      showToast("Please login to archuve notes.", "success");
+    } else {
+      try {
+        const {
+          data: { notes, archives },
+        } = await postArchivedNoteService(authToken, note, noteId);
+        dispatch({
+          type: "ARCHIVE_NOTES",
+          payload: { notes: notes, archives: archives },
+        });
+        showToast("Notes added to archive successfully", "success");
+      } catch (error) {
+        showToast("Error in adding notes to archive.", "error");
+        console.log("Error in adding notes to archive.", error);
+      }
+    }
+  };
+
+  const getArchivedNotes = async () => {
+    try {
+      const {
+        data: { notes, archives },
+      } = await getArchivedNoteService(authToken);
+      dispatch({
+        type: "ARCHIVE_NOTES",
+        payload: { notes: [...notes], archives: [...archives] },
+      });
+    } catch (error) {
+      console.log("Error in getting archived notes.", error);
+    }
+  };
+
+  const restoreNoteFromArchive = async (noteId) => {
+    console.log(noteId);
+    if (!isAuthorized) {
+      showToast("Please login to restore archived notes", "success");
+    } else {
+      try {
+        const {
+          data: { notes, archives },
+        } = await restoreArchivedNoteService(authToken, noteId);
+        dispatch({
+          type: "ARCHIVE_NOTES",
+          payload: { notes: notes, archives: archives },
+        });
+        showToast("Notes unarchived  successfully", "success");
+      } catch (error) {
+        console.log("Error in unarchiving notes.", error);
+      }
+    }
+  };
+
+  const deleteNoteFromArchive = async (noteId) => {
+    if (!isAuthorized) {
+      showToast("Please login to delete notes from archive.", "success");
+    } else {
+      try {
+        const {
+          data: { notes, archives },
+        } = await deleteArchivedNoteService(authToken, noteId);
+        dispatch({
+          type: "ARCHIVE_NOTES",
+          payload: { notes: notes, archives: archives },
+        });
+        showToast("Note deleted successfully from archive", "success");
+      } catch (error) {
+        console.log("Error in deleting notes from archive.", error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (isAuthorized) {
+      getNewNotes();
+      getArchivedNotes();
+    }
+    //eslint-disable-next-line
+  }, [isAuthorized]);
+
   return (
     <ServiceContext.Provider
       value={{
@@ -105,7 +196,9 @@ const ServiceProvider = ({ children }) => {
         deleteNote,
         updateNote,
         setId,
-        getNewNotes,
+        addNotesToArchive,
+        restoreNoteFromArchive,
+        deleteNoteFromArchive,
       }}
     >
       {children}
