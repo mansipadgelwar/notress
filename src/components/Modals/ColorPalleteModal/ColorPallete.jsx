@@ -4,33 +4,41 @@ import { useState } from "react";
 const palleteDatabase = [
   {
     id: 1,
-    bgColor: "red",
+    bgColor: "#fecdd3",
   },
   {
     id: 2,
-    bgColor: "yellow",
+    bgColor: "#f0abfc",
   },
   {
     id: 3,
-    bgColor: "green",
+    bgColor: "#d8b4fe",
   },
   {
     id: 4,
-    bgColor: "blue",
+    bgColor: "#a7f3d0",
   },
   {
     id: 5,
-    bgColor: "orange",
+    bgColor: "#fde68a",
   },
 ];
 
-const ColorPallete = () => {
+const ColorPallete = ({ show, onClose }) => {
   const [backColor, setBackgroundColor] = useState("white");
+
+  if (!show) {
+    return null;
+  }
+
   return (
-    <div className="modal-wrapper" style={{ backgroundColor: backColor }}>
-      <div className="modal">
-        <div className="modal-contents">
-          <ul className="modal-content-list">
+    <div
+      className="pallete-modal-wrapper"
+      style={{ backgroundColor: backColor }}
+    >
+      <div className="pallete-modal">
+        <div className="pallete-modal-contents">
+          <ul className="pallete-modal-content-list">
             {palleteDatabase.map((pallete) => {
               return (
                 <li className="notes-label" key={pallete.id}>
@@ -44,9 +52,12 @@ const ColorPallete = () => {
             })}
 
             <li className="notes-label">
-              <button className="modal-close-icon">
-                <span className="material-icons">close</span>
-              </button>
+              <span
+                className="material-icons pallete-modal-close-icon"
+                onClick={onClose}
+              >
+                close
+              </span>
             </li>
           </ul>
         </div>

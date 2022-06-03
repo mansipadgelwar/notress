@@ -6,3 +6,7 @@
   list-style: none;
   cursor: pointer;
 }
+
+.pallete-modal {
+  position: relative;
+}

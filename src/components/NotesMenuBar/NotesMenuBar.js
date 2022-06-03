@@ -1,7 +1,10 @@
 import { useServices } from "../../context/serviceContext/serviceContext";
 import "../NotesMenuBar/NotesMenuBar.css";
+import { useState } from "react";
+import { ColorPallete } from "../index";
 
 const NotesMenuBar = ({ notes, menutype, location }) => {
+  const [show, setShow] = useState(false);
   const {
     postNewNotes,
     note,
@@ -56,7 +59,8 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
           <li onClick={() => handleUpdate(notes)}>
             <span className="material-icons">edit_note</span>
           </li>
-          <li>
+          <li className="pallete-modal" onClick={() => setShow(true)}>
+            <ColorPallete show={show} onClose={() => setShow(false)} />
             <span className="material-icons">palette</span>
           </li>
           <li>
