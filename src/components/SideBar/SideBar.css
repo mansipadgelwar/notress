@@ -29,12 +29,6 @@
   font-size: 0.9rem;
 }
 
-.notes-side-links > a {
-  list-style: none;
-  color: var(--grey);
-  text-decoration: none;
-}
-
 .notes-side-links {
   list-style-type: none;
   display: flex;
@@ -42,6 +36,8 @@
   gap: 20px;
   justify-content: center;
   align-items: center;
+  list-style: none;
+  color: var(--raisin-black);
 }
 
 .profile-details .notes-side-links {
@@ -53,7 +49,7 @@
   font-size: 1rem;
 }
 
-.notes-side-links > a:hover {
+.notes-side-links > Link:hover {
   color: var(--raisin-black);
   transition: 200ms color ease-in;
 }
@@ -72,4 +68,8 @@
 .btn .btn-cta:hover {
   background-color: var(--dark-primary-color);
   color: var(--primary-color);
+}
+
+a:-webkit-any-link {
+  text-decoration: none;
 }
