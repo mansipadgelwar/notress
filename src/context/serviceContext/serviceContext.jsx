@@ -18,6 +18,7 @@ import {
   restoreArchivedNoteService,
   deleteArchivedNoteService,
   postNoteToTrashService,
+  getTrashedNoteService,
 } from "../../services";
 
 const initialDataState = {
@@ -198,10 +199,25 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
+  const getTrashedNotes = async () => {
+    try {
+      const {
+        data: { notes, trash },
+      } = await getTrashedNoteService(authToken);
+      dispatch({
+        type: "TRASH_NOTES",
+        payload: { notes: [...notes], trash: [...trash] },
+      });
+    } catch (error) {
+      console.log("Error in getting notes from trashed.", error);
+    }
+  };
+
   useEffect(() => {
     if (isAuthorized) {
       getNewNotes();
       getArchivedNotes();
+      getTrashedNotes();
     }
     //eslint-disable-next-line
   }, [isAuthorized]);
