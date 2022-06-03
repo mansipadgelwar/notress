@@ -4,23 +4,23 @@ import { useTheme } from "../../../context/noteThemeContext/noteThemeContext";
 const palleteDatabase = [
   {
     id: 1,
-    bgColor: "#fecdd3",
+    bgColor: "#fee2e2",
   },
   {
     id: 2,
-    bgColor: "#f0abfc",
+    bgColor: "#fed7aa",
   },
   {
     id: 3,
-    bgColor: "#d8b4fe",
+    bgColor: "#d9f99d",
   },
   {
     id: 4,
-    bgColor: "#a7f3d0",
+    bgColor: "#d1fae5",
   },
   {
     id: 5,
-    bgColor: "#fde68a",
+    bgColor: "#cffafe",
   },
 ];
 
@@ -42,11 +42,14 @@ const ColorPallete = ({ show, onClose }) => {
                     className="avatar avatar-xs"
                     style={{ backgroundColor: pallete.bgColor }}
                     onClick={() =>
-                      setBackgroundColor(
-                        pallete.bgColor === backColor
-                          ? "white"
-                          : pallete.bgColor
-                      )
+                      setBackgroundColor({
+                        ...backColor,
+                        color:
+                          pallete.bgColor === backColor.color
+                            ? "white"
+                            : pallete.bgColor,
+                        id: backColor.id,
+                      })
                     }
                   />
                 </li>

@@ -1,9 +1,12 @@
 import { NotesMenuBar, SearchBar, SideBar } from "../../components";
 import { useServices } from "../../context/serviceContext/serviceContext";
 import "../../pages/pages.css";
+import { useTheme } from "../../context/noteThemeContext/noteThemeContext";
 
 const Trash = () => {
   const { state } = useServices();
+  const { backColor } = useTheme();
+
   return (
     <div className="library-home-page">
       <div className="library-home-sidebar">
@@ -21,7 +24,11 @@ const Trash = () => {
           </div>
           {state.trash.map((item) => {
             return (
-              <div className="notes-container" key={item._id}>
+              <div
+                className="notes-container"
+                key={item._id}
+                style={{ backgroundColor: backColor }}
+              >
                 <div className="notes-title-container">
                   <div className="h4 text-bold">{item.title}</div>
                   <div>
