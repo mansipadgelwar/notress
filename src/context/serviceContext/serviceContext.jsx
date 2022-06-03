@@ -14,6 +14,8 @@ import {
   postArchivedNoteService,
   postNewNoteService,
   updateNewNoteService,
+  getArchivedNoteService,
+  restoreArchivedNoteService,
 } from "../../services";
 
 const initialDataState = {
@@ -124,13 +126,33 @@ const ServiceProvider = ({ children }) => {
     try {
       const {
         data: { notes, archives },
-      } = await getArchivedNotes(authToken);
+      } = await getArchivedNoteService(authToken);
       dispatch({
         type: "ARCHIVE_NOTES",
         payload: { notes: [...notes], archives: [...archives] },
       });
     } catch (error) {
       console.log("Error in getting notes.", error);
+    }
+  };
+
+  const restoreNoteFromArchive = async (noteId) => {
+    console.log(noteId);
+    if (!isAuthorized) {
+      showToast("Please login restored archived notes", "success");
+    } else {
+      try {
+        const {
+          data: { notes, archives },
+        } = await restoreArchivedNoteService(authToken, noteId);
+        dispatch({
+          type: "ARCHIVE_NOTES",
+          payload: { notes: notes, archives: archives },
+        });
+        showToast("Notes unarchived  successfully", "success");
+      } catch (error) {
+        console.log("Error in unarchiving notes.", error);
+      }
     }
   };
 
@@ -154,6 +176,7 @@ const ServiceProvider = ({ children }) => {
         updateNote,
         setId,
         addNotesToArchive,
+        restoreNoteFromArchive,
       }}
     >
       {children}

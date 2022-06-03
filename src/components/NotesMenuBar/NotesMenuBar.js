@@ -10,6 +10,7 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
     updateNote,
     setId,
     addNotesToArchive,
+    restoreNoteFromArchive,
   } = useServices();
 
   const handleUpdate = (notes) => {
@@ -24,9 +25,17 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
           <li onClick={() => postNewNotes(note)}>
             <span className="material-icons">check_circle</span>
           </li>
-
           <li onClick={() => updateNote(notes)}>
             <span className="material-icons">update</span>
+          </li>
+        </ul>
+      ) : location === "archive" ? (
+        <ul className="notes-list">
+          <li onClick={() => restoreNoteFromArchive(notes._id)}>
+            <span className="material-icons">unarchive</span>
+          </li>
+          <li>
+            <span className="material-icons">delete</span>
           </li>
         </ul>
       ) : (
@@ -34,23 +43,15 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
           <li onClick={() => handleUpdate(notes)}>
             <span className="material-icons">edit_note</span>
           </li>
-
           <li>
             <span className="material-icons">palette</span>
           </li>
           <li>
             <span className="material-icons">label</span>
           </li>
-          {location === "archive" ? (
-            <li>
-              <span className="material-icons">unarchive</span>
-            </li>
-          ) : (
-            <li onClick={() => addNotesToArchive(notes._id)}>
-              <span className="material-icons">archive</span>
-            </li>
-          )}
-
+          <li onClick={() => addNotesToArchive(notes._id)}>
+            <span className="material-icons">archive</span>
+          </li>
           <li onClick={() => deleteNote(notes._id)}>
             <span className="material-icons">delete</span>
           </li>
