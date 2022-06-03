@@ -16,6 +16,7 @@ import {
   updateNewNoteService,
   getArchivedNoteService,
   restoreArchivedNoteService,
+  deleteArchivedNoteService,
 } from "../../services";
 
 const initialDataState = {
@@ -105,7 +106,7 @@ const ServiceProvider = ({ children }) => {
 
   const addNotesToArchive = async (noteId) => {
     if (!isAuthorized) {
-      showToast("Please login to add notes to archive.", "success");
+      showToast("Please login to archuve notes.", "success");
     } else {
       try {
         const {
@@ -117,6 +118,7 @@ const ServiceProvider = ({ children }) => {
         });
         showToast("Notes added to archive successfully", "success");
       } catch (error) {
+        showToast("Error in adding notes to archive.", "error");
         console.log("Error in adding notes to archive.", error);
       }
     }
@@ -132,14 +134,14 @@ const ServiceProvider = ({ children }) => {
         payload: { notes: [...notes], archives: [...archives] },
       });
     } catch (error) {
-      console.log("Error in getting notes.", error);
+      console.log("Error in getting archived notes.", error);
     }
   };
 
   const restoreNoteFromArchive = async (noteId) => {
     console.log(noteId);
     if (!isAuthorized) {
-      showToast("Please login restored archived notes", "success");
+      showToast("Please login to restore archived notes", "success");
     } else {
       try {
         const {
@@ -152,6 +154,25 @@ const ServiceProvider = ({ children }) => {
         showToast("Notes unarchived  successfully", "success");
       } catch (error) {
         console.log("Error in unarchiving notes.", error);
+      }
+    }
+  };
+
+  const deleteNoteFromArchive = async (noteId) => {
+    if (!isAuthorized) {
+      showToast("Please login to delete notes from archive.", "success");
+    } else {
+      try {
+        const {
+          data: { notes, archives },
+        } = await deleteArchivedNoteService(authToken, noteId);
+        dispatch({
+          type: "ARCHIVE_NOTES",
+          payload: { notes: notes, archives: archives },
+        });
+        showToast("Note deleted successfully from archive", "success");
+      } catch (error) {
+        console.log("Error in deleting notes from archive.", error);
       }
     }
   };
@@ -177,6 +198,7 @@ const ServiceProvider = ({ children }) => {
         setId,
         addNotesToArchive,
         restoreNoteFromArchive,
+        deleteNoteFromArchive,
       }}
     >
       {children}
