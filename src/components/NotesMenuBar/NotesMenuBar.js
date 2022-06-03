@@ -1,7 +1,7 @@
 import { useServices } from "../../context/serviceContext/serviceContext";
 import "../NotesMenuBar/NotesMenuBar.css";
 import { useState } from "react";
-import { ColorPallete } from "../index";
+import { ColorPallete } from "../Modals/ColorPalleteModal/ColorPallete";
 
 const NotesMenuBar = ({ notes, menutype, location }) => {
   const [show, setShow] = useState(false);
@@ -56,11 +56,11 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
         </ul>
       ) : (
         <ul className="notes-list">
+          <ColorPallete show={show} onClose={() => setShow(false)} />
           <li onClick={() => handleUpdate(notes)}>
             <span className="material-icons">edit_note</span>
           </li>
-          <li className="pallete-modal" onClick={() => setShow(true)}>
-            <ColorPallete show={show} onClose={() => setShow(false)} />
+          <li onClick={() => setShow(true)}>
             <span className="material-icons">palette</span>
           </li>
           <li>

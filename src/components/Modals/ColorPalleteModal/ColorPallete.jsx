@@ -1,4 +1,4 @@
-import "./ColorPallete.css";
+import "../ColorPalleteModal//ColorPallete.css";
 import { useState } from "react";
 
 const palleteDatabase = [
@@ -25,18 +25,15 @@ const palleteDatabase = [
 ];
 
 const ColorPallete = ({ show, onClose }) => {
-  const [backColor, setBackgroundColor] = useState("white");
+  const [backColor, setBackgroundColor] = useState("black");
 
   if (!show) {
     return null;
   }
 
   return (
-    <div
-      className="pallete-modal-wrapper"
-      style={{ backgroundColor: backColor }}
-    >
-      <div className="pallete-modal">
+    <div className="pallete-modal-wrapper">
+      <div className="pallete-modal" style={{ backgroundColor: backColor }}>
         <div className="pallete-modal-contents">
           <ul className="pallete-modal-content-list">
             {palleteDatabase.map((pallete) => {
@@ -51,11 +48,8 @@ const ColorPallete = ({ show, onClose }) => {
               );
             })}
 
-            <li className="notes-label">
-              <span
-                className="material-icons pallete-modal-close-icon"
-                onClick={onClose}
-              >
+            <li className="notes-label" onClick={onClose}>
+              <span className="material-icons pallete-modal-close-icon">
                 close
               </span>
             </li>

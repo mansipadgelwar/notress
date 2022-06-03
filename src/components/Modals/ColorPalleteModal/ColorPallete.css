@@ -1,19 +1,17 @@
 .pallete-modal-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  inset: 0;
-
-  /* z-index: 1; */
+  min-width: 0;
+  width: 100%;
 }
 
 .pallete-modal {
-  max-width: 230px;
-  width: 100%;
   background: var(--white);
   display: flex;
   border: 1px solid black;
+  position: absolute;
+  /* top: 0;
+  right: 50px; */
+  right: 0;
+  top: 0;
 }
 
 .pallete-modal-content-list > li {
