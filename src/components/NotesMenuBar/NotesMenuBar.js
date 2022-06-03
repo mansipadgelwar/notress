@@ -14,6 +14,7 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
     deleteNoteFromArchive,
     addNotesToTrashed,
     deleteNoteFromTrash,
+    restoreNoteFromTrash,
   } = useServices();
 
   const handleUpdate = (notes) => {
@@ -43,7 +44,7 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
         </ul>
       ) : location === "trash" ? (
         <ul className="notes-list">
-          <li onClick={() => restoreNoteFromArchive(notes._id)}>
+          <li onClick={() => restoreNoteFromTrash(notes._id)}>
             <span className="material-icons">restore_from_trash</span>
           </li>
           <li onClick={() => deleteNoteFromTrash(notes._id)}>

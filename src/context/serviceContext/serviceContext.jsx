@@ -20,6 +20,7 @@ import {
   postNoteToTrashService,
   getTrashedNoteService,
   deleteNotefromTrashService,
+  restoreTrashedNoteService,
 } from "../../services";
 
 const initialDataState = {
@@ -233,6 +234,25 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
+  const restoreNoteFromTrash = async (noteId) => {
+    if (!isAuthorized) {
+      showToast("Please login restore trashed notes", "success");
+    } else {
+      try {
+        const {
+          data: { notes, trash },
+        } = await restoreTrashedNoteService(authToken, noteId);
+        dispatch({
+          type: "TRASH_NOTES",
+          payload: { notes: notes, trash: trash },
+        });
+        showToast("Notes restored successfully", "success");
+      } catch (error) {
+        console.log("Error in restoring notes from trashed.", error);
+      }
+    }
+  };
+
   useEffect(() => {
     if (isAuthorized) {
       getNewNotes();
@@ -258,6 +278,7 @@ const ServiceProvider = ({ children }) => {
         deleteNoteFromArchive,
         addNotesToTrashed,
         deleteNoteFromTrash,
+        restoreNoteFromTrash,
       }}
     >
       {children}
