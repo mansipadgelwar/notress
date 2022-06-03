@@ -35,22 +35,22 @@ const ServiceProvider = ({ children }) => {
   const { isAuthorized, authToken } = useAuth();
   const { showToast } = useToast();
   const [state, dispatch] = useReducer(dataReducer, initialDataState);
-  const [note, setNote] = useState(
-    initialDataState.notes ?? {
-      title: "",
-      body: "",
-    }
-  );
+  const [note, setNote] = useState({
+    title: "",
+    body: "",
+  });
   const [id, setId] = useState();
 
   const postNewNotes = async (note) => {
+    const newNote = { ...note, createdTime: new Date().getTime() };
+    setNote(newNote);
     if (!isAuthorized) {
       showToast("Please login to add notes.", "success");
     } else {
       try {
         const {
           data: { notes },
-        } = await postNewNoteService(authToken, note);
+        } = await postNewNoteService(authToken, newNote);
         dispatch({ type: "SET_NOTES", payload: notes });
         setNote({ title: "", body: "" });
         showToast("Notes added successfully", "success");
