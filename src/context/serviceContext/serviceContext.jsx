@@ -17,11 +17,13 @@ import {
   getArchivedNoteService,
   restoreArchivedNoteService,
   deleteArchivedNoteService,
+  postNoteToTrashService,
 } from "../../services";
 
 const initialDataState = {
   notes: [],
   archives: [],
+  trash: [],
 };
 
 const ServiceContext = createContext(initialDataState);
@@ -177,6 +179,25 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
+  const addNotesToTrashed = async (noteId) => {
+    if (!isAuthorized) {
+      showToast("Please login to add notes to trash.", "success");
+    } else {
+      try {
+        const {
+          data: { notes, trash },
+        } = await postNoteToTrashService(authToken, note, noteId);
+        dispatch({
+          type: "TRASH_NOTES",
+          payload: { notes: notes, trash: trash },
+        });
+        showToast("Notes added to trash successfully", "success");
+      } catch (error) {
+        console.log("Error in adding notes to trash.", error);
+      }
+    }
+  };
+
   useEffect(() => {
     if (isAuthorized) {
       getNewNotes();
@@ -199,6 +220,7 @@ const ServiceProvider = ({ children }) => {
         addNotesToArchive,
         restoreNoteFromArchive,
         deleteNoteFromArchive,
+        addNotesToTrashed,
       }}
     >
       {children}

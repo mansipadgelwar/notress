@@ -12,6 +12,7 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
     addNotesToArchive,
     restoreNoteFromArchive,
     deleteNoteFromArchive,
+    addNotesToTrashed,
   } = useServices();
 
   const handleUpdate = (notes) => {
@@ -53,8 +54,11 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
           <li onClick={() => addNotesToArchive(notes._id)}>
             <span className="material-icons">archive</span>
           </li>
-          <li onClick={() => deleteNote(notes._id)}>
+          <li onClick={() => addNotesToTrashed(notes._id)}>
             <span className="material-icons">delete</span>
+          </li>
+          <li onClick={() => deleteNote(notes._id)}>
+            <span className="material-icons">delete_forever</span>
           </li>
         </ul>
       )}
