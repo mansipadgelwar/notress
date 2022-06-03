@@ -1,25 +1,15 @@
 import { NotesMenuBar, SearchBar, SideBar } from "../../components";
 import JoditEditor from "jodit-react";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { useServices } from "../../context/serviceContext/serviceContext";
-import { useAuth } from "../../context/authContext/authenticationContext";
 
 const Home = () => {
-  const { note, setNote, state, getNewNotes } = useServices();
-  const { isAuthorized } = useAuth();
-
+  const { note, setNote, state } = useServices();
   const reference = useRef(null);
 
   const config = {
     readonly: false,
   };
-
-  useEffect(() => {
-    if (isAuthorized) {
-      getNewNotes();
-    }
-    //eslint-disable-next-line
-  }, [isAuthorized]);
 
   return (
     <div className="library-home-page">

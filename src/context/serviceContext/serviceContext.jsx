@@ -1,4 +1,10 @@
-import { createContext, useContext, useReducer, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useReducer,
+  useState,
+  useEffect,
+} from "react";
 import { useAuth } from "../authContext/authenticationContext";
 import { useToast } from "../../custom-hooks/useToast";
 import { dataReducer } from "../../reducers";
@@ -114,6 +120,28 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
+  const getArchivedNotes = async () => {
+    try {
+      const {
+        data: { notes, archives },
+      } = await getArchivedNotes(authToken);
+      dispatch({
+        type: "ARCHIVE_NOTES",
+        payload: { notes: [...notes], archives: [...archives] },
+      });
+    } catch (error) {
+      console.log("Error in getting notes.", error);
+    }
+  };
+
+  useEffect(() => {
+    if (isAuthorized) {
+      getNewNotes();
+      getArchivedNotes();
+    }
+    //eslint-disable-next-line
+  }, [isAuthorized]);
+
   return (
     <ServiceContext.Provider
       value={{
@@ -125,7 +153,6 @@ const ServiceProvider = ({ children }) => {
         deleteNote,
         updateNote,
         setId,
-        getNewNotes,
         addNotesToArchive,
       }}
     >
