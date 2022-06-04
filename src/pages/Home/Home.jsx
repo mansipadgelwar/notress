@@ -56,7 +56,9 @@ const Home = () => {
               <div className="notes-label-type text-bold h5">LABEL 1</div>
             </div>
             <div className="notes-menu">
-              <div className="notes-creation-date">Created on 26/10/2021</div>
+              <div className="notes-creation-date">{`${new Date(
+                new Date().getTime()
+              ).toLocaleString()}`}</div>
               <NotesMenuBar notes={state.notes} menutype={true} />
             </div>
           </div>
@@ -77,7 +79,7 @@ const Home = () => {
                 <div className="notes-label-type text-bold h5">LABEL 1</div>
                 <div className="notes-menu">
                   <div className="notes-creation-date">
-                    Created on 26/10/2021
+                    {`${new Date(item.createdTime).toLocaleString()}`}
                   </div>
                   <NotesMenuBar notes={item} menutype={false} />
                 </div>

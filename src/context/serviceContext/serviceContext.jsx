@@ -17,11 +17,16 @@ import {
   getArchivedNoteService,
   restoreArchivedNoteService,
   deleteArchivedNoteService,
+  postNoteToTrashService,
+  getTrashedNoteService,
+  deleteNotefromTrashService,
+  restoreTrashedNoteService,
 } from "../../services";
 
 const initialDataState = {
   notes: [],
   archives: [],
+  trash: [],
 };
 
 const ServiceContext = createContext(initialDataState);
@@ -30,22 +35,22 @@ const ServiceProvider = ({ children }) => {
   const { isAuthorized, authToken } = useAuth();
   const { showToast } = useToast();
   const [state, dispatch] = useReducer(dataReducer, initialDataState);
-  const [note, setNote] = useState(
-    initialDataState.notes ?? {
-      title: "",
-      body: "",
-    }
-  );
+  const [note, setNote] = useState({
+    title: "",
+    body: "",
+  });
   const [id, setId] = useState();
 
   const postNewNotes = async (note) => {
+    const newNote = { ...note, createdTime: new Date().getTime() };
+    setNote(newNote);
     if (!isAuthorized) {
       showToast("Please login to add notes.", "success");
     } else {
       try {
         const {
           data: { notes },
-        } = await postNewNoteService(authToken, note);
+        } = await postNewNoteService(authToken, newNote);
         dispatch({ type: "SET_NOTES", payload: notes });
         setNote({ title: "", body: "" });
         showToast("Notes added successfully", "success");
@@ -177,10 +182,82 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
+  const addNotesToTrashed = async (noteId) => {
+    if (!isAuthorized) {
+      showToast("Please login to add notes to trash.", "success");
+    } else {
+      try {
+        const {
+          data: { notes, trash },
+        } = await postNoteToTrashService(authToken, note, noteId);
+        dispatch({
+          type: "TRASH_NOTES",
+          payload: { notes: notes, trash: trash },
+        });
+        showToast("Notes added to trash successfully", "success");
+      } catch (error) {
+        console.log("Error in adding notes to trash.", error);
+      }
+    }
+  };
+
+  const getTrashedNotes = async () => {
+    try {
+      const {
+        data: { notes, trash },
+      } = await getTrashedNoteService(authToken);
+      dispatch({
+        type: "TRASH_NOTES",
+        payload: { notes: [...notes], trash: [...trash] },
+      });
+    } catch (error) {
+      console.log("Error in getting notes from trashed.", error);
+    }
+  };
+
+  const deleteNoteFromTrash = async (noteId) => {
+    if (!isAuthorized) {
+      showToast("Please login to delete notes.", "success");
+    } else {
+      try {
+        const {
+          data: { notes, trash },
+        } = await deleteNotefromTrashService(authToken, noteId);
+        dispatch({
+          type: "TRASH_NOTES",
+          payload: { notes: notes, trash: trash },
+        });
+        showToast("Note deleted successfully from trashed", "success");
+      } catch (error) {
+        console.log("Error in deleting notes.", error);
+      }
+    }
+  };
+
+  const restoreNoteFromTrash = async (noteId) => {
+    if (!isAuthorized) {
+      showToast("Please login restore trashed notes", "success");
+    } else {
+      try {
+        const {
+          data: { notes, trash },
+        } = await restoreTrashedNoteService(authToken, noteId);
+        dispatch({
+          type: "TRASH_NOTES",
+          payload: { notes: notes, trash: trash },
+        });
+        showToast("Notes restored successfully", "success");
+      } catch (error) {
+        console.log("Error in restoring notes from trashed.", error);
+      }
+    }
+  };
+
   useEffect(() => {
     if (isAuthorized) {
       getNewNotes();
       getArchivedNotes();
+      getTrashedNotes();
     }
     //eslint-disable-next-line
   }, [isAuthorized]);
@@ -199,6 +276,9 @@ const ServiceProvider = ({ children }) => {
         addNotesToArchive,
         restoreNoteFromArchive,
         deleteNoteFromArchive,
+        addNotesToTrashed,
+        deleteNoteFromTrash,
+        restoreNoteFromTrash,
       }}
     >
       {children}
