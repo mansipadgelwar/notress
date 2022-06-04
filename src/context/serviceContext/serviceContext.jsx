@@ -25,6 +25,7 @@ import {
 
 const initialDataState = {
   notes: [],
+  noteData: { title: "", body: "", bgColor: "", id: 0 },
   archives: [],
   trash: [],
 };
@@ -35,15 +36,11 @@ const ServiceProvider = ({ children }) => {
   const { isAuthorized, authToken } = useAuth();
   const { showToast } = useToast();
   const [state, dispatch] = useReducer(dataReducer, initialDataState);
-  const [note, setNote] = useState({
-    title: "",
-    body: "",
-  });
+  const [note, setNote] = useState(initialDataState.noteData);
   const [id, setId] = useState();
 
   const postNewNotes = async (note) => {
     const newNote = { ...note, createdTime: new Date().getTime() };
-    setNote(newNote);
     if (!isAuthorized) {
       showToast("Please login to add notes.", "success");
     } else {
@@ -144,7 +141,6 @@ const ServiceProvider = ({ children }) => {
   };
 
   const restoreNoteFromArchive = async (noteId) => {
-    console.log(noteId);
     if (!isAuthorized) {
       showToast("Please login to restore archived notes", "success");
     } else {

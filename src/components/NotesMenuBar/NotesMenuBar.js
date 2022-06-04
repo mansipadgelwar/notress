@@ -2,6 +2,7 @@ import { useServices } from "../../context/serviceContext/serviceContext";
 import "../NotesMenuBar/NotesMenuBar.css";
 import { useState } from "react";
 import { ColorPallete } from "../Modals/ColorPalleteModal/ColorPallete";
+import { useTheme } from "../../context/noteThemeContext/noteThemeContext";
 
 const NotesMenuBar = ({ notes, menutype, location }) => {
   const [show, setShow] = useState(false);
@@ -19,12 +20,17 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
     deleteNoteFromTrash,
     restoreNoteFromTrash,
   } = useServices();
+  const { setBackgroundColor } = useTheme();
 
   const handleUpdate = (notes) => {
     setNote({ title: notes.title, body: notes.body });
     setId(notes._id);
   };
 
+  const handleToggleNoteBackground = () => {
+    setShow(true);
+    setBackgroundColor({ color: "", id: notes._id });
+  };
   return (
     <div className="notes-sub-menu">
       {menutype ? (
@@ -60,7 +66,7 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
           <li onClick={() => handleUpdate(notes)}>
             <span className="material-icons">edit_note</span>
           </li>
-          <li onClick={() => setShow(true)}>
+          <li onClick={handleToggleNoteBackground}>
             <span className="material-icons">palette</span>
           </li>
           <li>
