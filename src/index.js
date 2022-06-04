@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "./context/authContext/authenticationContext";
 import { ServiceProvider } from "./context/serviceContext/serviceContext";
 import { ToastContainer } from "react-toastify";
+import { NoteThemeProvider } from "./context/noteThemeContext/noteThemeContext";
 // Call make Server
 makeServer();
 
@@ -14,10 +15,12 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
-        <ServiceProvider>
-          <ToastContainer />
-          <App />
-        </ServiceProvider>
+        <NoteThemeProvider>
+          <ServiceProvider>
+            <ToastContainer />
+            <App />
+          </ServiceProvider>
+        </NoteThemeProvider>
       </AuthProvider>
     </Router>
   </React.StrictMode>,

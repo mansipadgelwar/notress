@@ -22,7 +22,11 @@ const Archive = () => {
 
           {state.archives.map((item) => {
             return (
-              <div className="notes-container" key={item._id}>
+              <div
+                className="notes-container"
+                key={item._id}
+                style={{ ...item, backgroundColor: item.bgColor }}
+              >
                 <div className="notes-title-container">
                   <div className="h4 text-bold">{item.title}</div>
                   <div>
