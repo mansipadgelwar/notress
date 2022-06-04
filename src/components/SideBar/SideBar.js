@@ -22,37 +22,36 @@ const SideBar = () => {
         <div className="notes-sidebar-menu">
           <div className="menu-options">
             <ul className="notes-sidebar-list">
-              <li className="notes-side-links">
-                <Link to="/">
+              <Link to="/">
+                <li className="notes-side-links">
                   <span className="material-icons">home</span>
-                </Link>
-                <div>Home</div>
-              </li>
-              <li className="notes-side-links">
-                <Link to="/label">
+                  <div>Home</div>
+                </li>
+              </Link>
+              <Link to="/label">
+                <li className="notes-side-links">
                   <span className="material-icons">label</span>
-                </Link>
-                <div>Labels</div>
-              </li>
-              <li className="notes-side-links">
-                <Link to="/archive">
+                  <div>Labels</div>
+                </li>
+              </Link>
+              <Link to="/archive">
+                <li className="notes-side-links">
                   <span className="material-icons">archive</span>
-                </Link>
-                <div>Archive</div>
-              </li>
-              <li className="notes-side-links">
-                <Link to="/trash">
+                  <div>Archive</div>
+                </li>
+              </Link>
+              <Link to="/trash">
+                <li className="notes-side-links">
                   <span className="material-icons">delete</span>
-                </Link>
-                <div>Trash</div>
-              </li>
-
-              <li className="notes-side-links">
-                <Link to="/">
+                  <div>Trash</div>
+                </li>
+              </Link>
+              <Link to="/">
+                <li className="notes-side-links">
                   <span className="material-icons">account_circle</span>
-                </Link>
-                <div>Profile</div>
-              </li>
+                  <div>Profile</div>
+                </li>
+              </Link>
               <li className="notes-side-links">
                 <button className="btn btn-cta">Create New Note</button>
               </li>
