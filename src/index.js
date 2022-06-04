@@ -5,6 +5,7 @@ import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "./context/authContext/authenticationContext";
+import { ServiceProvider } from "./context/serviceContext/serviceContext";
 import { ToastContainer } from "react-toastify";
 // Call make Server
 makeServer();
@@ -13,8 +14,10 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
-        <ToastContainer />
-        <App />
+        <ServiceProvider>
+          <ToastContainer />
+          <App />
+        </ServiceProvider>
       </AuthProvider>
     </Router>
   </React.StrictMode>,
