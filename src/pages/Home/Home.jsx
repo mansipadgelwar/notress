@@ -2,10 +2,12 @@ import { NotesMenuBar, SearchBar, SideBar } from "../../components";
 import JoditEditor from "jodit-react";
 import { useRef } from "react";
 import { useServices } from "../../context/serviceContext/serviceContext";
+import { useTheme } from "../../context/noteThemeContext/noteThemeContext";
 
 const Home = () => {
   const { note, setNote, state } = useServices();
   const reference = useRef(null);
+  const { backColor } = useTheme();
 
   const config = {
     readonly: false,
@@ -22,7 +24,10 @@ const Home = () => {
           <div>
             <SearchBar />
           </div>
-          <div className="notes-container">
+          <div
+            className="notes-container"
+            style={{ backgroundColor: backColor }}
+          >
             <div className="notes-editor-conatiner">
               <div className="notes-title-container">
                 <div className="h4 text-bold">
@@ -68,9 +73,7 @@ const Home = () => {
               <div
                 className="notes-container"
                 key={item._id}
-                style={{
-                  backgroundColor: item.bgColor,
-                }}
+                style={{ ...item, backgroundColor: item.bgColor }}
               >
                 <div className="notes-title-container">
                   <div className="h4 text-bold">{item.title}</div>

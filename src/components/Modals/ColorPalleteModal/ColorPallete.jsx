@@ -1,6 +1,5 @@
 import "../ColorPalleteModal//ColorPallete.css";
 import { useTheme } from "../../../context/noteThemeContext/noteThemeContext";
-import { useServices } from "../../../context/serviceContext/serviceContext";
 
 const palleteDatabase = [
   {
@@ -26,29 +25,11 @@ const palleteDatabase = [
 ];
 
 const ColorPallete = ({ show, onClose }) => {
-  const { backColor, setBackgroundColor } = useTheme();
-  const { dispatch, state } = useServices();
+  const { setBackgroundColor } = useTheme();
+
   if (!show) {
     return null;
   }
-
-  const handleNotesBackgroundColor = ({ color, id }) => {
-    setBackgroundColor({ color, id });
-    // console.log("pallete", backColor);
-    // setNote(...note,{note.bgColor: color});
-    // const newNote = { ...note, bgColor: color, id: id };
-    // console.log("newnote", newNote);
-    const currentNote = state.notes.map((item) => {
-      if (item._id === backColor.id) {
-        return { ...item, bgColor: backColor.color };
-      }
-      return item;
-    });
-    dispatch({
-      type: "SET_NOTES",
-      payload: currentNote,
-    });
-  };
 
   return (
     <div className="pallete-modal-wrapper">
@@ -61,16 +42,7 @@ const ColorPallete = ({ show, onClose }) => {
                   <button
                     className="avatar avatar-xs"
                     style={{ backgroundColor: pallete.bgColor }}
-                    onClick={(prev) =>
-                      handleNotesBackgroundColor({
-                        ...prev,
-                        color:
-                          pallete.bgColor === backColor.color
-                            ? "white"
-                            : pallete.bgColor,
-                        id: backColor.id,
-                      })
-                    }
+                    onClick={() => setBackgroundColor(pallete.bgColor)}
                   />
                 </li>
               );

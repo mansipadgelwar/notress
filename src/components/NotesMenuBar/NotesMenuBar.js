@@ -2,7 +2,6 @@ import { useServices } from "../../context/serviceContext/serviceContext";
 import "../NotesMenuBar/NotesMenuBar.css";
 import { useState } from "react";
 import { ColorPallete } from "../Modals/ColorPalleteModal/ColorPallete";
-import { useTheme } from "../../context/noteThemeContext/noteThemeContext";
 
 const NotesMenuBar = ({ notes, menutype, location }) => {
   const [show, setShow] = useState(false);
@@ -20,7 +19,6 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
     deleteNoteFromTrash,
     restoreNoteFromTrash,
   } = useServices();
-  const { setBackgroundColor } = useTheme();
 
   const handleUpdate = (notes) => {
     setNote({ title: notes.title, body: notes.body });
@@ -29,17 +27,20 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
 
   const handleToggleNoteBackground = () => {
     setShow(true);
-    setBackgroundColor({ color: "", id: notes._id });
   };
   return (
     <div className="notes-sub-menu">
       {menutype ? (
         <ul className="notes-list">
+          <ColorPallete show={show} onClose={() => setShow(false)} />
           <li onClick={() => postNewNotes(note)}>
             <span className="material-icons">check_circle</span>
           </li>
           <li onClick={() => updateNote(notes)}>
             <span className="material-icons">update</span>
+          </li>
+          <li onClick={handleToggleNoteBackground}>
+            <span className="material-icons">palette</span>
           </li>
         </ul>
       ) : location === "archive" ? (
@@ -62,12 +63,8 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
         </ul>
       ) : (
         <ul className="notes-list">
-          <ColorPallete show={show} onClose={() => setShow(false)} />
           <li onClick={() => handleUpdate(notes)}>
             <span className="material-icons">edit_note</span>
-          </li>
-          <li onClick={handleToggleNoteBackground}>
-            <span className="material-icons">palette</span>
           </li>
           <li>
             <span className="material-icons">label</span>

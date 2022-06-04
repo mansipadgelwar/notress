@@ -22,6 +22,7 @@ import {
   deleteNotefromTrashService,
   restoreTrashedNoteService,
 } from "../../services";
+import { useTheme } from "../noteThemeContext/noteThemeContext";
 
 const initialDataState = {
   notes: [],
@@ -38,9 +39,14 @@ const ServiceProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initialDataState);
   const [note, setNote] = useState(initialDataState.noteData);
   const [id, setId] = useState();
+  const { backColor, setBackgroundColor } = useTheme();
 
   const postNewNotes = async (note) => {
-    const newNote = { ...note, createdTime: new Date().getTime() };
+    const newNote = {
+      ...note,
+      createdTime: new Date().getTime(),
+      bgColor: backColor,
+    };
     if (!isAuthorized) {
       showToast("Please login to add notes.", "success");
     } else {
@@ -50,6 +56,7 @@ const ServiceProvider = ({ children }) => {
         } = await postNewNoteService(authToken, newNote);
         dispatch({ type: "SET_NOTES", payload: notes });
         setNote({ title: "", body: "" });
+        setBackgroundColor("");
         showToast("Notes added successfully", "success");
       } catch (error) {
         showToast("Error in adding notes", "error");
@@ -89,15 +96,21 @@ const ServiceProvider = ({ children }) => {
 
   const updateNote = async (editNote) => {
     const currentNote = editNote.find((element) => element._id === id);
+    const newNote = {
+      ...note,
+      createdTime: new Date().getTime(),
+      bgColor: backColor,
+    };
     if (!isAuthorized) {
       showToast("Please login to edit notes.", "success");
     } else {
       try {
         const {
           data: { notes },
-        } = await updateNewNoteService(authToken, note, currentNote._id);
+        } = await updateNewNoteService(authToken, newNote, currentNote._id);
         dispatch({ type: "SET_NOTES", payload: notes });
         setNote({ title: "", body: "" });
+        setBackgroundColor("");
         showToast("Notes updated successfully", "success");
       } catch (error) {
         showToast("Error while updating notes", "error");
