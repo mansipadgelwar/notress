@@ -4,8 +4,6 @@ const dataReducer = (state, { type, payload }) => {
       return { ...state, notes: [...payload] };
     case "ARCHIVE_NOTES":
       return { ...state, archives: payload.archives, notes: payload.notes };
-    case "TRASH_NOTES":
-      return { ...state, trash: payload.trash, notes: payload.notes };
     default:
       throw new Error("Invalid case");
   }
