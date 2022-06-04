@@ -1,4 +1,14 @@
-.input-icon .input {
-  position: relative;
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.search-bar-input {
   margin: 1rem;
+  max-width: 300px;
+  width: 100%;
+  height: 5vh;
+  padding: 0.5rem;
 }

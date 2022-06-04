@@ -2,10 +2,15 @@ import "../SearchBar/SearchBar.css";
 
 const SearchBar = () => {
   return (
-    <div className="input-icon icons-left icons-right">
-      <span className="material-icons">search</span>
-      <input className="input" type="text" id="search-bar" name="search-bar" />
-      <span class="material-icons">tune</span>
+    <div className="search-bar-container">
+      <span className="material-icons icons-left">search</span>
+      <input
+        className="search-bar-input"
+        type="text"
+        id="search-bar"
+        name="search-bar"
+      />
+      <span class="material-icons icon-right">tune</span>
     </div>
   );
 };
