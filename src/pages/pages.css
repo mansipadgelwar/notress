@@ -104,3 +104,10 @@
 .jodit-status-bar {
   visibility: hidden;
 }
+
+.priority-tab select {
+  padding: 0.1rem;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  font-weight: 700;
+}

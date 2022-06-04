@@ -64,6 +64,13 @@ const Home = () => {
               <div className="notes-creation-date">{`${new Date(
                 new Date().getTime()
               ).toLocaleString()}`}</div>
+              <div className="priority-tab">
+                <select name="sort-by" className="dropdown">
+                  <option value="high">High Priority</option>
+                  <option value="medium">Medium Priority</option>
+                  <option value="low">Low Priority</option>
+                </select>
+              </div>
               <NotesMenuBar notes={state.notes} menutype={true} />
             </div>
           </div>
