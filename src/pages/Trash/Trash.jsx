@@ -4,6 +4,7 @@ import "../../pages/pages.css";
 
 const Trash = () => {
   const { state } = useServices();
+
   return (
     <div className="library-home-page">
       <div className="library-home-sidebar">
@@ -21,7 +22,11 @@ const Trash = () => {
           </div>
           {state.trash.map((item) => {
             return (
-              <div className="notes-container" key={item._id}>
+              <div
+                className="notes-container"
+                key={item._id}
+                style={{ ...item, backgroundColor: item.bgColor }}
+              >
                 <div className="notes-title-container">
                   <div className="h4 text-bold">{item.title}</div>
                   <div>
