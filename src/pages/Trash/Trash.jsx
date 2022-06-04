@@ -1,10 +1,7 @@
 import { NotesMenuBar, SearchBar, SideBar } from "../../components";
-import { useServices } from "../../context/serviceContext/serviceContext";
 import "../../pages/pages.css";
 
 const Trash = () => {
-  const { state } = useServices();
-
   return (
     <div className="library-home-page">
       <div className="library-home-sidebar">
@@ -19,38 +16,40 @@ const Trash = () => {
 
           <div className="section-breaker h4 text-bold">
             <div>TRASH</div>
+            <button className="btn-icon">
+              <span className="material-icons">delete</span>
+            </button>
           </div>
-          {state.trash.map((item) => {
-            return (
-              <div
-                className="notes-container"
-                key={item._id}
-                style={{ ...item, backgroundColor: item.bgColor }}
-              >
-                <div className="notes-title-container">
-                  <div className="h4 text-bold">{item.title}</div>
-                  <div>
-                    <span className="material-icons">push_pin</span>
-                  </div>
-                </div>
-                <div
-                  className="notes-body"
-                  dangerouslySetInnerHTML={{ __html: item.body }}
-                />
-                <div className="notes-label-type text-bold h5">LABEL 1</div>
-                <div className="notes-menu">
-                  <div className="notes-creation-date">
-                    Created on 26/10/2021
-                  </div>
-                  <NotesMenuBar
-                    notes={item}
-                    menutype={false}
-                    location={"trash"}
-                  />
-                </div>
+
+          <div className="notes-container">
+            <div className="notes-title-container">
+              <div className="h4 text-bold">Title of the note</div>
+              <div>
+                <span className="material-icons">push_pin</span>
               </div>
-            );
-          })}
+            </div>
+            <div className="notes-body"></div>
+            <div className="notes-label-type text-bold h5">LABEL 1</div>
+            <div className="notes-menu">
+              <div className="notes-creation-date">Created on 26/10/2021</div>
+              <NotesMenuBar />
+            </div>
+          </div>
+
+          <div className="notes-container">
+            <div className="notes-title-container">
+              <div className="h4 text-bold">Title of the note</div>
+              <div>
+                <span className="material-icons">push_pin</span>
+              </div>
+            </div>
+            <div className="notes-body"></div>
+            <div className="notes-label-type text-bold h5">LABEL 1</div>
+            <div className="notes-menu">
+              <div className="notes-creation-date">Created on 26/10/2021</div>
+              <NotesMenuBar />
+            </div>
+          </div>
         </div>
       </div>
     </div>

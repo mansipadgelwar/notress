@@ -12,9 +12,3 @@ export {
   deleteArchivedNoteService,
   getArchivedNoteService,
 } from "../services/archiveServices/archiveService";
-export {
-  postNoteToTrashService,
-  getTrashedNoteService,
-  deleteNotefromTrashService,
-  restoreTrashedNoteService,
-} from "../services/deleteServices/deleteServices.js";
