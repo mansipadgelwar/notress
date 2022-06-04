@@ -6,8 +6,7 @@ import {
 } from "./backend/controllers/ArchiveController";
 import {
   loginHandler,
-  signupHandler,
-  userProfilehandler,
+  signupHandler
 } from "./backend/controllers/AuthController";
 import {
   archiveNoteHandler,
@@ -56,7 +55,7 @@ export function makeServer({ environment = "development" } = {}) {
       this.post("/auth/login", loginHandler.bind(this));
 
       // user route (private)
-      this.get("/user", userProfilehandler.bind(this));
+      // this.get("/user", userProfilehandler.bind(this));
 
       // notes routes (private)
       this.get("/notes", getAllNotesHandler.bind(this));

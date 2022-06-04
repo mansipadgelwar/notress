@@ -1,0 +1,21 @@
+.simple-header > .header {
+  height: 10vh;
+  width: 100%;
+  border: none;
+  box-shadow: var(--btn-box-shadow);
+}
+
+.header-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-left: 4rem;
+}
+
+.nav-brand {
+  font-family: "Lato", sans-serif;
+  font-weight: bolder;
+  letter-spacing: 0.1rem;
+  font-size: 2.8rem;
+  color: var(--light-raisin-black);
+}

@@ -1,0 +1,70 @@
+.notes-side-bar {
+  overflow-y: auto;
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 90vh;
+  flex: 0.3;
+  max-width: 17rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 4rem;
+  box-shadow: var(--btn-box-shadow);
+}
+
+.notes-sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.notes-sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-weight: bold;
+  align-items: flex-start;
+  padding-left: 2rem;
+  font-size: 0.9rem;
+}
+
+.notes-side-links > a {
+  list-style: none;
+  color: var(--grey);
+  text-decoration: none;
+}
+
+.notes-side-links {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-details .notes-side-links {
+  gap: 10px;
+  font-size: 1rem;
+}
+
+.notes-side-links:hover {
+  font-size: 1rem;
+}
+
+.notes-side-links > a:hover {
+  color: var(--raisin-black);
+  transition: 200ms color ease-in;
+}
+
+.notes-sidebar-menu .profile-details {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 3vh;
+}
+
+.profile-details .avatar {
+  margin: 0;
+}
