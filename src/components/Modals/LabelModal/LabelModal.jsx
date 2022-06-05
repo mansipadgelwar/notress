@@ -1,14 +1,10 @@
-import { useState } from "react";
 import styles from "./LabelModal.module.css";
 import { v4 as uuid } from "uuid";
 import { useLabel } from "../../../context/labelContext/LabelContext";
-import { useServices } from "../../../context/serviceContext/serviceContext";
 
 const LabelModal = ({ showLabelModal, onCloseLabelModal }) => {
-  const [data, setData] = useState([]);
-  const [label, setLabels] = useState("");
-  const { displayLabel, setDisplayLabel } = useLabel();
-  const { note } = useServices();
+  const { displayLabel, setDisplayLabel, data, setData, label, setLabels } =
+    useLabel();
   if (!showLabelModal) {
     return null;
   }
@@ -16,8 +12,6 @@ const LabelModal = ({ showLabelModal, onCloseLabelModal }) => {
   const handleLabels = () => {
     const newObj = data.concat({ id: uuid(), labelName: label });
     setData(newObj);
-    // setNote({ labels: newObj });
-    console.log(note);
     setLabels("");
   };
 
