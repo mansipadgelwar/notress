@@ -1,10 +1,14 @@
 import { useState } from "react";
 import styles from "./LabelModal.module.css";
 import { v4 as uuid } from "uuid";
+import { useLabel } from "../../../context/labelContext/LabelContext";
+import { useServices } from "../../../context/serviceContext/serviceContext";
 
 const LabelModal = ({ showLabelModal, onCloseLabelModal }) => {
   const [data, setData] = useState([]);
   const [label, setLabels] = useState("");
+  const { displayLabel, setDisplayLabel } = useLabel();
+  const { note } = useServices();
   if (!showLabelModal) {
     return null;
   }
@@ -12,7 +16,18 @@ const LabelModal = ({ showLabelModal, onCloseLabelModal }) => {
   const handleLabels = () => {
     const newObj = data.concat({ id: uuid(), labelName: label });
     setData(newObj);
+    // setNote({ labels: newObj });
+    console.log(note);
     setLabels("");
+  };
+
+  const handleCheckboxChange = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setDisplayLabel([...displayLabel, value]);
+    } else {
+      setDisplayLabel(displayLabel.filter((e) => e !== value));
+    }
   };
 
   return (
@@ -30,7 +45,8 @@ const LabelModal = ({ showLabelModal, onCloseLabelModal }) => {
                     type="checkbox"
                     id={item.id}
                     name={item.labelName}
-                    checked
+                    value={item.labelName}
+                    onChange={handleCheckboxChange}
                   />
                   <label>{item.labelName}</label>
                 </li>

@@ -8,6 +8,7 @@ import { AuthProvider } from "./context/authContext/authenticationContext";
 import { ServiceProvider } from "./context/serviceContext/serviceContext";
 import { ToastContainer } from "react-toastify";
 import { NoteThemeProvider } from "./context/noteThemeContext/noteThemeContext";
+import { LabelProvider } from "./context/labelContext/LabelContext.jsx";
 // Call make Server
 makeServer();
 
@@ -15,12 +16,14 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
-        <NoteThemeProvider>
-          <ServiceProvider>
-            <ToastContainer />
-            <App />
-          </ServiceProvider>
-        </NoteThemeProvider>
+        <LabelProvider>
+          <NoteThemeProvider>
+            <ServiceProvider>
+              <ToastContainer />
+              <App />
+            </ServiceProvider>
+          </NoteThemeProvider>
+        </LabelProvider>
       </AuthProvider>
     </Router>
   </React.StrictMode>,

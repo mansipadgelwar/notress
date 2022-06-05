@@ -3,10 +3,14 @@ import "../NotesMenuBar/NotesMenuBar.css";
 import { useState } from "react";
 import { ColorPallete } from "../Modals/ColorPalleteModal/ColorPallete";
 import { LabelModal } from "../Modals/LabelModal/LabelModal";
+import { useTheme } from "../../context/noteThemeContext/noteThemeContext";
+import { useLabel } from "../../context/labelContext/LabelContext";
 
 const NotesMenuBar = ({ notes, menutype, location }) => {
   const [show, setShow] = useState(false);
   const [showLabelModal, setShowLabelModal] = useState(false);
+  const { setBackgroundColor } = useTheme();
+  const { setDisplayLabel } = useLabel();
 
   const {
     postNewNotes,
@@ -25,6 +29,8 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
 
   const handleUpdate = (notes) => {
     setNote({ title: notes.title, body: notes.body });
+    setBackgroundColor(notes.bgColor);
+    setDisplayLabel(notes.tags);
     setId(notes._id);
   };
 

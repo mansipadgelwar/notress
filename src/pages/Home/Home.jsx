@@ -3,11 +3,13 @@ import JoditEditor from "jodit-react";
 import { useRef } from "react";
 import { useServices } from "../../context/serviceContext/serviceContext";
 import { useTheme } from "../../context/noteThemeContext/noteThemeContext";
+import { useLabel } from "../../context/labelContext/LabelContext";
 
 const Home = () => {
   const { note, setNote, state } = useServices();
   const reference = useRef(null);
   const { backColor } = useTheme();
+  const { displayLabel } = useLabel();
 
   const config = {
     readonly: false,
@@ -58,7 +60,13 @@ const Home = () => {
                   }
                 />
               </div>
-              <div className="notes-label-type text-bold h5">LABEL 1</div>
+              <div class="notes-label-container">
+                {displayLabel.map((label) => {
+                  return (
+                    <div className="notes-label-type text-bold h5">{label}</div>
+                  );
+                })}
+              </div>
             </div>
             <div className="notes-menu">
               <div className="notes-creation-date">{`${new Date(
@@ -92,7 +100,15 @@ const Home = () => {
                   className="notes-body"
                   dangerouslySetInnerHTML={{ __html: item.body }}
                 />
-                <div className="notes-label-type text-bold h5">LABEL 1</div>
+                <div class="notes-label-container">
+                  {item.tags.map((label) => {
+                    return (
+                      <div className="notes-label-type text-bold h5">
+                        {label}
+                      </div>
+                    );
+                  })}
+                </div>
                 <div className="notes-menu">
                   <div className="notes-creation-date">
                     {`${new Date(item.createdTime).toLocaleString()}`}

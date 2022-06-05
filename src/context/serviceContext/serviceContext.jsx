@@ -23,6 +23,7 @@ import {
   restoreTrashedNoteService,
 } from "../../services";
 import { useTheme } from "../noteThemeContext/noteThemeContext";
+import { useLabel } from "../labelContext/LabelContext";
 
 const initialDataState = {
   notes: [],
@@ -41,8 +42,10 @@ const ServiceProvider = ({ children }) => {
   const [note, setNote] = useState(initialDataState.noteData);
   const [id, setId] = useState();
   const { backColor, setBackgroundColor } = useTheme();
+  const { displayLabel, setDisplayLabel } = useLabel();
 
   const postNewNotes = async (note) => {
+    note.tags = displayLabel;
     const newNote = {
       ...note,
       createdTime: new Date().getTime(),
@@ -58,6 +61,7 @@ const ServiceProvider = ({ children }) => {
         dispatch({ type: "SET_NOTES", payload: notes });
         setNote({ title: "", body: "" });
         setBackgroundColor("");
+        setDisplayLabel([]);
         showToast("Notes added successfully", "success");
       } catch (error) {
         showToast("Error in adding notes", "error");
@@ -96,6 +100,7 @@ const ServiceProvider = ({ children }) => {
   };
 
   const updateNote = async (editNote) => {
+    note.tags = displayLabel;
     const currentNote = editNote.find((element) => element._id === id);
     const newNote = {
       ...note,
@@ -112,6 +117,7 @@ const ServiceProvider = ({ children }) => {
         dispatch({ type: "SET_NOTES", payload: notes });
         setNote({ title: "", body: "" });
         setBackgroundColor("");
+        setDisplayLabel([]);
         showToast("Notes updated successfully", "success");
       } catch (error) {
         showToast("Error while updating notes", "error");
