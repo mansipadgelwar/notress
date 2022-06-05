@@ -2,9 +2,12 @@ import { useServices } from "../../context/serviceContext/serviceContext";
 import "../NotesMenuBar/NotesMenuBar.css";
 import { useState } from "react";
 import { ColorPallete } from "../Modals/ColorPalleteModal/ColorPallete";
+import { LabelModal } from "../Modals/LabelModal/LabelModal";
 
 const NotesMenuBar = ({ notes, menutype, location }) => {
   const [show, setShow] = useState(false);
+  const [showLabelModal, setShowLabelModal] = useState(false);
+
   const {
     postNewNotes,
     note,
@@ -25,22 +28,31 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
     setId(notes._id);
   };
 
-  const handleToggleNoteBackground = () => {
-    setShow(true);
-  };
   return (
     <div className="notes-sub-menu">
       {menutype ? (
         <ul className="notes-list">
           <ColorPallete show={show} onClose={() => setShow(false)} />
+          <LabelModal
+            showLabelModal={showLabelModal}
+            onCloseLabelModal={() => setShowLabelModal(false)}
+          />
           <li onClick={() => postNewNotes(note)}>
             <span className="material-icons">check_circle</span>
           </li>
           <li onClick={() => updateNote(notes)}>
             <span className="material-icons">update</span>
           </li>
-          <li onClick={handleToggleNoteBackground}>
+          <li onClick={() => setShow(true)}>
             <span className="material-icons">palette</span>
+          </li>
+          <li>
+            <span
+              className="material-icons"
+              onClick={() => setShowLabelModal(true)}
+            >
+              label
+            </span>
           </li>
         </ul>
       ) : location === "archive" ? (

@@ -29,6 +29,7 @@ const initialDataState = {
   noteData: { title: "", body: "", bgColor: "", id: 0 },
   archives: [],
   trash: [],
+  labels: [],
 };
 
 const ServiceContext = createContext(initialDataState);
