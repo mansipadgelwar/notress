@@ -1,13 +1,14 @@
 import { NotesMenuBar, SearchBar, SideBar } from "../../components";
 import JoditEditor from "jodit-react";
 import { useRef } from "react";
-import { useServices } from "../../context/serviceContext/serviceContext";
-import { useTheme } from "../../context/noteThemeContext/noteThemeContext";
+import { useServices, useTheme, useLabel, usePriority } from "../../context";
 
 const Home = () => {
   const { note, setNote, state } = useServices();
   const reference = useRef(null);
   const { backColor } = useTheme();
+  const { displayLabel } = useLabel();
+  const { priority, setPriority } = usePriority();
 
   const config = {
     readonly: false,
@@ -58,12 +59,30 @@ const Home = () => {
                   }
                 />
               </div>
-              <div className="notes-label-type text-bold h5">LABEL 1</div>
+              <div class="notes-label-container">
+                {displayLabel.map((label) => {
+                  return (
+                    <div className="notes-label-type text-bold h5">{label}</div>
+                  );
+                })}
+              </div>
             </div>
             <div className="notes-menu">
               <div className="notes-creation-date">{`${new Date(
                 new Date().getTime()
               ).toLocaleString()}`}</div>
+              <div className="priority-tab">
+                <select
+                  name="sort-by"
+                  className="dropdown"
+                  value={priority}
+                  onChange={(e) => setPriority(e.target.value)}
+                >
+                  <option value="High">High Priority</option>
+                  <option value="Medium">Medium Priority</option>
+                  <option value="Low">Low Priority</option>
+                </select>
+              </div>
               <NotesMenuBar notes={state.notes} menutype={true} />
             </div>
           </div>
@@ -85,11 +104,20 @@ const Home = () => {
                   className="notes-body"
                   dangerouslySetInnerHTML={{ __html: item.body }}
                 />
-                <div className="notes-label-type text-bold h5">LABEL 1</div>
+                <div class="notes-label-container">
+                  {item.tags.map((label) => {
+                    return (
+                      <div className="notes-label-type text-bold h5">
+                        {label}
+                      </div>
+                    );
+                  })}
+                </div>
                 <div className="notes-menu">
                   <div className="notes-creation-date">
                     {`${new Date(item.createdTime).toLocaleString()}`}
                   </div>
+                  <div className="priority-tab">{item.priority}</div>
                   <NotesMenuBar notes={item} menutype={false} />
                 </div>
               </div>

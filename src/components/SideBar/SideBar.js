@@ -1,6 +1,6 @@
 import "../SideBar/SideBar.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/authContext/authenticationContext";
+import { useAuth } from "../../context";
 import { useToast } from "../../custom-hooks/useToast";
 
 const SideBar = () => {

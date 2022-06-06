@@ -1,5 +1,5 @@
 import "../ColorPalleteModal//ColorPallete.css";
-import { useTheme } from "../../../context/noteThemeContext/noteThemeContext";
+import { useTheme } from "../../../context";
 
 const palleteDatabase = [
   {

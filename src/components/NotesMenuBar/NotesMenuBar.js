@@ -1,10 +1,15 @@
-import { useServices } from "../../context/serviceContext/serviceContext";
+import { useServices, useTheme, useLabel, usePriority } from "../../context";
 import "../NotesMenuBar/NotesMenuBar.css";
 import { useState } from "react";
-import { ColorPallete } from "../Modals/ColorPalleteModal/ColorPallete";
+import { ColorPallete, LabelModal } from "../index";
 
 const NotesMenuBar = ({ notes, menutype, location }) => {
   const [show, setShow] = useState(false);
+  const [showLabelModal, setShowLabelModal] = useState(false);
+  const { setBackgroundColor } = useTheme();
+  const { setDisplayLabel } = useLabel();
+  const { setPriority } = usePriority();
+
   const {
     postNewNotes,
     note,
@@ -22,25 +27,37 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
 
   const handleUpdate = (notes) => {
     setNote({ title: notes.title, body: notes.body });
+    setBackgroundColor(notes.bgColor);
+    setDisplayLabel(notes.tags);
     setId(notes._id);
+    setPriority(notes.priority);
   };
 
-  const handleToggleNoteBackground = () => {
-    setShow(true);
-  };
   return (
     <div className="notes-sub-menu">
       {menutype ? (
         <ul className="notes-list">
           <ColorPallete show={show} onClose={() => setShow(false)} />
+          <LabelModal
+            showLabelModal={showLabelModal}
+            onCloseLabelModal={() => setShowLabelModal(false)}
+          />
           <li onClick={() => postNewNotes(note)}>
             <span className="material-icons">check_circle</span>
           </li>
           <li onClick={() => updateNote(notes)}>
             <span className="material-icons">update</span>
           </li>
-          <li onClick={handleToggleNoteBackground}>
+          <li onClick={() => setShow(true)}>
             <span className="material-icons">palette</span>
+          </li>
+          <li>
+            <span
+              className="material-icons"
+              onClick={() => setShowLabelModal(true)}
+            >
+              label
+            </span>
           </li>
         </ul>
       ) : location === "archive" ? (

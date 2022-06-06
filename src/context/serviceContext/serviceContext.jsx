@@ -23,12 +23,15 @@ import {
   restoreTrashedNoteService,
 } from "../../services";
 import { useTheme } from "../noteThemeContext/noteThemeContext";
+import { useLabel } from "../labelContext/LabelContext";
+import { usePriority } from "../../context/priorityContext/priorityContext";
 
 const initialDataState = {
   notes: [],
   noteData: { title: "", body: "", bgColor: "", id: 0 },
   archives: [],
   trash: [],
+  labels: [],
 };
 
 const ServiceContext = createContext(initialDataState);
@@ -40,12 +43,16 @@ const ServiceProvider = ({ children }) => {
   const [note, setNote] = useState(initialDataState.noteData);
   const [id, setId] = useState();
   const { backColor, setBackgroundColor } = useTheme();
+  const { displayLabel, setDisplayLabel } = useLabel();
+  const { priority } = usePriority();
 
   const postNewNotes = async (note) => {
+    note.tags = displayLabel;
     const newNote = {
       ...note,
       createdTime: new Date().getTime(),
       bgColor: backColor,
+      priority: priority,
     };
     if (!isAuthorized) {
       showToast("Please login to add notes.", "success");
@@ -57,6 +64,7 @@ const ServiceProvider = ({ children }) => {
         dispatch({ type: "SET_NOTES", payload: notes });
         setNote({ title: "", body: "" });
         setBackgroundColor("");
+        setDisplayLabel([]);
         showToast("Notes added successfully", "success");
       } catch (error) {
         showToast("Error in adding notes", "error");
@@ -95,11 +103,13 @@ const ServiceProvider = ({ children }) => {
   };
 
   const updateNote = async (editNote) => {
+    note.tags = displayLabel;
     const currentNote = editNote.find((element) => element._id === id);
     const newNote = {
       ...note,
       createdTime: new Date().getTime(),
       bgColor: backColor,
+      priority: priority,
     };
     if (!isAuthorized) {
       showToast("Please login to edit notes.", "success");
@@ -111,6 +121,7 @@ const ServiceProvider = ({ children }) => {
         dispatch({ type: "SET_NOTES", payload: notes });
         setNote({ title: "", body: "" });
         setBackgroundColor("");
+        setDisplayLabel([]);
         showToast("Notes updated successfully", "success");
       } catch (error) {
         showToast("Error while updating notes", "error");
