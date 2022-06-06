@@ -1,8 +1,10 @@
 import styles from "./LabelModal.module.css";
 import { v4 as uuid } from "uuid";
 import { useLabel } from "../../../context";
+import { useToast } from "../../../custom-hooks/useToast";
 
 const LabelModal = ({ showLabelModal, onCloseLabelModal }) => {
+  const { showToast } = useToast();
   const { displayLabel, setDisplayLabel, data, setData, label, setLabels } =
     useLabel();
   if (!showLabelModal) {
@@ -10,6 +12,9 @@ const LabelModal = ({ showLabelModal, onCloseLabelModal }) => {
   }
 
   const handleLabels = () => {
+    if (label === "") {
+      return showToast("Label Name cannot be empty", "info");
+    }
     const newObj = data.concat({ id: uuid(), labelName: label });
     setData(newObj);
     setLabels("");

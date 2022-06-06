@@ -3,8 +3,8 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  /* inset: 0; */
-  left: 110px;
+  left: 6.875rem;
+  top: 1.25rem;
   background: transparent;
   z-index: 4;
 }
@@ -23,7 +23,7 @@
   gap: 1.25rem;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid var(--raisin-black);
 }
 
 .input {
@@ -47,9 +47,8 @@
 .modal_content_list .unordered_list {
   display: flex;
   gap: 0.63rem;
-  color: black;
+  color: var(--raisin-black);
   justify-content: flex-start;
-  /* align-items: center; */
   font-weight: 500;
 }
 
