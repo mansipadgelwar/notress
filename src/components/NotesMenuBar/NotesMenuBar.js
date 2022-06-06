@@ -5,12 +5,14 @@ import { ColorPallete } from "../Modals/ColorPalleteModal/ColorPallete";
 import { LabelModal } from "../Modals/LabelModal/LabelModal";
 import { useTheme } from "../../context/noteThemeContext/noteThemeContext";
 import { useLabel } from "../../context/labelContext/LabelContext";
+import { usePriority } from "../../context/priorityContext/priorityContext";
 
 const NotesMenuBar = ({ notes, menutype, location }) => {
   const [show, setShow] = useState(false);
   const [showLabelModal, setShowLabelModal] = useState(false);
   const { setBackgroundColor } = useTheme();
   const { setDisplayLabel } = useLabel();
+  const { setPriority } = usePriority();
 
   const {
     postNewNotes,
@@ -32,6 +34,7 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
     setBackgroundColor(notes.bgColor);
     setDisplayLabel(notes.tags);
     setId(notes._id);
+    setPriority(notes.priority);
   };
 
   return (
