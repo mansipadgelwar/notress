@@ -4,7 +4,6 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
-import {} from "./context/serviceContext/serviceContext";
 import { ToastContainer } from "react-toastify";
 import {
   FilterModalProvider,
@@ -21,18 +20,18 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
-        <FilterModalProvider>
+        <NoteThemeProvider>
           <LabelProvider>
             <PriorityProvider>
-              <NoteThemeProvider>
-                <ServiceProvider>
+              <ServiceProvider>
+                <FilterModalProvider>
                   <ToastContainer />
                   <App />
-                </ServiceProvider>
-              </NoteThemeProvider>
+                </FilterModalProvider>
+              </ServiceProvider>
             </PriorityProvider>
           </LabelProvider>
-        </FilterModalProvider>
+        </NoteThemeProvider>
       </AuthProvider>
     </Router>
   </React.StrictMode>,

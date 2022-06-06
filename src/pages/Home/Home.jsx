@@ -16,7 +16,8 @@ const Home = () => {
   const { backColor } = useTheme();
   const { displayLabel } = useLabel();
   const { priority, setPriority } = usePriority();
-  const { showFilterModal, setShowFilterModal } = useFilter();
+  const { showFilterModal, setShowFilterModal, filterState } = useFilter();
+
   const config = {
     readonly: false,
   };
@@ -104,7 +105,8 @@ const Home = () => {
             </div>
           </div>
 
-          {state.notes.map((item) => {
+          {filterState.filteredData.map((item) => {
+            // console.log("filteredData", filterState.filteredData);
             return (
               <div
                 className="notes-container"

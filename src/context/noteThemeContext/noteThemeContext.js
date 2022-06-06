@@ -1,6 +1,8 @@
 import { createContext, useContext, useState } from "react";
 
-const NoteThemeContext = createContext(null);
+const theme = "";
+
+const NoteThemeContext = createContext(theme);
 
 const NoteThemeProvider = ({ children }) => {
   const [backColor, setBackgroundColor] = useState("white");
