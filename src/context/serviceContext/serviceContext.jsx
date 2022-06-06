@@ -24,6 +24,7 @@ import {
 } from "../../services";
 import { useTheme } from "../noteThemeContext/noteThemeContext";
 import { useLabel } from "../labelContext/LabelContext";
+import { usePriority } from "../../context/priorityContext/priorityContext";
 
 const initialDataState = {
   notes: [],
@@ -43,6 +44,7 @@ const ServiceProvider = ({ children }) => {
   const [id, setId] = useState();
   const { backColor, setBackgroundColor } = useTheme();
   const { displayLabel, setDisplayLabel } = useLabel();
+  const { priority } = usePriority();
 
   const postNewNotes = async (note) => {
     note.tags = displayLabel;
@@ -50,6 +52,7 @@ const ServiceProvider = ({ children }) => {
       ...note,
       createdTime: new Date().getTime(),
       bgColor: backColor,
+      priority: priority,
     };
     if (!isAuthorized) {
       showToast("Please login to add notes.", "success");
@@ -106,6 +109,7 @@ const ServiceProvider = ({ children }) => {
       ...note,
       createdTime: new Date().getTime(),
       bgColor: backColor,
+      priority: priority,
     };
     if (!isAuthorized) {
       showToast("Please login to edit notes.", "success");

@@ -9,6 +9,7 @@ import { ServiceProvider } from "./context/serviceContext/serviceContext";
 import { ToastContainer } from "react-toastify";
 import { NoteThemeProvider } from "./context/noteThemeContext/noteThemeContext";
 import { LabelProvider } from "./context/labelContext/LabelContext.jsx";
+import { PriorityProvider } from "./context/priorityContext/priorityContext";
 // Call make Server
 makeServer();
 
@@ -17,12 +18,14 @@ ReactDOM.render(
     <Router>
       <AuthProvider>
         <LabelProvider>
-          <NoteThemeProvider>
-            <ServiceProvider>
-              <ToastContainer />
-              <App />
-            </ServiceProvider>
-          </NoteThemeProvider>
+          <PriorityProvider>
+            <NoteThemeProvider>
+              <ServiceProvider>
+                <ToastContainer />
+                <App />
+              </ServiceProvider>
+            </NoteThemeProvider>
+          </PriorityProvider>
         </LabelProvider>
       </AuthProvider>
     </Router>

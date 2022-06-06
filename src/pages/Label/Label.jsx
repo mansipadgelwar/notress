@@ -1,4 +1,4 @@
-import { NotesMenuBar, SearchBar, SideBar } from "../../components";
+import { SearchBar, SideBar } from "../../components";
 import { useLabel } from "../../context/labelContext/LabelContext";
 import "../../pages/pages.css";
 import { useServices } from "../../context/serviceContext/serviceContext";
@@ -58,7 +58,6 @@ const Label = () => {
                         <div className="notes-creation-date">
                           {`${new Date(item.createdTime).toLocaleString()}`}
                         </div>
-                        <NotesMenuBar notes={item} menutype={false} />
                       </div>
                     </div>
                   );
