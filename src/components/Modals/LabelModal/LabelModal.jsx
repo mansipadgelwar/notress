@@ -1,6 +1,6 @@
 import styles from "./LabelModal.module.css";
 import { v4 as uuid } from "uuid";
-import { useLabel } from "../../../context/labelContext/LabelContext";
+import { useLabel } from "../../../context";
 
 const LabelModal = ({ showLabelModal, onCloseLabelModal }) => {
   const { displayLabel, setDisplayLabel, data, setData, label, setLabels } =

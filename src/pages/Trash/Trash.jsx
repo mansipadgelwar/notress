@@ -1,7 +1,6 @@
 import { NotesMenuBar, SearchBar, SideBar } from "../../components";
-import { useServices } from "../../context/serviceContext/serviceContext";
+import { useServices, useLabel } from "../../context";
 import "../../pages/pages.css";
-import { useLabel } from "../../context/labelContext/LabelContext";
 
 const Trash = () => {
   const { state } = useServices();

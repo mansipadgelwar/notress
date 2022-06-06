@@ -1,11 +1,7 @@
-import { useServices } from "../../context/serviceContext/serviceContext";
+import { useServices, useTheme, useLabel, usePriority } from "../../context";
 import "../NotesMenuBar/NotesMenuBar.css";
 import { useState } from "react";
-import { ColorPallete } from "../Modals/ColorPalleteModal/ColorPallete";
-import { LabelModal } from "../Modals/LabelModal/LabelModal";
-import { useTheme } from "../../context/noteThemeContext/noteThemeContext";
-import { useLabel } from "../../context/labelContext/LabelContext";
-import { usePriority } from "../../context/priorityContext/priorityContext";
+import { ColorPallete, LabelModal } from "../index";
 
 const NotesMenuBar = ({ notes, menutype, location }) => {
   const [show, setShow] = useState(false);

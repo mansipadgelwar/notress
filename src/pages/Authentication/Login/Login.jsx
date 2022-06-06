@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../context/authContext/authenticationContext";
+import { useAuth } from "../../context";
 
 const Login = () => {
   const initialFormDetails = {

@@ -1,4 +1,4 @@
-import "../FilterModal//Filtermodal.css";
+import "../FilterModal/Filtermodal.css";
 
 const FilterModal = () => {
   return (

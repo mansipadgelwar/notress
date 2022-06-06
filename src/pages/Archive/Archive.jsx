@@ -1,7 +1,6 @@
 import { NotesMenuBar, SearchBar, SideBar } from "../../components";
-import { useServices } from "../../context/serviceContext/serviceContext";
 import "../../pages/pages.css";
-import { useLabel } from "../../context/labelContext/LabelContext";
+import { useLabel, useServices } from "../../context";
 
 const Archive = () => {
   const { state } = useServices();

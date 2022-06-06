@@ -1,10 +1,7 @@
 import { NotesMenuBar, SearchBar, SideBar } from "../../components";
 import JoditEditor from "jodit-react";
 import { useRef } from "react";
-import { useServices } from "../../context/serviceContext/serviceContext";
-import { useTheme } from "../../context/noteThemeContext/noteThemeContext";
-import { useLabel } from "../../context/labelContext/LabelContext";
-import { usePriority } from "../../context/priorityContext/priorityContext";
+import { useServices, useTheme, useLabel, usePriority } from "../../context";
 
 const Home = () => {
   const { note, setNote, state } = useServices();

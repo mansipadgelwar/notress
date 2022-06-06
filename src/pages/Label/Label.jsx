@@ -1,7 +1,6 @@
 import { SearchBar, SideBar } from "../../components";
-import { useLabel } from "../../context/labelContext/LabelContext";
+import { useLabel, useServices } from "../../context";
 import "../../pages/pages.css";
-import { useServices } from "../../context/serviceContext/serviceContext";
 
 const Label = () => {
   const { data } = useLabel();
