@@ -6,9 +6,14 @@ const FilterModalContext = createContext(filter);
 
 const FilterModalProvider = ({ children }) => {
   const [showFilterModal, setShowFilterModal] = useState(false);
+  const [option, setOption] = useState({
+    sortBy: "newest-first",
+    filterBy: "",
+  });
+
   return (
     <FilterModalContext.Provider
-      value={{ showFilterModal, setShowFilterModal }}
+      value={{ showFilterModal, setShowFilterModal, option, setOption }}
     >
       {children}
     </FilterModalContext.Provider>
