@@ -1,7 +1,14 @@
 import { NotesMenuBar, SearchBar, SideBar } from "../../components";
 import JoditEditor from "jodit-react";
 import { useRef } from "react";
-import { useServices, useTheme, useLabel, usePriority } from "../../context";
+import {
+  useServices,
+  useTheme,
+  useLabel,
+  usePriority,
+  useFilter,
+} from "../../context";
+import { FilterModal } from "../../components";
 
 const Home = () => {
   const { note, setNote, state } = useServices();
@@ -9,18 +16,28 @@ const Home = () => {
   const { backColor } = useTheme();
   const { displayLabel } = useLabel();
   const { priority, setPriority } = usePriority();
-
+  const { showFilterModal, setShowFilterModal } = useFilter();
   const config = {
     readonly: false,
   };
 
   return (
     <div className="library-home-page">
+      <FilterModal
+        showFilterModal={showFilterModal}
+        onClosingFilterModal={() => setShowFilterModal(false)}
+      />
       <div className="library-home-sidebar">
         <SideBar />
       </div>
 
-      <div className="main-content-page">
+      <div
+        className={
+          showFilterModal
+            ? "modal-background-page main-content-page"
+            : "main-content-page"
+        }
+      >
         <div className="hero-img">
           <div>
             <SearchBar />

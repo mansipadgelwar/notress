@@ -4,12 +4,16 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
-import { AuthProvider } from "./context/authContext/authenticationContext";
-import { ServiceProvider } from "./context/serviceContext/serviceContext";
+import {} from "./context/serviceContext/serviceContext";
 import { ToastContainer } from "react-toastify";
-import { NoteThemeProvider } from "./context/noteThemeContext/noteThemeContext";
-import { LabelProvider } from "./context/labelContext/LabelContext.jsx";
-import { PriorityProvider } from "./context/priorityContext/priorityContext";
+import {
+  FilterModalProvider,
+  ServiceProvider,
+  NoteThemeProvider,
+  AuthProvider,
+  LabelProvider,
+  PriorityProvider,
+} from "./context";
 // Call make Server
 makeServer();
 
@@ -17,16 +21,18 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
-        <LabelProvider>
-          <PriorityProvider>
-            <NoteThemeProvider>
-              <ServiceProvider>
-                <ToastContainer />
-                <App />
-              </ServiceProvider>
-            </NoteThemeProvider>
-          </PriorityProvider>
-        </LabelProvider>
+        <FilterModalProvider>
+          <LabelProvider>
+            <PriorityProvider>
+              <NoteThemeProvider>
+                <ServiceProvider>
+                  <ToastContainer />
+                  <App />
+                </ServiceProvider>
+              </NoteThemeProvider>
+            </PriorityProvider>
+          </LabelProvider>
+        </FilterModalProvider>
       </AuthProvider>
     </Router>
   </React.StrictMode>,
