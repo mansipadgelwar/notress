@@ -83,9 +83,6 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
           <li onClick={() => handleUpdate(notes)}>
             <span className="material-icons">edit_note</span>
           </li>
-          <li>
-            <span className="material-icons">label</span>
-          </li>
           <li onClick={() => addNotesToArchive(notes._id)}>
             <span className="material-icons">archive</span>
           </li>
