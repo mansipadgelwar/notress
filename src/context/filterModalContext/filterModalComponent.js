@@ -12,10 +12,11 @@ const FilterModalContext = createContext(filter);
 const FilterModalProvider = ({ children }) => {
   const { state } = useServices();
   const [showFilterModal, setShowFilterModal] = useState(false);
+  const [checkedPriority, setCheckedPriority] = useState([]);
+  const [showFilterData, setShowFilterData] = useState(false);
   const filterReducer = (filterstate, { type, payload }) => {
     switch (type) {
       case "SORT_BY_PRIORITY":
-        console.log("case2", filterstate.filteredData);
         return {
           ...filterstate,
           filteredData: state.notes.filter((item) =>
@@ -44,8 +45,6 @@ const FilterModalProvider = ({ children }) => {
     filterBy: "date",
   });
 
-  console.log(filterState);
-
   return (
     <FilterModalContext.Provider
       value={{
@@ -55,6 +54,10 @@ const FilterModalProvider = ({ children }) => {
         setOption,
         filterState,
         filterDispatch,
+        checkedPriority,
+        setCheckedPriority,
+        showFilterData,
+        setShowFilterData,
       }}
     >
       {children}

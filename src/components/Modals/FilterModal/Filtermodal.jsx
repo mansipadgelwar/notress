@@ -1,50 +1,51 @@
+import { useEffect } from "react";
 import { useFilter } from "../../../context";
 import styles from "./Filtermodal.module.css";
-import { useState } from "react";
 
 const priorityDB = ["High", "Medium", "Low"];
 
 const FilterModal = ({ showFilterModal, onClosingFilterModal }) => {
-  const { filterState, filterDispatch } = useFilter();
-  // const { state, dispatch } = useServices();
-  const [checkedPriority, setCheckedPriority] = useState([]);
+  const { filterDispatch } = useFilter();
+  const { checkedPriority, setCheckedPriority, setShowFilterData } =
+    useFilter();
+
+  const handleCheckboxChange = (e) => {
+    const { value, checked } = e.target;
+    checked
+      ? setCheckedPriority([...checkedPriority, value])
+      : setCheckedPriority(checkedPriority.filter((e) => e !== value));
+  };
+
+  useEffect(() => {
+    let cleanUpFunction = true;
+    if (checkedPriority !== "" && cleanUpFunction)
+      filterDispatch({
+        type: "SORT_BY_PRIORITY",
+        payload: checkedPriority,
+      });
+    return () => {
+      cleanUpFunction = false;
+    };
+  }, [checkedPriority, filterDispatch]);
+
+  const clearAllFilters = () => {
+    filterDispatch({
+      type: "SORT_BY_DATE",
+      payload: "oldest-first",
+    });
+    setCheckedPriority("");
+    setShowFilterData(false);
+    onClosingFilterModal();
+  };
+
   if (!showFilterModal) {
     return null;
   }
 
   const handleFilterAndSort = () => {
-    // console.log();
-    // const sortedNotes = [...state.notes].sort(
-    //   (a, b) => b.createdTime - a.createdTime
-    // );
-    // option.sortBy === "newest-first" && option.filterBy === "date"
-    //   ? dispatch({ type: "SET_NOTES", payload: sortedNotes })
-    //   : dispatch({ type: "SET_NOTES", payload: sortedNotes.reverse() });
-    // const filteredNoteByPriority = sortedNotes.filter((item) =>
-    //   checkedPriority.find((element) => element === item.priority)
-    // );
-    // option.sortBy === "newest-first" && option.filterBy === "priority"
-    //   ? dispatch({ type: "SET_NOTES", payload: filteredNoteByPriority })
-    //   : dispatch({
-    //       type: "SET_NOTES",
-    //       payload: filteredNoteByPriority.reverse(),
-    //     });
     // setCheckedPriority("");
-    // onClosingFilterModal();
-    console.log(filterState);
-  };
-
-  const handleCheckboxChange = (e) => {
-    const { value, checked } = e.target;
-    if (checked) {
-      setCheckedPriority([...checkedPriority, value]);
-    } else {
-      setCheckedPriority(checkedPriority.filter((e) => e !== value));
-    }
-    filterDispatch({
-      type: "SORT_BY_PRIORITY",
-      payload: checkedPriority,
-    });
+    setShowFilterData(true);
+    onClosingFilterModal();
   };
 
   return (
@@ -107,6 +108,9 @@ const FilterModal = ({ showFilterModal, onClosingFilterModal }) => {
           </ul>
         </div>
         <div className={styles.filter_modal_cta}>
+          <button className="btn " onClick={clearAllFilters}>
+            clear
+          </button>
           <button className="btn styles.btn-cta" onClick={handleFilterAndSort}>
             Done
           </button>
