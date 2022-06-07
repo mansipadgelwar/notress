@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useReducer } from "react";
-// import { FilterReducer } from "../../reducers";
 import { useServices } from "../../context";
 
 const filter = "";
