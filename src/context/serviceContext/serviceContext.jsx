@@ -5,7 +5,13 @@ import {
   useState,
   useEffect,
 } from "react";
-import { useAuth } from "../authContext/authenticationContext";
+import {
+  useAuth,
+  useTheme,
+  useLabel,
+  usePriority,
+  usePin,
+} from "../../context";
 import { useToast } from "../../custom-hooks/useToast";
 import { dataReducer } from "../../reducers";
 import {
@@ -22,9 +28,6 @@ import {
   deleteNotefromTrashService,
   restoreTrashedNoteService,
 } from "../../services";
-import { useTheme } from "../noteThemeContext/noteThemeContext";
-import { useLabel } from "../labelContext/LabelContext";
-import { usePriority } from "../../context/priorityContext/priorityContext";
 
 const initialDataState = {
   notes: [],
@@ -45,6 +48,7 @@ const ServiceProvider = ({ children }) => {
   const { backColor, setBackgroundColor } = useTheme();
   const { displayLabel, setDisplayLabel } = useLabel();
   const { priority } = usePriority();
+  const { pinnedNote, setPinnedNote } = usePin();
 
   const postNewNotes = async (note) => {
     note.tags = displayLabel;
@@ -53,6 +57,7 @@ const ServiceProvider = ({ children }) => {
       createdTime: new Date().getTime(),
       bgColor: backColor,
       priority: priority,
+      pinnedNote: pinnedNote,
     };
     if (!isAuthorized) {
       showToast("Please login to add notes.", "success");
@@ -65,12 +70,14 @@ const ServiceProvider = ({ children }) => {
         setNote({ title: "", body: "" });
         setBackgroundColor("");
         setDisplayLabel([]);
+        setPinnedNote(false);
         showToast("Notes added successfully", "success");
       } catch (error) {
         showToast("Error in adding notes", "error");
         console.error("Error in adding notes.", error);
       }
     }
+    console.log(state.notes);
   };
 
   const getNewNotes = async () => {
@@ -110,6 +117,7 @@ const ServiceProvider = ({ children }) => {
       createdTime: new Date().getTime(),
       bgColor: backColor,
       priority: priority,
+      pinnedNote: pinnedNote,
     };
     if (!isAuthorized) {
       showToast("Please login to edit notes.", "success");
@@ -122,6 +130,7 @@ const ServiceProvider = ({ children }) => {
         setNote({ title: "", body: "" });
         setBackgroundColor("");
         setDisplayLabel([]);
+        setPinnedNote(false);
         showToast("Notes updated successfully", "success");
       } catch (error) {
         showToast("Error while updating notes", "error");
