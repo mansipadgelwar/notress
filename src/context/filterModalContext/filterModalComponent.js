@@ -11,7 +11,7 @@ const FilterModalContext = createContext(filter);
 const FilterModalProvider = ({ children }) => {
   const { state } = useServices();
   const [showFilterModal, setShowFilterModal] = useState(false);
-  const [checkedPriority, setCheckedPriority] = useState([]);
+  const [checkedCheckbox, setCheckedCheckbox] = useState([]);
   const [showFilterData, setShowFilterData] = useState(false);
   const filterReducer = (filterstate, { type, payload }) => {
     switch (type) {
@@ -20,6 +20,15 @@ const FilterModalProvider = ({ children }) => {
           ...filterstate,
           filteredData: state.notes.filter((item) =>
             payload.find((element) => element === item.priority)
+          ),
+        };
+      case "SORT_BY_LABELS":
+        return {
+          ...filterstate,
+          filteredData: state.notes.filter((item) =>
+            item.tags.find((element) => {
+              return payload.find((label) => label === element);
+            })
           ),
         };
       case "SORT_BY_DATE":
@@ -39,10 +48,7 @@ const FilterModalProvider = ({ children }) => {
     filteredDataInitialState
   );
 
-  const [option, setOption] = useState({
-    sortBy: "newest-first",
-    filterBy: "date",
-  });
+  const [option, setOption] = useState("priority");
 
   return (
     <FilterModalContext.Provider
@@ -53,8 +59,8 @@ const FilterModalProvider = ({ children }) => {
         setOption,
         filterState,
         filterDispatch,
-        checkedPriority,
-        setCheckedPriority,
+        checkedCheckbox,
+        setCheckedCheckbox,
         showFilterData,
         setShowFilterData,
       }}

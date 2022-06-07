@@ -1,41 +1,52 @@
 import { useEffect } from "react";
-import { useFilter } from "../../../context";
+import { useFilter, useLabel } from "../../../context";
 import styles from "./Filtermodal.module.css";
 
 const priorityDB = ["High", "Medium", "Low"];
 
 const FilterModal = ({ showFilterModal, onClosingFilterModal }) => {
   const { filterDispatch } = useFilter();
-  const { checkedPriority, setCheckedPriority, setShowFilterData } =
-    useFilter();
+  const {
+    checkedCheckbox,
+    setCheckedCheckbox,
+    setShowFilterData,
+    option,
+    setOption,
+  } = useFilter();
+  const { data } = useLabel();
 
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
     checked
-      ? setCheckedPriority([...checkedPriority, value])
-      : setCheckedPriority(checkedPriority.filter((e) => e !== value));
+      ? setCheckedCheckbox([...checkedCheckbox, value])
+      : setCheckedCheckbox(checkedCheckbox.filter((e) => e !== value));
   };
 
   useEffect(() => {
     let cleanUpFunction = true;
-    if (checkedPriority !== "" && cleanUpFunction)
-      filterDispatch({
-        type: "SORT_BY_PRIORITY",
-        payload: checkedPriority,
-      });
+    if (checkedCheckbox !== "" && cleanUpFunction) {
+      option === "priority"
+        ? filterDispatch({
+            type: "SORT_BY_PRIORITY",
+            payload: checkedCheckbox,
+          })
+        : filterDispatch({
+            type: "SORT_BY_LABELS",
+            payload: checkedCheckbox,
+          });
+    }
     return () => {
       cleanUpFunction = false;
     };
-  }, [checkedPriority, filterDispatch]);
+  }, [checkedCheckbox, filterDispatch, option]);
 
   const clearAllFilters = () => {
     filterDispatch({
       type: "SORT_BY_DATE",
       payload: "oldest-first",
     });
-    setCheckedPriority("");
+    setCheckedCheckbox("");
     setShowFilterData(false);
-    onClosingFilterModal();
   };
 
   if (!showFilterModal) {
@@ -43,7 +54,6 @@ const FilterModal = ({ showFilterModal, onClosingFilterModal }) => {
   }
 
   const handleFilterAndSort = () => {
-    // setCheckedPriority("");
     setShowFilterData(true);
     onClosingFilterModal();
   };
@@ -83,7 +93,11 @@ const FilterModal = ({ showFilterModal, onClosingFilterModal }) => {
             </li>
             <li className={styles.unordered_list}>
               <label className="text-bold">Filter By</label>
-              <select name="filter-by" className={styles.dropdown}>
+              <select
+                name="filter-by"
+                className={styles.dropdown}
+                onChange={(e) => setOption(e.target.value)}
+              >
                 <option value="date">Date</option>
                 <option value="priority">Priority</option>
                 <option value="labels">Labels</option>
@@ -92,19 +106,33 @@ const FilterModal = ({ showFilterModal, onClosingFilterModal }) => {
             <li className={styles.unordered_list}>
               <label className="text-bold">Select Labels</label>
             </li>
-            {priorityDB.map((item) => {
-              return (
-                <li className={styles.notes_label} key={item}>
-                  <input
-                    type="checkbox"
-                    name={item}
-                    value={item}
-                    onChange={handleCheckboxChange}
-                  />
-                  <label>{item}</label>
-                </li>
-              );
-            })}
+            {option === "priority" && data !== undefined
+              ? priorityDB.map((item) => {
+                  return (
+                    <li className={styles.notes_label} key={item}>
+                      <input
+                        type="checkbox"
+                        name={item}
+                        value={item}
+                        onChange={handleCheckboxChange}
+                      />
+                      <label>{item}</label>
+                    </li>
+                  );
+                })
+              : data.map((item) => {
+                  return (
+                    <li className={styles.notes_label} key={item.id}>
+                      <input
+                        type="checkbox"
+                        name={item.labelName}
+                        value={item.labelName}
+                        onChange={handleCheckboxChange}
+                      />
+                      <label>{item.labelName}</label>
+                    </li>
+                  );
+                })}
           </ul>
         </div>
         <div className={styles.filter_modal_cta}>
