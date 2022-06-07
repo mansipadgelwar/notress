@@ -22,3 +22,4 @@ export {
   useFilter,
   FilterModalProvider,
 } from "../context/filterModalContext/filterModalComponent";
+export { usePin, PinProvider } from "../context/pinContext/pinContext";
