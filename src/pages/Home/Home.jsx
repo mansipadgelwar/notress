@@ -7,6 +7,7 @@ import {
   useLabel,
   usePriority,
   useFilter,
+  usePin,
 } from "../../context";
 import { FilterModal } from "../../components";
 
@@ -18,7 +19,7 @@ const Home = () => {
   const { priority, setPriority } = usePriority();
   const { showFilterModal, setShowFilterModal, filterState, showFilterData } =
     useFilter();
-
+  const { pinnedNote, setPinnedNote } = usePin();
   const config = {
     readonly: false,
   };
@@ -64,7 +65,14 @@ const Home = () => {
                   />
                 </div>
                 <div>
-                  <span className="material-icons">push_pin</span>
+                  <span
+                    className={
+                      pinnedNote ? "material-icons" : "material-icons-outlined"
+                    }
+                    onClick={() => setPinnedNote(!pinnedNote)}
+                  >
+                    push_pin
+                  </span>
                 </div>
               </div>
               <div className="notes-body">
@@ -117,7 +125,15 @@ const Home = () => {
                     <div className="notes-title-container">
                       <div className="h4 text-bold">{item.title}</div>
                       <div>
-                        <span className="material-icons">push_pin</span>
+                        <span
+                          className={
+                            item.pinnedNote
+                              ? "material-icons"
+                              : "material-icons-outlined"
+                          }
+                        >
+                          push_pin
+                        </span>
                       </div>
                     </div>
                     <div
@@ -153,7 +169,15 @@ const Home = () => {
                     <div className="notes-title-container">
                       <div className="h4 text-bold">{item.title}</div>
                       <div>
-                        <span className="material-icons">push_pin</span>
+                        <span
+                          className={
+                            item.pinnedNote
+                              ? "material-icons"
+                              : "material-icons-outlined"
+                          }
+                        >
+                          push_pin
+                        </span>
                       </div>
                     </div>
                     <div

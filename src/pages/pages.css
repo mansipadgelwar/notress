@@ -74,10 +74,14 @@
   cursor: pointer;
 }
 
-.material-icons {
+.material-icons,
+.material-icons-outlined {
   color: var(--primary-color);
 }
 
+.library-home-page .material-icons-outlined {
+  margin-right: 0;
+}
 .notes-container .notes-label-type {
   border-radius: 0.3rem;
   background-color: var(--hover-grey);
