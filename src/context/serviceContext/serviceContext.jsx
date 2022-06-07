@@ -7,12 +7,12 @@ import {
 } from "react";
 import {
   useAuth,
-  useToast,
   useTheme,
   useLabel,
   usePriority,
   usePin,
 } from "../../context";
+import { useToast } from "../../custom-hooks/useToast";
 import { dataReducer } from "../../reducers";
 import {
   deleteNoteService,
