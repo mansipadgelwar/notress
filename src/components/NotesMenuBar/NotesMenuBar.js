@@ -24,9 +24,12 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
     deleteNoteFromTrash,
     restoreNoteFromTrash,
     setShowEditorModal,
+    setEditMode,
+    isInEditMode,
   } = useServices();
 
   const handleUpdate = (notes) => {
+    setEditMode(true);
     setShowEditorModal(true);
     setNote({ title: notes.title, body: notes.body });
     setBackgroundColor(notes.bgColor);
@@ -44,12 +47,16 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
             showLabelModal={showLabelModal}
             onCloseLabelModal={() => setShowLabelModal(false)}
           />
-          <li onClick={() => postNewNotes(note)}>
-            <span className="material-icons">check_circle</span>
-          </li>
-          <li onClick={() => updateNote(notes)}>
-            <span className="material-icons">update</span>
-          </li>
+
+          {isInEditMode ? (
+            <li onClick={() => updateNote(notes)}>
+              <span className="material-icons">check_circle</span>
+            </li>
+          ) : (
+            <li onClick={() => postNewNotes(note)}>
+              <span className="material-icons">check_circle</span>
+            </li>
+          )}
           <li onClick={() => setShow(true)}>
             <span className="material-icons">palette</span>
           </li>

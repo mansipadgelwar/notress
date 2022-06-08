@@ -50,6 +50,7 @@ const ServiceProvider = ({ children }) => {
   const { priority } = usePriority();
   const { pinnedNote, setPinnedNote } = usePin();
   const [showEditorModal, setShowEditorModal] = useState(false);
+  const [isInEditMode, setEditMode] = useState(false);
 
   const postNewNotes = async (note) => {
     note.tags = displayLabel;
@@ -130,6 +131,8 @@ const ServiceProvider = ({ children }) => {
         setBackgroundColor("");
         setDisplayLabel([]);
         setPinnedNote(false);
+        setEditMode(false);
+        setShowEditorModal(false);
         showToast("Notes updated successfully", "success");
       } catch (error) {
         showToast("Error while updating notes", "error");
@@ -307,6 +310,8 @@ const ServiceProvider = ({ children }) => {
         restoreNoteFromTrash,
         showEditorModal,
         setShowEditorModal,
+        setEditMode,
+        isInEditMode,
       }}
     >
       {children}
