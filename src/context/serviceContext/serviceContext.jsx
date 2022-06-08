@@ -78,7 +78,6 @@ const ServiceProvider = ({ children }) => {
         console.error("Error in adding notes.", error);
       }
     }
-    console.log(state.notes);
   };
 
   const getNewNotes = async () => {
@@ -89,7 +88,6 @@ const ServiceProvider = ({ children }) => {
       dispatch({ type: "SET_NOTES", payload: [...notes] });
     } catch (error) {
       showToast("Error in getting notes", "error");
-      console.error("Error in getting notes.", error);
     }
   };
 
@@ -105,7 +103,6 @@ const ServiceProvider = ({ children }) => {
         showToast("Note deleted successfully", "success");
       } catch (error) {
         showToast("Error in deleting notes", "error");
-        console.error("Error in deleting notes.", error);
       }
     }
   };
@@ -135,7 +132,6 @@ const ServiceProvider = ({ children }) => {
         showToast("Notes updated successfully", "success");
       } catch (error) {
         showToast("Error while updating notes", "error");
-        console.error("Error in updating notes.", error);
       }
     }
   };
@@ -155,7 +151,6 @@ const ServiceProvider = ({ children }) => {
         showToast("Notes added to archive successfully", "success");
       } catch (error) {
         showToast("Error in adding notes to archive.", "error");
-        console.log("Error in adding notes to archive.", error);
       }
     }
   };
@@ -170,7 +165,7 @@ const ServiceProvider = ({ children }) => {
         payload: { notes: [...notes], archives: [...archives] },
       });
     } catch (error) {
-      console.log("Error in getting archived notes.", error);
+      console.error("Error in getting archived notes.", error);
     }
   };
 
@@ -188,7 +183,7 @@ const ServiceProvider = ({ children }) => {
         });
         showToast("Notes unarchived  successfully", "success");
       } catch (error) {
-        console.log("Error in unarchiving notes.", error);
+        showToast("Error in unarchiving notes", "error");
       }
     }
   };
@@ -207,7 +202,7 @@ const ServiceProvider = ({ children }) => {
         });
         showToast("Note deleted successfully from archive", "success");
       } catch (error) {
-        console.log("Error in deleting notes from archive.", error);
+        showToast("Error in deleting archived notes", "error");
       }
     }
   };
@@ -226,7 +221,7 @@ const ServiceProvider = ({ children }) => {
         });
         showToast("Notes added to trash successfully", "success");
       } catch (error) {
-        console.log("Error in adding notes to trash.", error);
+        showToast("Error in adding notes to trash", "error");
       }
     }
   };
@@ -241,7 +236,7 @@ const ServiceProvider = ({ children }) => {
         payload: { notes: [...notes], trash: [...trash] },
       });
     } catch (error) {
-      console.log("Error in getting notes from trashed.", error);
+      console.error("Error in getting notes from trashed.", error);
     }
   };
 
@@ -259,7 +254,7 @@ const ServiceProvider = ({ children }) => {
         });
         showToast("Note deleted successfully from trashed", "success");
       } catch (error) {
-        console.log("Error in deleting notes.", error);
+        showToast("Error in deleting notes from trash.", "error");
       }
     }
   };
@@ -278,7 +273,7 @@ const ServiceProvider = ({ children }) => {
         });
         showToast("Notes restored successfully", "success");
       } catch (error) {
-        console.log("Error in restoring notes from trashed.", error);
+        showToast("Error in restoring notes from trashed.", "error");
       }
     }
   };
