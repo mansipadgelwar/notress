@@ -49,6 +49,7 @@ const ServiceProvider = ({ children }) => {
   const { displayLabel, setDisplayLabel } = useLabel();
   const { priority } = usePriority();
   const { pinnedNote, setPinnedNote } = usePin();
+  const [showEditorModal, setShowEditorModal] = useState(false);
 
   const postNewNotes = async (note) => {
     note.tags = displayLabel;
@@ -308,6 +309,8 @@ const ServiceProvider = ({ children }) => {
         addNotesToTrashed,
         deleteNoteFromTrash,
         restoreNoteFromTrash,
+        showEditorModal,
+        setShowEditorModal,
       }}
     >
       {children}

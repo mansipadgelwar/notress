@@ -1,12 +1,13 @@
 import "../SideBar/SideBar.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context";
+import { useAuth, useServices } from "../../context";
 import { useToast } from "../../custom-hooks/useToast";
 
 const SideBar = () => {
   const { authDispatch } = useAuth();
   const navigate = useNavigate();
   const { showToast } = useToast();
+  const { showEditorModal, setShowEditorModal } = useServices();
 
   const logoutUser = () => {
     showToast("Logout Successful", "success");
@@ -53,7 +54,12 @@ const SideBar = () => {
                 </li>
               </Link>
               <li className="notes-side-links">
-                <button className="btn btn-cta">Create New Note</button>
+                <button
+                  className="btn btn-cta"
+                  onClick={() => setShowEditorModal(!showEditorModal)}
+                >
+                  {showEditorModal ? "Close Editor" : "Create New Note"}
+                </button>
               </li>
             </ul>
           </div>
