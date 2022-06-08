@@ -1,0 +1,39 @@
+.profile-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  inset: 0;
+  margin: 2rem 0;
+  padding: 1rem;
+}
+
+.profile-page-container {
+  border: 1px solid var(--hover-grey);
+  border-radius: 2rem;
+  display: flex;
+  max-width: 400px;
+  height: auto;
+  width: 100%;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: var(--btn-box-shadow);
+  padding: 1rem;
+}
+
+.profile-page-content {
+  max-width: 18.75rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.inverted-text {
+  color: var(--primary-color);
+}

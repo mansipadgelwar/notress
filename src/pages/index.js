@@ -7,3 +7,4 @@ export { Login } from "../pages/Authentication/Login/Login.jsx";
 export { Logout } from "../pages/Authentication/Logout/Logout.jsx";
 export { Signup } from "../pages/Authentication/Signup/Signup.jsx";
 export { LandingPage } from "../pages/LandingPage/LandingPage.jsx";
+export { Profile } from "../pages/Profile/Profile.js";

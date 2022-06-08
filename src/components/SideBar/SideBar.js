@@ -46,7 +46,7 @@ const SideBar = () => {
                   <div>Trash</div>
                 </li>
               </Link>
-              <Link to="/">
+              <Link to="/profile">
                 <li className="notes-side-links">
                   <span className="material-icons">account_circle</span>
                   <div>Profile</div>
