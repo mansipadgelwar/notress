@@ -2,14 +2,29 @@ import "./App.css";
 import Mockman from "mockman-js";
 import { Routes, Route } from "react-router-dom";
 import { NavBar } from "./components";
-import { Archive, Home, Trash, Label, Logout, Login, Signup } from "./pages";
+import {
+  Archive,
+  Home,
+  Trash,
+  Label,
+  Logout,
+  Login,
+  Signup,
+  LandingPage,
+  Profile,
+} from "./pages";
+import { useAuth } from "./context";
 
 function App() {
+  const { isAuthorized } = useAuth();
+
   return (
     <div className="App">
-      <NavBar />
+      {isAuthorized && <NavBar />}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/archive" element={<Archive />} />
         <Route path="/trash" element={<Trash />} />
         <Route path="/label" element={<Label />} />

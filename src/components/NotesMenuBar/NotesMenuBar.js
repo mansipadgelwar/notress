@@ -23,9 +23,14 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
     addNotesToTrashed,
     deleteNoteFromTrash,
     restoreNoteFromTrash,
+    setShowEditorModal,
+    setEditMode,
+    isInEditMode,
   } = useServices();
 
   const handleUpdate = (notes) => {
+    setEditMode(true);
+    setShowEditorModal(true);
     setNote({ title: notes.title, body: notes.body });
     setBackgroundColor(notes.bgColor);
     setDisplayLabel(notes.tags);
@@ -42,18 +47,22 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
             showLabelModal={showLabelModal}
             onCloseLabelModal={() => setShowLabelModal(false)}
           />
-          <li onClick={() => postNewNotes(note)}>
-            <span className="material-icons">check_circle</span>
-          </li>
-          <li onClick={() => updateNote(notes)}>
-            <span className="material-icons">update</span>
-          </li>
+
+          {isInEditMode ? (
+            <li onClick={() => updateNote(notes)}>
+              <span className="material-icons">check_circle</span>
+            </li>
+          ) : (
+            <li onClick={() => postNewNotes(note)}>
+              <span className="material-icons">check_circle</span>
+            </li>
+          )}
           <li onClick={() => setShow(true)}>
-            <span className="material-icons">palette</span>
+            <span className="material-icons-outlined">palette</span>
           </li>
           <li>
             <span
-              className="material-icons"
+              className="material-icons-outlined"
               onClick={() => setShowLabelModal(true)}
             >
               label
@@ -82,9 +91,6 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
         <ul className="notes-list">
           <li onClick={() => handleUpdate(notes)}>
             <span className="material-icons">edit_note</span>
-          </li>
-          <li>
-            <span className="material-icons">label</span>
           </li>
           <li onClick={() => addNotesToArchive(notes._id)}>
             <span className="material-icons">archive</span>

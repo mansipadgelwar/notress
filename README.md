@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# NoTress - Note Taking App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Features
+- Add a new note
+  - Rich Text Editor
+- Edit & Delete Note
+- Filter & Sort by date, priority, tags
+- Change Card Color
+- Add Tags to notes
+- Trash & Archive
+  - Archive Notes
+  - Delete Notes
+- Authentication 
+  - Sign-up
+  - Login
+  - Logout
+- Search 
 
-## Available Scripts
+### Functionalities
+1. Add a new note
+   - I can add a note by clicking on a primary button "Add Note" or a "+" icon button which will open a textbox where we can add texts. And a "Save" button that will save the note.
+ 
+2. Edit & Delete Note
+    - Edit Note
+      - I can click on the "Edit Note" button which will open the same component with the textbox where we can edit a note & save it.
+    - Delete Note
+      - I can click on the "Delete Note" button which will delete a note.
 
-In the project directory, you can run:
+3. Filter & Sort by date, priority, tags
+   - Filter by tags
+     - I can filter notes by tags added to the note.
+     - All the tags will appear in the sidebar.
+   - Filter by priority
+     - I can filter the notes by priority
+     - Priorities would be high, medium, low
+   - Sort by date
+     - I can sort the notes by the date added/created
+4. Change Card Color
+   - I can see various color containers (div) where if I click on any one of it. It will change the background color of the note.
 
-### `yarn start`
+5. Add Tags to notes
+   - I can see the input text area beside the "Add Note" component where we can add tags.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+6. Trash & Archive
+   - Archive Notes
+     - When I click on the "Archive Note" button which will add a note to the archive list
+   - Delete Notes
+     - I can click on a "trash" button or a "delete" button to delete the note which will add a note to the trash list
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+7. Sign-up Page
+   - I can see a sign-up page from where I can sign-up using my email, first name, last name, password & confirm password.
+   - I can see a hide-show icon button that shows or hides my password.
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+8. Login Page
+   - I can see a login page from where I can log in using my email & password.
+ 
+ 
+9. Logout
+   - I can see a logout button from where I can log out from the app on the header navbar.
+   
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

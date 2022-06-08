@@ -1,0 +1,43 @@
+.landing-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  inset: 0;
+  margin: 2rem 0;
+}
+
+.landing-page-container {
+  border: 1px solid var(--hover-grey);
+  border-radius: 2rem;
+  display: flex;
+  max-width: 56.25rem;
+  height: auto;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 4rem;
+  box-shadow: var(--btn-box-shadow);
+}
+
+.landing-page-content {
+  max-width: 18.75rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.inverted-text {
+  color: var(--primary-color);
+}
+
+.login-link {
+  text-decoration: underline;
+  color: var(--raisin-black);
+}

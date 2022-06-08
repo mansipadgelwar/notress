@@ -49,6 +49,8 @@ const ServiceProvider = ({ children }) => {
   const { displayLabel, setDisplayLabel } = useLabel();
   const { priority } = usePriority();
   const { pinnedNote, setPinnedNote } = usePin();
+  const [showEditorModal, setShowEditorModal] = useState(false);
+  const [isInEditMode, setEditMode] = useState(false);
 
   const postNewNotes = async (note) => {
     note.tags = displayLabel;
@@ -60,7 +62,9 @@ const ServiceProvider = ({ children }) => {
       pinnedNote: pinnedNote,
     };
     if (!isAuthorized) {
-      showToast("Please login to add notes.", "success");
+      showToast("Please login to add notes.", "info");
+    } else if (note.title === "") {
+      showToast("Title cannot be blank.", "info");
     } else {
       try {
         const {
@@ -71,13 +75,13 @@ const ServiceProvider = ({ children }) => {
         setBackgroundColor("");
         setDisplayLabel([]);
         setPinnedNote(false);
+        setShowEditorModal(false);
         showToast("Notes added successfully", "success");
       } catch (error) {
         showToast("Error in adding notes", "error");
         console.error("Error in adding notes.", error);
       }
     }
-    console.log(state.notes);
   };
 
   const getNewNotes = async () => {
@@ -88,7 +92,6 @@ const ServiceProvider = ({ children }) => {
       dispatch({ type: "SET_NOTES", payload: [...notes] });
     } catch (error) {
       showToast("Error in getting notes", "error");
-      console.error("Error in getting notes.", error);
     }
   };
 
@@ -104,7 +107,6 @@ const ServiceProvider = ({ children }) => {
         showToast("Note deleted successfully", "success");
       } catch (error) {
         showToast("Error in deleting notes", "error");
-        console.error("Error in deleting notes.", error);
       }
     }
   };
@@ -120,7 +122,9 @@ const ServiceProvider = ({ children }) => {
       pinnedNote: pinnedNote,
     };
     if (!isAuthorized) {
-      showToast("Please login to edit notes.", "success");
+      showToast("Please login to edit notes.", "info");
+    } else if (note.title === "") {
+      showToast("Title cannot be blank.", "info");
     } else {
       try {
         const {
@@ -131,10 +135,11 @@ const ServiceProvider = ({ children }) => {
         setBackgroundColor("");
         setDisplayLabel([]);
         setPinnedNote(false);
+        setEditMode(false);
+        setShowEditorModal(false);
         showToast("Notes updated successfully", "success");
       } catch (error) {
         showToast("Error while updating notes", "error");
-        console.error("Error in updating notes.", error);
       }
     }
   };
@@ -154,7 +159,6 @@ const ServiceProvider = ({ children }) => {
         showToast("Notes added to archive successfully", "success");
       } catch (error) {
         showToast("Error in adding notes to archive.", "error");
-        console.log("Error in adding notes to archive.", error);
       }
     }
   };
@@ -169,7 +173,7 @@ const ServiceProvider = ({ children }) => {
         payload: { notes: [...notes], archives: [...archives] },
       });
     } catch (error) {
-      console.log("Error in getting archived notes.", error);
+      console.error("Error in getting archived notes.", error);
     }
   };
 
@@ -187,7 +191,7 @@ const ServiceProvider = ({ children }) => {
         });
         showToast("Notes unarchived  successfully", "success");
       } catch (error) {
-        console.log("Error in unarchiving notes.", error);
+        showToast("Error in unarchiving notes", "error");
       }
     }
   };
@@ -206,7 +210,7 @@ const ServiceProvider = ({ children }) => {
         });
         showToast("Note deleted successfully from archive", "success");
       } catch (error) {
-        console.log("Error in deleting notes from archive.", error);
+        showToast("Error in deleting archived notes", "error");
       }
     }
   };
@@ -225,7 +229,7 @@ const ServiceProvider = ({ children }) => {
         });
         showToast("Notes added to trash successfully", "success");
       } catch (error) {
-        console.log("Error in adding notes to trash.", error);
+        showToast("Error in adding notes to trash", "error");
       }
     }
   };
@@ -240,7 +244,7 @@ const ServiceProvider = ({ children }) => {
         payload: { notes: [...notes], trash: [...trash] },
       });
     } catch (error) {
-      console.log("Error in getting notes from trashed.", error);
+      console.error("Error in getting notes from trashed.", error);
     }
   };
 
@@ -258,7 +262,7 @@ const ServiceProvider = ({ children }) => {
         });
         showToast("Note deleted successfully from trashed", "success");
       } catch (error) {
-        console.log("Error in deleting notes.", error);
+        showToast("Error in deleting notes from trash.", "error");
       }
     }
   };
@@ -277,7 +281,7 @@ const ServiceProvider = ({ children }) => {
         });
         showToast("Notes restored successfully", "success");
       } catch (error) {
-        console.log("Error in restoring notes from trashed.", error);
+        showToast("Error in restoring notes from trashed.", "error");
       }
     }
   };
@@ -308,6 +312,10 @@ const ServiceProvider = ({ children }) => {
         addNotesToTrashed,
         deleteNoteFromTrash,
         restoreNoteFromTrash,
+        showEditorModal,
+        setShowEditorModal,
+        setEditMode,
+        isInEditMode,
       }}
     >
       {children}

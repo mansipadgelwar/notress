@@ -23,7 +23,8 @@ const LabelModal = ({ showLabelModal, onCloseLabelModal }) => {
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
-      setDisplayLabel([...displayLabel, value]);
+      const arr = [...displayLabel, value];
+      setDisplayLabel([...new Set(arr)]);
     } else {
       setDisplayLabel(displayLabel.filter((e) => e !== value));
     }
