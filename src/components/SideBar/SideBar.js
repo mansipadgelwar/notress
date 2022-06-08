@@ -22,7 +22,7 @@ const SideBar = () => {
         <div className="notes-sidebar-menu">
           <div className="menu-options">
             <ul className="notes-sidebar-list">
-              <Link to="/">
+              <Link to="/home">
                 <li className="notes-side-links">
                   <span className="material-icons">home</span>
                   <div>Home</div>

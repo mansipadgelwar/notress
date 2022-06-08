@@ -12,11 +12,14 @@ import {
   Signup,
   LandingPage,
 } from "./pages";
+import { useAuth } from "./context";
 
 function App() {
+  const { isAuthorized } = useAuth();
+
   return (
     <div className="App">
-      <NavBar />
+      {isAuthorized && <NavBar />}
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<Home />} />

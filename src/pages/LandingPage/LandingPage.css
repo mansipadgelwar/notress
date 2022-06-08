@@ -30,9 +30,14 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .inverted-text {
-  color: purple;
+  color: var(--primary-color);
+}
+
+.login-link {
+  text-decoration: underline;
+  color: var(--raisin-black);
 }

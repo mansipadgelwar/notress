@@ -1,5 +1,6 @@
 import "./LandingPage.css";
 import HeroImg from "../../asset/HeroImg.svg";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
   return (
@@ -9,18 +10,20 @@ const LandingPage = () => {
           <div className="notes-hero-heading h1 text-bold">
             No<span className="inverted-text">Tress</span>
           </div>
-          <div className="notes-hero-sub-heading h3 text-bold">
-            Meet your modern{" "}
-            <span className="inverted-text">Note Taking App</span>
+          <div className="notes-hero-sub-heading h2 text-bold">
+            Meet your modern
+            <span className="inverted-text"> Note Taking App</span>
           </div>
           <div className="h4">
             Manage your daily tasks and workflow in a modern way and boost your
             efficiency without any efforts.
           </div>
-          <div>
+          <Link to="/signup">
             <button className="btn btn-cta">Join Now</button>
-          </div>
-          <div>Already have an account?</div>
+          </Link>
+          <Link to="/login">
+            <div className="text-bold login-link">Already have an account?</div>
+          </Link>
         </div>
 
         <div className="image-container">
