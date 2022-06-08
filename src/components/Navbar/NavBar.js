@@ -6,7 +6,7 @@ const NavBar = () => {
       <header className="header">
         <div className="header-items">
           <a href="/" className="nav-brand">
-            NoTress
+            No<span className="inverted-text">Tress</span>
           </a>
         </div>
       </header>

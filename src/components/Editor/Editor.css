@@ -14,3 +14,12 @@
 .editor-modal {
   position: relative;
 }
+
+.search-bar-input {
+  margin: 1rem;
+  min-width: 100px;
+  width: 100%;
+  height: 5vh;
+  padding: 0.5rem 1.5rem;
+  position: relative;
+}
