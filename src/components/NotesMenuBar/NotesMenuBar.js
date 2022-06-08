@@ -58,11 +58,11 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
             </li>
           )}
           <li onClick={() => setShow(true)}>
-            <span className="material-icons">palette</span>
+            <span className="material-icons-outlined">palette</span>
           </li>
           <li>
             <span
-              className="material-icons"
+              className="material-icons-outlined"
               onClick={() => setShowLabelModal(true)}
             >
               label
