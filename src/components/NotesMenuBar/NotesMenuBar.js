@@ -23,9 +23,11 @@ const NotesMenuBar = ({ notes, menutype, location }) => {
     addNotesToTrashed,
     deleteNoteFromTrash,
     restoreNoteFromTrash,
+    setShowEditorModal,
   } = useServices();
 
   const handleUpdate = (notes) => {
+    setShowEditorModal(true);
     setNote({ title: notes.title, body: notes.body });
     setBackgroundColor(notes.bgColor);
     setDisplayLabel(notes.tags);

@@ -13,13 +13,17 @@ const Home = () => {
         showFilterModal={showFilterModal}
         onClosingFilterModal={() => setShowFilterModal(false)}
       />
+      <Editor
+        showEditorModal={showEditorModal}
+        onClosingEditorModal={() => setShowEditorModal(false)}
+      />
       <div className="library-home-sidebar">
         <SideBar />
       </div>
 
       <div
         className={
-          showFilterModal
+          showFilterModal || showEditorModal
             ? "modal-background-page main-content-page"
             : "main-content-page"
         }
@@ -28,10 +32,6 @@ const Home = () => {
           <div>
             <SearchBar />
           </div>
-          <Editor
-            showEditorModal={showEditorModal}
-            onClosingEditorModal={() => setShowEditorModal(false)}
-          />
 
           {showFilterData
             ? filterState.filteredData.map((item) => {

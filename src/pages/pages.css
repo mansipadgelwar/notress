@@ -44,6 +44,7 @@
   justify-content: space-between;
   color: var(--primary-color);
   font-weight: 700;
+  gap: 17px;
 }
 
 .notes-list {
@@ -63,6 +64,8 @@
   gap: 1.25rem;
   padding: 1rem;
   margin-bottom: 1.25rem;
+  max-height: 360px;
+  overflow: hidden;
 }
 
 .notes-title-container {

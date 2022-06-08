@@ -26,8 +26,11 @@ const Editor = ({ onClosingEditorModal }) => {
   }
 
   return (
-    <div className="notes-container" style={{ backgroundColor: backColor }}>
-      <div className="notes-editor-conatiner">
+    <div
+      className="notes-container modal-wrapper"
+      style={{ backgroundColor: backColor }}
+    >
+      <div className="notes-editor-conatiner editor-modal">
         <div className="notes-title-container">
           <div className="h4 text-bold">
             <input

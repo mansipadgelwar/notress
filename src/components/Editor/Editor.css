@@ -1,0 +1,16 @@
+.modal-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 30rem;
+  right: 0;
+  top: 10rem;
+  bottom: 0;
+  background-color: transparent;
+  z-index: 4;
+}
+
+.editor-modal {
+  position: relative;
+}
