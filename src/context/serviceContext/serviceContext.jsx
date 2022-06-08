@@ -62,7 +62,9 @@ const ServiceProvider = ({ children }) => {
       pinnedNote: pinnedNote,
     };
     if (!isAuthorized) {
-      showToast("Please login to add notes.", "success");
+      showToast("Please login to add notes.", "info");
+    } else if (note.title === "") {
+      showToast("Title cannot be blank.", "info");
     } else {
       try {
         const {
@@ -120,7 +122,9 @@ const ServiceProvider = ({ children }) => {
       pinnedNote: pinnedNote,
     };
     if (!isAuthorized) {
-      showToast("Please login to edit notes.", "success");
+      showToast("Please login to edit notes.", "info");
+    } else if (note.title === "") {
+      showToast("Title cannot be blank.", "info");
     } else {
       try {
         const {
