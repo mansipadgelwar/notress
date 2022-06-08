@@ -8,19 +8,19 @@ const palleteDatabase = [
   },
   {
     id: 2,
-    bgColor: "#fed7aa",
+    bgColor: "#fef3c7",
   },
   {
     id: 3,
-    bgColor: "#d9f99d",
+    bgColor: "#dcfce7",
   },
   {
     id: 4,
-    bgColor: "#d1fae5",
+    bgColor: "#e0f2fe",
   },
   {
     id: 5,
-    bgColor: "#cffafe",
+    bgColor: "#fae8ff",
   },
 ];
 

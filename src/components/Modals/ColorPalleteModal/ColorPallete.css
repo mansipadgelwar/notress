@@ -6,12 +6,13 @@
 .pallete-modal {
   background: var(--white);
   display: flex;
-  border: 1px solid black;
+  border: 1px solid var(--hover-black);
   position: absolute;
-  /* top: 0;
-  right: 50px; */
+  border-radius: 0.3rem;
+  box-shadow: var(--btn-box-shadow);
   right: 0;
   top: 0;
+  padding: 0.1rem;
 }
 
 .pallete-modal-content-list > li {
@@ -44,4 +45,5 @@
 
 .pallete-modal-content-list .avatar {
   margin: 0.2rem;
+  border: 3px solid var(--grey);
 }

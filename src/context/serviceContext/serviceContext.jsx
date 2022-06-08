@@ -72,6 +72,7 @@ const ServiceProvider = ({ children }) => {
         setBackgroundColor("");
         setDisplayLabel([]);
         setPinnedNote(false);
+        setShowEditorModal(false);
         showToast("Notes added successfully", "success");
       } catch (error) {
         showToast("Error in adding notes", "error");
