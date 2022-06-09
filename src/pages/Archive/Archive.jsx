@@ -32,7 +32,15 @@ const Archive = () => {
                 <div className="notes-title-container">
                   <div className="h4 text-bold">{item.title}</div>
                   <div>
-                    <span className="material-icons">push_pin</span>
+                    <span
+                      className={
+                        item.pinnedNote
+                          ? "material-icons"
+                          : "material-icons-outlined"
+                      }
+                    >
+                      push_pin
+                    </span>
                   </div>
                 </div>
                 <div

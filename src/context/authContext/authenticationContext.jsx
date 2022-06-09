@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
     return initialAuthState;
   };
   const { showToast } = useToast();
-  const [authState, authDispatch] = useReducer(authReducer, setAuthState);
+  const [authState, authDispatch] = useReducer(authReducer, setAuthState());
   const loginUser = async (email, password) => {
     try {
       const { data, status } = await userLoginService(email, password);
