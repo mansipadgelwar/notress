@@ -65,7 +65,7 @@ const Editor = ({ onClosingEditorModal }) => {
             onBlur={(value) => setNote((prev) => ({ ...prev, body: value }))}
           />
         </div>
-        <div class="notes-label-container">
+        <div className="notes-label-container">
           {displayLabel.map((label) => {
             return <div className="notes-label-type text-bold h5">{label}</div>;
           })}

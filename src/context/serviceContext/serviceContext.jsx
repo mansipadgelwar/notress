@@ -91,7 +91,7 @@ const ServiceProvider = ({ children }) => {
       } = await getNewNoteService(authToken);
       dispatch({ type: "SET_NOTES", payload: [...notes] });
     } catch (error) {
-      showToast("Error in getting notes", "error");
+      console.error("Error in getting notes", error);
     }
   };
 
