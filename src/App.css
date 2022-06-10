@@ -45,3 +45,7 @@
   font-size: 1.2rem;
   margin: 1rem;
 }
+
+.App.dark body {
+  background-color: var(--black);
+}

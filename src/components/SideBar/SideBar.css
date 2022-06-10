@@ -2,7 +2,6 @@
   overflow-y: auto;
   position: fixed;
   top: 10vh;
-  /* height: 90vh; */
   height: calc(100% - 10vh);
   flex: 0.3;
   max-width: 17rem;
@@ -11,6 +10,7 @@
   flex-direction: column;
   padding-top: 4rem;
   box-shadow: var(--btn-box-shadow);
+  background-color: var(--white);
 }
 
 .notes-sidebar-menu {
@@ -72,4 +72,12 @@
 
 a:-webkit-any-link {
   text-decoration: none;
+}
+
+.App.dark .notes-side-bar {
+  background-color: var(--light-raisin-black);
+}
+
+.App.dark .notes-side-links {
+  color: var(--white);
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import "./App.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -12,6 +13,7 @@ import {
   AuthProvider,
   LabelProvider,
   PriorityProvider,
+  AppThemeProvider,
 } from "./context";
 import { PinProvider } from "./context/pinContext/pinContext";
 // Call make Server
@@ -21,20 +23,22 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
-        <NoteThemeProvider>
-          <PinProvider>
-            <LabelProvider>
-              <PriorityProvider>
-                <ServiceProvider>
-                  <FilterModalProvider>
-                    <ToastContainer />
-                    <App />
-                  </FilterModalProvider>
-                </ServiceProvider>
-              </PriorityProvider>
-            </LabelProvider>
-          </PinProvider>
-        </NoteThemeProvider>
+        <AppThemeProvider>
+          <NoteThemeProvider>
+            <PinProvider>
+              <LabelProvider>
+                <PriorityProvider>
+                  <ServiceProvider>
+                    <FilterModalProvider>
+                      <ToastContainer />
+                      <App />
+                    </FilterModalProvider>
+                  </ServiceProvider>
+                </PriorityProvider>
+              </LabelProvider>
+            </PinProvider>
+          </NoteThemeProvider>
+        </AppThemeProvider>
       </AuthProvider>
     </Router>
   </React.StrictMode>,

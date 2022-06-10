@@ -23,3 +23,7 @@ export {
   FilterModalProvider,
 } from "../context/filterModalContext/filterModalComponent";
 export { usePin, PinProvider } from "../context/pinContext/pinContext";
+export {
+  useAppTheme,
+  AppThemeProvider,
+} from "../context/appThemeContext/appThemeContext";
