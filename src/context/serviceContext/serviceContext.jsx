@@ -84,14 +84,10 @@ const ServiceProvider = ({ children }) => {
   };
 
   const getNewNotes = async () => {
-    try {
-      const {
-        data: { notes },
-      } = await getNewNoteService(authToken);
-      dispatch({ type: "SET_NOTES", payload: [...notes] });
-    } catch (error) {
-      console.error("Error in getting notes", error);
-    }
+    const {
+      data: { notes },
+    } = await getNewNoteService(authToken);
+    dispatch({ type: "SET_NOTES", payload: [...notes] });
   };
 
   const deleteNote = async (noteId) => {
@@ -163,17 +159,13 @@ const ServiceProvider = ({ children }) => {
   };
 
   const getArchivedNotes = async () => {
-    try {
-      const {
-        data: { notes, archives },
-      } = await getArchivedNoteService(authToken);
-      dispatch({
-        type: "ARCHIVE_NOTES",
-        payload: { notes: [...notes], archives: [...archives] },
-      });
-    } catch (error) {
-      console.error("Error in getting archived notes.", error);
-    }
+    const {
+      data: { notes, archives },
+    } = await getArchivedNoteService(authToken);
+    dispatch({
+      type: "ARCHIVE_NOTES",
+      payload: { notes: [...notes], archives: [...archives] },
+    });
   };
 
   const restoreNoteFromArchive = async (noteId) => {
@@ -234,17 +226,13 @@ const ServiceProvider = ({ children }) => {
   };
 
   const getTrashedNotes = async () => {
-    try {
-      const {
-        data: { notes, trash },
-      } = await getTrashedNoteService(authToken);
-      dispatch({
-        type: "TRASH_NOTES",
-        payload: { notes: [...notes], trash: [...trash] },
-      });
-    } catch (error) {
-      console.error("Error in getting notes from trashed.", error);
-    }
+    const {
+      data: { notes, trash },
+    } = await getTrashedNoteService(authToken);
+    dispatch({
+      type: "TRASH_NOTES",
+      payload: { notes: [...notes], trash: [...trash] },
+    });
   };
 
   const deleteNoteFromTrash = async (noteId) => {

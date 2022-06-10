@@ -5,7 +5,8 @@ const appTheme = { theme: "light" };
 const AppThemeContext = createContext(appTheme);
 
 const AppThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState("light");
+  const foundTheme = localStorage.getItem("app-theme");
+  const [theme, setTheme] = useState(foundTheme || "light");
   return (
     <AppThemeContext.Provider value={{ theme, setTheme }}>
       {children}

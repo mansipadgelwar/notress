@@ -14,6 +14,7 @@ const SideBar = () => {
     authDispatch({ type: "RESET_AUTH" });
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+    localStorage.removeItem("app-theme");
     navigate("/logout");
   };
 
