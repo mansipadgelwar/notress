@@ -44,7 +44,7 @@
   justify-content: space-between;
   color: var(--primary-color);
   font-weight: 700;
-  gap: 17px;
+  gap: 1.063rem;
 }
 
 .notes-list {

@@ -79,7 +79,6 @@ const ServiceProvider = ({ children }) => {
         showToast("Notes added successfully", "success");
       } catch (error) {
         showToast("Error in adding notes", "error");
-        console.error("Error in adding notes.", error);
       }
     }
   };
