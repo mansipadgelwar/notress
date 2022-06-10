@@ -22,6 +22,15 @@ const FilterModal = ({ showFilterModal, onClosingFilterModal }) => {
       : setCheckedCheckbox(checkedCheckbox.filter((e) => e !== value));
   };
 
+  const clearAllFilters = () => {
+    filterDispatch({
+      type: "SORT_BY_DATE",
+      payload: "oldest-first",
+    });
+    setCheckedCheckbox("");
+    setShowFilterData(false);
+  };
+
   useEffect(() => {
     let cleanUpFunction = true;
     if (checkedCheckbox !== "" && cleanUpFunction) {
@@ -39,15 +48,6 @@ const FilterModal = ({ showFilterModal, onClosingFilterModal }) => {
       cleanUpFunction = false;
     };
   }, [checkedCheckbox, filterDispatch, option]);
-
-  const clearAllFilters = () => {
-    filterDispatch({
-      type: "SORT_BY_DATE",
-      payload: "oldest-first",
-    });
-    setCheckedCheckbox("");
-    setShowFilterData(false);
-  };
 
   if (!showFilterModal) {
     return null;
@@ -98,7 +98,6 @@ const FilterModal = ({ showFilterModal, onClosingFilterModal }) => {
                 className={styles.dropdown}
                 onChange={(e) => setOption(e.target.value)}
               >
-                <option value="date">Date</option>
                 <option value="priority">Priority</option>
                 <option value="labels">Labels</option>
               </select>
