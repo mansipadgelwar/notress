@@ -1,11 +1,19 @@
 import { Editor, NotesMenuBar, SearchBar, SideBar } from "../../components";
-import { useServices, useFilter } from "../../context";
+import { useServices, useFilter, useAppTheme } from "../../context";
 import { FilterModal } from "../../components";
+import { useEffect } from "react";
 
 const Home = () => {
   const { state, setShowEditorModal, showEditorModal } = useServices();
   const { showFilterModal, setShowFilterModal, filterState, showFilterData } =
     useFilter();
+  const { theme } = useAppTheme();
+
+  useEffect(() => {
+    theme === "light"
+      ? (document.body.style.backgroundColor = "")
+      : (document.body.style.backgroundColor = "var(--grey)");
+  });
 
   return (
     <div className="library-home-page">

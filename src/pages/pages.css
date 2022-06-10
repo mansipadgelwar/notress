@@ -67,6 +67,7 @@
   margin-bottom: 1.25rem;
   max-height: 24rem;
   overflow: hidden;
+  background-color: var(--white);
   box-shadow: var(--btn-box-shadow);
 }
 
