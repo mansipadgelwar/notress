@@ -12,6 +12,7 @@ import {
   AuthProvider,
   LabelProvider,
   PriorityProvider,
+  AppThemeProvider,
 } from "./context";
 import { PinProvider } from "./context/pinContext/pinContext";
 // Call make Server
@@ -21,20 +22,22 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
-        <NoteThemeProvider>
-          <PinProvider>
-            <LabelProvider>
-              <PriorityProvider>
-                <ServiceProvider>
-                  <FilterModalProvider>
-                    <ToastContainer />
-                    <App />
-                  </FilterModalProvider>
-                </ServiceProvider>
-              </PriorityProvider>
-            </LabelProvider>
-          </PinProvider>
-        </NoteThemeProvider>
+        <AppThemeProvider>
+          <NoteThemeProvider>
+            <PinProvider>
+              <LabelProvider>
+                <PriorityProvider>
+                  <ServiceProvider>
+                    <FilterModalProvider>
+                      <ToastContainer />
+                      <App />
+                    </FilterModalProvider>
+                  </ServiceProvider>
+                </PriorityProvider>
+              </LabelProvider>
+            </PinProvider>
+          </NoteThemeProvider>
+        </AppThemeProvider>
       </AuthProvider>
     </Router>
   </React.StrictMode>,

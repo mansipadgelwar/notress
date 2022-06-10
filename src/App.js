@@ -13,13 +13,14 @@ import {
   LandingPage,
   Profile,
 } from "./pages";
-import { useAuth } from "./context";
+import { useAuth, useAppTheme } from "./context";
 
 function App() {
   const { isAuthorized } = useAuth();
+  const { theme } = useAppTheme();
 
   return (
-    <div className="App">
+    <div className={`App ${theme}`}>
       {isAuthorized && <NavBar />}
       <Routes>
         <Route path="/" element={<LandingPage />} />

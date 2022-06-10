@@ -5,7 +5,7 @@
   min-width: 0;
   border: none;
   box-shadow: var(--btn-box-shadow);
-  z-index: 999;
+  z-index: 7;
   top: 0;
   background-color: var(--white);
   overflow: auto;
@@ -14,8 +14,9 @@
 .header-items {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  padding-left: 4rem;
+  justify-content: space-between;
+  padding: 0 3rem;
+  padding-top: 0.5rem;
 }
 
 .nav-brand {
@@ -24,4 +25,17 @@
   letter-spacing: 0.1rem;
   font-size: 2.8rem;
   color: var(--light-raisin-black);
+}
+
+.simple-header .header .btn-theme {
+  box-shadow: none;
+  margin: 0;
+}
+
+.App.dark .header {
+  background-color: var(--raisin-black);
+}
+
+.App.dark .nav-brand {
+  color: var(--white);
 }

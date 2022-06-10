@@ -12,6 +12,8 @@
   height: 5vh;
   padding: 0.5rem 1.5rem;
   position: relative;
+  border: 1px solid var(--primary-color);
+  border-radius: 0.3rem;
 }
 
 .search-bar-container .icons-left {

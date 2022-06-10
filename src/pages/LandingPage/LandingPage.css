@@ -19,6 +19,7 @@
   align-items: center;
   padding: 1rem 4rem;
   box-shadow: var(--btn-box-shadow);
+  background-color: var(--white);
 }
 
 .landing-page-content {
