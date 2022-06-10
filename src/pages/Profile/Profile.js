@@ -1,6 +1,15 @@
 import "./Profile.css";
+import { useEffect } from "react";
+import { useAppTheme } from "../../context";
 
 const Profile = () => {
+  const { theme } = useAppTheme();
+
+  useEffect(() => {
+    theme === "light"
+      ? (document.body.style.backgroundColor = "")
+      : (document.body.style.backgroundColor = "var(--grey)");
+  });
   return (
     <div className="profile-page-wrapper">
       <div className="profile-page-container">

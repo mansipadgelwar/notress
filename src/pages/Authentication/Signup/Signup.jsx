@@ -28,7 +28,7 @@ const Signup = () => {
   };
 
   if (isAuthorized) {
-    currentLocation("/");
+    currentLocation("/home");
   }
 
   return (

@@ -1,10 +1,18 @@
 import { NotesMenuBar, SearchBar, SideBar } from "../../components";
-import { useServices, useLabel } from "../../context";
+import { useServices, useLabel, useAppTheme } from "../../context";
 import "../../pages/pages.css";
+import { useEffect } from "react";
 
 const Trash = () => {
   const { state } = useServices();
   const { displayLabel } = useLabel();
+  const { theme } = useAppTheme();
+
+  useEffect(() => {
+    theme === "light"
+      ? (document.body.style.backgroundColor = "")
+      : (document.body.style.backgroundColor = "var(--grey)");
+  });
 
   return (
     <div className="library-home-page">
