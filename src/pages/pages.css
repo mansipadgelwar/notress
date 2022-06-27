@@ -66,7 +66,7 @@
   padding: 1rem;
   margin-bottom: 1.25rem;
   max-height: 24rem;
-  overflow: hidden;
+
   background-color: var(--white);
   box-shadow: var(--btn-box-shadow);
 }
@@ -133,6 +133,20 @@
 }
 
 .modal-background-page {
-  opacity: 0;
+  opacity: 0.4;
   height: auto;
+}
+
+@media screen and (max-width: 567px) {
+  .main-content-page {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .notes-container {
+    min-width: 24rem;
+    width: 100%;
+    gap: 1rem;
+    height: 100%;
+  }
 }

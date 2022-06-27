@@ -27,6 +27,8 @@
 
 .input-with-icon {
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .input-with-icon > input {
@@ -118,4 +120,22 @@
 
 .btn-cta:hover {
   background-color: var(--dark-primary-color);
+}
+
+@media screen and (max-width: 567px) {
+  .input-with-icon > input {
+    max-width: 20rem;
+  }
+
+  .form {
+    min-width: 22rem;
+  }
+
+  .input-icon > input {
+    max-width: 22rem;
+  }
+
+  .login-form input {
+    max-width: 18.5rem;
+  }
 }
