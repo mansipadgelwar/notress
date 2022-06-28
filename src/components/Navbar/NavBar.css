@@ -7,7 +7,6 @@
   box-shadow: var(--btn-box-shadow);
   z-index: 7;
   top: 0;
-  left: 0;
   background-color: var(--white);
   overflow: auto;
 }
@@ -39,14 +38,4 @@
 
 .App.dark .nav-brand {
   color: var(--white);
-}
-
-@media screen and (max-width: 567px) {
-  .header-items {
-    padding: 0.2rem;
-  }
-
-  .nav-brand {
-    font-size: 2rem;
-  }
 }

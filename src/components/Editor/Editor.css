@@ -23,10 +23,3 @@
   padding: 0.5rem 1.5rem;
   position: relative;
 }
-
-@media screen and (max-width: 567px) {
-  .modal-wrapper {
-    left: 0;
-    position: absolute;
-  }
-}

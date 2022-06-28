@@ -81,9 +81,3 @@
   background-color: var(--white);
   color: var(--primary-color);
 }
-
-@media screen and (max-width: 567px) {
-  .modal_wrapper {
-    left: 0;
-  }
-}
