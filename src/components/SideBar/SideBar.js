@@ -56,10 +56,18 @@ const SideBar = () => {
               </Link>
               <li className="notes-side-links">
                 <button
-                  className="btn btn-cta"
+                  className="btn btn-cta mobile-hide"
                   onClick={() => setShowEditorModal(!showEditorModal)}
                 >
-                  {showEditorModal ? "Close Editor" : "Create New Note"}
+                  <span>
+                    {showEditorModal ? "Close Editor" : "Create New Note"}
+                  </span>
+                </button>
+                <button
+                  className="btn btn-cta desktop-hide"
+                  onClick={() => setShowEditorModal(!showEditorModal)}
+                >
+                  <span className="material-icons add-notes">add</span>
                 </button>
               </li>
             </ul>

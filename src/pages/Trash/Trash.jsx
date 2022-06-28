@@ -26,9 +26,7 @@ const Trash = () => {
             <SearchBar />
           </div>
 
-          <div className="section-breaker h4 text-bold">
-            <div>TRASH</div>
-          </div>
+          <div className="section-breaker h4 text-bold">TRASH</div>
           {state.trash.map((item) => {
             return (
               <div
