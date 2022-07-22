@@ -136,3 +136,17 @@
   opacity: 0;
   height: auto;
 }
+
+@media screen and (max-width: 567px) {
+  .main-content-page {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .notes-container {
+    min-width: 24rem;
+    width: 100%;
+    gap: 1rem;
+    height: 100%;
+  }
+}
