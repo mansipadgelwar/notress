@@ -1,9 +1,10 @@
 import "./Profile.css";
 import { useEffect } from "react";
-import { useAppTheme } from "../../context";
+import { useAppTheme, useAuth } from "../../context";
 
 const Profile = () => {
   const { theme } = useAppTheme();
+  const { authUser } = useAuth();
 
   useEffect(() => {
     theme === "light"
@@ -27,12 +28,12 @@ const Profile = () => {
         <div className="profile-page-content">
           <div className="h4">
             <div>
-              <span className="inverted-text text-bold">Name: </span>Mansi
-              Padgelwar
+              <span className="inverted-text text-bold">Name: </span>{" "}
+              {`${authUser.firstName} ${authUser.lastName}`}
             </div>
             <div>
               <span className="inverted-text text-bold">Email Id: </span>
-              mansipadgelwar@gmail.com
+              {`${authUser.email}`}
             </div>
           </div>
         </div>
