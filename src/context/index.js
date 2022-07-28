@@ -27,3 +27,7 @@ export {
   useAppTheme,
   AppThemeProvider,
 } from "../context/appThemeContext/appThemeContext";
+export {
+  useSearch,
+  SearchProvider,
+} from "../context/searchContext/searchContext";

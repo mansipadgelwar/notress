@@ -12,7 +12,7 @@ const Trash = () => {
     theme === "light"
       ? (document.body.style.backgroundColor = "")
       : (document.body.style.backgroundColor = "var(--grey)");
-  });
+  }, [theme]);
 
   return (
     <div className="library-home-page">

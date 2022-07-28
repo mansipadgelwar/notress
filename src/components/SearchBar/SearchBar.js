@@ -1,8 +1,10 @@
 import "../SearchBar/SearchBar.css";
-import { useFilter } from "../../context";
+import { useFilter, useSearch } from "../../context";
 
 const SearchBar = () => {
   const { setShowFilterModal } = useFilter();
+  const { search, setSearch } = useSearch();
+
   return (
     <div className="search-bar-container">
       <span className="material-icons icons-left">search</span>
@@ -11,6 +13,8 @@ const SearchBar = () => {
         type="text"
         id="search-bar"
         name="search-bar"
+        onChange={(e) => setSearch(e.target.value)}
+        value={search}
       />
       <span
         className="material-icons icon-right"

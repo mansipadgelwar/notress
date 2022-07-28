@@ -76,7 +76,7 @@ const SideBar = () => {
           <div className="profile-details">
             <ul className="notes-sidebar-list">
               <li className="notes-side-links">
-                <Link to="/">
+                <Link to="/profile">
                   <img
                     src="https://picsum.photos/200"
                     alt="avatar"

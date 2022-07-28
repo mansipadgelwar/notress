@@ -2,6 +2,7 @@ import { createContext, useContext, useReducer } from "react";
 import { userLoginService, userSignupService } from "../../services";
 import { authReducer, initialAuthState } from "../../reducers";
 import { useToast } from "../../custom-hooks/useToast";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -21,6 +22,9 @@ const AuthProvider = ({ children }) => {
   };
   const { showToast } = useToast();
   const [authState, authDispatch] = useReducer(authReducer, setAuthState());
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const loginUser = async (email, password) => {
     try {
       const { data, status } = await userLoginService(email, password);
@@ -35,6 +39,7 @@ const AuthProvider = ({ children }) => {
         });
         localStorage.setItem("token", data.encodedToken);
         localStorage.setItem("user", JSON.stringify(data.foundUser));
+        navigate(location.state?.from?.pathname || "/home", { replace: true });
       }
     } catch (error) {
       showToast(`Error while login`, "error");

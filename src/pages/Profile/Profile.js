@@ -9,7 +9,8 @@ const Profile = () => {
     theme === "light"
       ? (document.body.style.backgroundColor = "")
       : (document.body.style.backgroundColor = "var(--grey)");
-  });
+  }, [theme]);
+
   return (
     <div className="profile-page-wrapper">
       <div className="profile-page-container">
