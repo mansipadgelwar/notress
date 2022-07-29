@@ -18,14 +18,14 @@ const FilterModalProvider = ({ children }) => {
       case "SORT_BY_PRIORITY":
         return {
           ...filterstate,
-          filteredData: state.notes.filter((item) =>
+          filteredData: state.notes?.filter((item) =>
             payload.find((element) => element === item.priority)
           ),
         };
       case "SORT_BY_LABELS":
         return {
           ...filterstate,
-          filteredData: state.notes.filter((item) =>
+          filteredData: state.notes?.filter((item) =>
             item.tags.find((element) => {
               return payload.find((label) => label === element);
             })
@@ -36,8 +36,8 @@ const FilterModalProvider = ({ children }) => {
           ...filterstate,
           filteredData:
             payload === "newest-first"
-              ? state.notes.sort((a, b) => b.createdTime - a.createdTime)
-              : state.notes.sort((a, b) => a.createdTime - b.createdTime),
+              ? state.notes?.sort((a, b) => b.createdTime - a.createdTime)
+              : state.notes?.sort((a, b) => a.createdTime - b.createdTime),
         };
       default:
         throw new Error("Invalid case");

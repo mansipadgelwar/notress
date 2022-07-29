@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useFilter, useLabel } from "../../../context";
+import { useFilter, useLabel, useServices } from "../../../context";
 import styles from "./Filtermodal.module.css";
 
 const priorityDB = ["High", "Medium", "Low"];
@@ -14,6 +14,7 @@ const FilterModal = ({ showFilterModal, onClosingFilterModal }) => {
     setOption,
   } = useFilter();
   const { data } = useLabel();
+  const { state } = useServices();
 
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
@@ -32,22 +33,21 @@ const FilterModal = ({ showFilterModal, onClosingFilterModal }) => {
   };
 
   useEffect(() => {
-    let cleanUpFunction = true;
-    if (checkedCheckbox !== "" && cleanUpFunction) {
-      option === "priority"
-        ? filterDispatch({
-            type: "SORT_BY_PRIORITY",
-            payload: checkedCheckbox,
-          })
-        : filterDispatch({
-            type: "SORT_BY_LABELS",
-            payload: checkedCheckbox,
-          });
-    }
-    return () => {
-      cleanUpFunction = false;
+    const dispatchData = () => {
+      if (checkedCheckbox !== "" && state.notes) {
+        option === "priority"
+          ? filterDispatch({
+              type: "SORT_BY_PRIORITY",
+              payload: checkedCheckbox,
+            })
+          : filterDispatch({
+              type: "SORT_BY_LABELS",
+              payload: checkedCheckbox,
+            });
+      }
     };
-  }, [checkedCheckbox, filterDispatch, option]);
+    dispatchData();
+  }, [checkedCheckbox, filterDispatch, option, state.notes]);
 
   if (!showFilterModal) {
     return null;

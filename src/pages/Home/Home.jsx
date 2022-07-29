@@ -10,6 +10,8 @@ const Home = () => {
   const { theme } = useAppTheme();
   const { search } = useSearch();
 
+  console.log(filterState.filteredData);
+
   useEffect(() => {
     theme === "light"
       ? (document.body.style.backgroundColor = "")
@@ -43,16 +45,17 @@ const Home = () => {
           </div>
 
           {showFilterData
-            ? filterState.filteredData
-                .filter((item) => {
-                  if (search === "") {
-                    return item;
-                  } else if (
-                    item.title.toLowerCase().includes(search.toLowerCase())
-                  ) {
-                    return item;
-                  }
-                })
+            ? filterState.filteredData &&
+              filterState.filteredData
+                // ?.filter((item) => {
+                //   if (search === "") {
+                //     return item;
+                //   } else if (
+                //     item.title.toLowerCase().includes(search.toLowerCase())
+                //   ) {
+                //     return item;
+                //   }
+                // })
                 .map((item) => {
                   return (
                     <div
@@ -97,16 +100,17 @@ const Home = () => {
                     </div>
                   );
                 })
-            : state.notes
-                .filter((item) => {
-                  if (search === "") {
-                    return item;
-                  } else if (
-                    item.title.toLowerCase().includes(search.toLowerCase())
-                  ) {
-                    return item;
-                  }
-                })
+            : state.notes &&
+              state.notes
+                // .filter((item) => {
+                //   if (search === "") {
+                //     return item;
+                //   } else if (
+                //     item.title.toLowerCase().includes(search.toLowerCase())
+                //   ) {
+                //     return item;
+                //   }
+                // })
                 .map((item) => {
                   return (
                     <div
