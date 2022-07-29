@@ -10,8 +10,6 @@ const Home = () => {
   const { theme } = useAppTheme();
   const { search } = useSearch();
 
-  console.log(filterState.filteredData);
-
   useEffect(() => {
     theme === "light"
       ? (document.body.style.backgroundColor = "")
@@ -47,15 +45,15 @@ const Home = () => {
           {showFilterData
             ? filterState.filteredData &&
               filterState.filteredData
-                // ?.filter((item) => {
-                //   if (search === "") {
-                //     return item;
-                //   } else if (
-                //     item.title.toLowerCase().includes(search.toLowerCase())
-                //   ) {
-                //     return item;
-                //   }
-                // })
+                ?.filter((item) => {
+                  if (search === "") {
+                    return item;
+                  } else if (
+                    item.title.toLowerCase().includes(search.toLowerCase())
+                  ) {
+                    return item;
+                  }
+                })
                 .map((item) => {
                   return (
                     <div
@@ -81,7 +79,7 @@ const Home = () => {
                         className="notes-body"
                         dangerouslySetInnerHTML={{ __html: item.body }}
                       />
-                      <div class="notes-label-container">
+                      <div className="notes-label-container">
                         {item.tags.map((label) => {
                           return (
                             <div className="notes-label-type text-bold h5">
@@ -102,15 +100,15 @@ const Home = () => {
                 })
             : state.notes &&
               state.notes
-                // .filter((item) => {
-                //   if (search === "") {
-                //     return item;
-                //   } else if (
-                //     item.title.toLowerCase().includes(search.toLowerCase())
-                //   ) {
-                //     return item;
-                //   }
-                // })
+                .filter((item) => {
+                  if (search === "") {
+                    return item;
+                  } else if (
+                    item.title.toLowerCase().includes(search.toLowerCase())
+                  ) {
+                    return item;
+                  }
+                })
                 .map((item) => {
                   return (
                     <div
