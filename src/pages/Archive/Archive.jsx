@@ -1,18 +1,25 @@
 import { NotesMenuBar, SearchBar, SideBar } from "../../components";
 import "../../pages/pages.css";
-import { useLabel, useServices, useAppTheme } from "../../context";
+import { useLabel, useServices, useAppTheme, useAuth } from "../../context";
 import { useEffect } from "react";
 
 const Archive = () => {
-  const { state } = useServices();
+  const { state, getArchivedNotes } = useServices();
   const { displayLabel } = useLabel();
   const { theme } = useAppTheme();
+  const { isAuthorized } = useAuth();
 
   useEffect(() => {
     theme === "light"
       ? (document.body.style.backgroundColor = "")
       : (document.body.style.backgroundColor = "var(--grey)");
   }, [theme]);
+
+  useEffect(() => {
+    if (isAuthorized) {
+      getArchivedNotes();
+    }
+  }, []);
 
   return (
     <div className="library-home-page">
@@ -55,7 +62,7 @@ const Archive = () => {
                   className="notes-body"
                   dangerouslySetInnerHTML={{ __html: item.body }}
                 ></div>
-                <div class="notes-label-container">
+                <div className="notes-label-container">
                   {displayLabel.map((label) => {
                     return (
                       <div className="notes-label-type text-bold h5">

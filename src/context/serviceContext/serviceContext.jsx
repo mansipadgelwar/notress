@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useReducer,
-  useState,
-  useEffect,
-} from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import {
   useAuth,
   useTheme,
@@ -273,15 +267,6 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    if (isAuthorized) {
-      getNewNotes();
-      getArchivedNotes();
-      getTrashedNotes();
-    }
-    //eslint-disable-next-line
-  }, [isAuthorized]);
-
   return (
     <ServiceContext.Provider
       value={{
@@ -303,6 +288,9 @@ const ServiceProvider = ({ children }) => {
         setShowEditorModal,
         setEditMode,
         isInEditMode,
+        getNewNotes,
+        getArchivedNotes,
+        getTrashedNotes,
       }}
     >
       {children}

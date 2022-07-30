@@ -1,7 +1,7 @@
 const dataReducer = (state, { type, payload }) => {
   switch (type) {
     case "SET_NOTES":
-      return { ...state, notes: [...payload] };
+      return { ...state, notes: payload };
     case "ARCHIVE_NOTES":
       return { ...state, archives: payload.archives, notes: payload.notes };
     case "TRASH_NOTES":
