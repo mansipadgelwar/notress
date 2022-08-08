@@ -102,7 +102,7 @@ const Login = () => {
               className="btn btn-primary-outline"
               onClick={loginWithTestCredentials}
             >
-              Login with test credentials
+              Fill test credentials
             </button>
             <Link to="/signup" className="btn-link">
               Create New Account &gt;

@@ -56,117 +56,122 @@ const Home = () => {
             <SearchBar />
           </div>
 
-          {showFilterData
-            ? filterState.filteredData &&
-              filterState.filteredData
-                ?.filter((item) => {
-                  if (search === "") {
-                    return item;
-                  } else if (
-                    item.title.toLowerCase().includes(search.toLowerCase())
-                  ) {
-                    return item;
-                  }
-                })
-                .map((item) => {
-                  return (
-                    <div
-                      className="notes-container"
-                      key={item._id}
-                      style={{ ...item, backgroundColor: item.bgColor }}
-                    >
-                      <div className="notes-title-container">
-                        <div className="h4 text-bold">{item.title}</div>
-                        <div>
-                          <span
-                            className={
-                              item.pinnedNote
-                                ? "material-icons"
-                                : "material-icons-outlined"
-                            }
-                          >
-                            push_pin
-                          </span>
-                        </div>
-                      </div>
-                      <div
-                        className="notes-body"
-                        dangerouslySetInnerHTML={{ __html: item.body }}
-                      />
-                      <div className="notes-label-container">
-                        {item.tags.map((label) => {
-                          return (
-                            <div className="notes-label-type text-bold h5">
-                              {label}
-                            </div>
-                          );
-                        })}
-                      </div>
-                      <div className="notes-menu">
-                        <div className="notes-creation-date">
-                          {`${new Date(item.createdTime).toLocaleString()}`}
-                        </div>
-                        <div className="priority-tab">{item.priority}</div>
-                        <NotesMenuBar notes={item} menutype={false} />
+          {showFilterData ? (
+            filterState.filteredData &&
+            filterState.filteredData
+              ?.filter((item) => {
+                if (search === "") {
+                  return item;
+                } else if (
+                  item.title.toLowerCase().includes(search.toLowerCase())
+                ) {
+                  return item;
+                }
+              })
+              .map((item) => {
+                return (
+                  <div
+                    className="notes-container"
+                    key={item._id}
+                    style={{ ...item, backgroundColor: item.bgColor }}
+                  >
+                    <div className="notes-title-container">
+                      <div className="h4 text-bold">{item.title}</div>
+                      <div>
+                        <span
+                          className={
+                            item.pinnedNote
+                              ? "material-icons"
+                              : "material-icons-outlined"
+                          }
+                        >
+                          push_pin
+                        </span>
                       </div>
                     </div>
-                  );
-                })
-            : state.notes &&
-              state.notes
-                .filter((item) => {
-                  if (search === "") {
-                    return item;
-                  } else if (
-                    item.title.toLowerCase().includes(search.toLowerCase())
-                  ) {
-                    return item;
-                  }
-                })
-                .map((item) => {
-                  return (
                     <div
-                      className="notes-container"
-                      key={item._id}
-                      style={{ ...item, backgroundColor: item.bgColor }}
-                    >
-                      <div className="notes-title-container">
-                        <div className="h4 text-bold">{item.title}</div>
-                        <div>
-                          <span
-                            className={
-                              item.pinnedNote
-                                ? "material-icons"
-                                : "material-icons-outlined"
-                            }
-                          >
-                            push_pin
-                          </span>
-                        </div>
+                      className="notes-body"
+                      dangerouslySetInnerHTML={{ __html: item.body }}
+                    />
+                    <div className="notes-label-container">
+                      {item.tags.map((label) => {
+                        return (
+                          <div className="notes-label-type text-bold h5">
+                            {label}
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <div className="notes-menu">
+                      <div className="notes-creation-date">
+                        {`${new Date(item.createdTime).toLocaleString()}`}
                       </div>
-                      <div
-                        className="notes-body"
-                        dangerouslySetInnerHTML={{ __html: item.body }}
-                      />
-                      <div className="notes-label-container">
-                        {item.tags.map((label) => {
-                          return (
-                            <div className="notes-label-type text-bold h5">
-                              {label}
-                            </div>
-                          );
-                        })}
-                      </div>
-                      <div className="notes-menu">
-                        <div className="notes-creation-date">
-                          {`${new Date(item.createdTime).toLocaleString()}`}
-                        </div>
-                        <div className="priority-tab">{item.priority}</div>
-                        <NotesMenuBar notes={item} menutype={false} />
+                      <div className="priority-tab">{item.priority}</div>
+                      <NotesMenuBar notes={item} menutype={false} />
+                    </div>
+                  </div>
+                );
+              })
+          ) : state.notes.length > 0 ? (
+            state.notes
+              .filter((item) => {
+                if (search === "") {
+                  return item;
+                } else if (
+                  item.title.toLowerCase().includes(search.toLowerCase())
+                ) {
+                  return item;
+                }
+              })
+              .map((item) => {
+                return (
+                  <div
+                    className="notes-container"
+                    key={item._id}
+                    style={{ ...item, backgroundColor: item.bgColor }}
+                  >
+                    <div className="notes-title-container">
+                      <div className="h4 text-bold">{item.title}</div>
+                      <div>
+                        <span
+                          className={
+                            item.pinnedNote
+                              ? "material-icons"
+                              : "material-icons-outlined"
+                          }
+                        >
+                          push_pin
+                        </span>
                       </div>
                     </div>
-                  );
-                })}
+                    <div
+                      className="notes-body"
+                      dangerouslySetInnerHTML={{ __html: item.body }}
+                    />
+                    <div className="notes-label-container">
+                      {item.tags.map((label) => {
+                        return (
+                          <div className="notes-label-type text-bold h5">
+                            {label}
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <div className="notes-menu">
+                      <div className="notes-creation-date">
+                        {`${new Date(item.createdTime).toLocaleString()}`}
+                      </div>
+                      <div className="priority-tab">{item.priority}</div>
+                      <NotesMenuBar notes={item} menutype={false} />
+                    </div>
+                  </div>
+                );
+              })
+          ) : (
+            <div className="logout-content">
+              <h2 className="h2">Your notes appear here</h2>
+            </div>
+          )}
         </div>
       </div>
     </div>
